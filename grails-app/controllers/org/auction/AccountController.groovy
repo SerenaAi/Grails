@@ -1,5 +1,5 @@
 package org.auction
 
 class AccountController {
-    def scaffold = Account 
+    static scaffold = Account
 }

@@ -5,9 +5,8 @@ class Account {
   String email;
   String name;
   String password;
-
   static hasMany = [listings: Listing]
-
+   static belongsTo = [email:BidderAccount, email:SellerAccount]
     static constraints = {
       address(blank: false)
       email(blank: false)

@@ -1,12 +1,13 @@
 package org.auction
 
 class Listing {
+    int id;
     Date createdDate;
     Date startDate;
     String description;
     String name;
     float startPrice;
-    int listingDays;
+    int listingDays ;
 
     static belongsTo = [account: Account]
 

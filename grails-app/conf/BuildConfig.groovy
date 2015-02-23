@@ -50,7 +50,16 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         // runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
+        def gebVersion = "0.7.0"
+        def seleniumVersion = "2.25.0"
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
+        test "org.codehaus.geb:geb-spock:$gebVersion"
+        // Various webdrivers to drive your tests in different browsers
+        test "org.gebish:geb-spock:0.10.0"
+        test "org.seleniumhq.selenium:selenium-support:2.44.0"
+        test("com.github.detro.ghostdriver:phantomjsdriver:1.0.1") {
+            transitive = false
+        }
     }
 
     plugins {
@@ -73,6 +82,11 @@ grails.project.dependency.resolution = {
         //compile ":less-asset-pipeline:1.10.0"
         //compile ":coffee-asset-pipeline:1.8.0"
         //compile ":handlebars-asset-pipeline:1.3.0.3"
-        compile ":twitter-bootstrap:3.0.0"
+        //compile ":twitter-bootstrap:3.0.0"
+        test "org.grails.plugins:geb:0.10.0"
+        test ":geb:0.6.3"
+        test ":spock:0.6"
+        compile ":remote-control:1.5"
+        // Not required, but very useful in speeding up working with functional tests
     }
 }

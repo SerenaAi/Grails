@@ -1,7 +1,6 @@
 package org.auction
 
 class Listing {
-    int id;
     Date createdDate;
     Date startDate;
     String description;
@@ -9,7 +8,7 @@ class Listing {
     float startPrice;
     int listingDays ;
 
-    static belongsTo = [account: Account]
+    static belongsTo = [account: Account, deliverOption: DeliverOption]
 
     static constraints = {
         name(blank: false)
@@ -19,4 +18,5 @@ class Listing {
         listingDays(blank: false)
         createdDate(blank: false)
     }
+
 }

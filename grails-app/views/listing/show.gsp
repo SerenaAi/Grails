@@ -1,4 +1,3 @@
-
 <%@ page import="org.auction.Listing" %>
 <!DOCTYPE html>
 <html>
@@ -77,14 +76,18 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${listingInstance?.account}">
-				<li class="fieldcontain">
-					<span id="account-label" class="property-label"><g:message code="listing.account.label" default="Account" /></span>
-					
-						<span class="property-value" aria-labelledby="account-label"><g:link controller="account" action="show" id="${listingInstance?.account?.id}">${listingInstance?.account?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
+				%{--<g:if test="${listingInstance?.account}">--}%
+				%{--<li class="fieldcontain">--}%
+					%{--<span id="account-label" class="property-label"><g:message code="listing.account.label" default="Account" /></span>--}%
+						%{--<span class="property-value" aria-labelledby="account-label"><g:link controller="account" action="show" id="${listingInstance?.account?.id}">${listingInstance?.account?.encodeAsHTML()}</g:link></span>--}%
+				%{--</li>--}%
+				%{--</g:if>--}%
+				%{--<g:if test="${listingInstance?.deliveroption}">--}%
+				%{--<li class="fieldcontain">--}%
+					%{--<span id="deliveroption-label" class="property-label"><g:message code="listing.deliveroption.label" default="Deliveroption" /></span>--}%
+						%{--<span class="property-value" aria-labelledby="deliveroption-label"><g:link controller="deliverOption" action="show" id="${listingInstance?.deliveroption?.id}">${listingInstance?.deliveroption?.encodeAsHTML()}</g:link></span>--}%
+				%{--</li>--}%
+				%{--</g:if>--}%
 			
 			</ol>
 			<g:form url="[resource:listingInstance, action:'delete']" method="DELETE">

@@ -56,12 +56,20 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'account', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'account', 'error')} ">
 	<label for="account">
 		<g:message code="listing.account.label" default="Account" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="account" name="account.id" from="${org.auction.Account.list()}" optionKey="id" required="" value="${listingInstance?.account?.id}" class="many-to-one"/>
+	<g:select id="account" name="account.id" from="${org.auction.Account.list()}" optionKey="id" required="" optionValue="name" value="${listingInstance?.account?.id}" class="many-to-one"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'deliverOption', 'error')} ">
+	<label for="deliverOption">
+		<g:message code="listing.deliverOption.label" default="deliverOption" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="deliverOption" name="deliverOption.id" from="${org.auction.DeliverOption.list()}" optionKey="id" required=""  optionValue="name"  value="${listingInstance?.deliverOption?.id}" class="many-to-one"/>
 
 </div>
 

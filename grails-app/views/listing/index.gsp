@@ -27,8 +27,7 @@
                 <fieldset class="form">
                     <g:form action="search" method="POST">
                         <div class="fieldcontain">
-                            <label for="query">Search by</label>
-                            <select name="type"><option value="1">Name</option><option value="2">Description</option></select>
+                            <label for="query">Search for</label>
                             <g:textField name="query" value="${params.query}"/>
                             <input type="submit" value="Go">
                         </div>

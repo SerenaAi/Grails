@@ -6,7 +6,7 @@ class Listing {
     String description
     String name
     float startPrice
-    int listingDays 
+    int listingDays
 
     static belongsTo = [account: Account, deliverOption: DeliverOption]
 
@@ -18,5 +18,4 @@ class Listing {
         listingDays(blank: false)
         createdDate(blank: false)
     }
-
 }

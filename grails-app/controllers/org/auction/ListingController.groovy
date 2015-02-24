@@ -16,14 +16,14 @@ class ListingController {
         respond listingInstance
     }
 
-    def index (Integer max) {
+    def index(Integer max) {
         def now = new Date()
 
         def criteria = Listing.createCriteria()
         def results = criteria {
             ge('startDate', now)
         }
-        respond results, view:'index' 
+        respond results, view: 'index'
     }
 
     def search = {
@@ -36,9 +36,9 @@ class ListingController {
         }
 
         if (results) {
-            respond results, view:'index' 
+            respond results, view: 'index'
         } else {
-            respond Listing.list(params), model:[listingInstanceCount: Listing.count()], view:'index'
+            respond Listing.list(params), model: [listingInstanceCount: Listing.count()], view: 'index'
             return
         }
     }

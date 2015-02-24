@@ -22,6 +22,24 @@ class ListingController {
             respond Listing.list(params), model:[listingInstanceCount: Listing.count()]
         }
     }
+
+    def search = {
+        def criteria = Listing.createCriteria()
+        def results = criteria {
+            or {
+                ilike('name', "%${params.query}%")
+                ilike('description', "%${params.query}%")
+            }
+        }
+
+        if (results) {
+            respond results, view:'index' 
+        } else {
+            respond Listing.list(params), model:[listingInstanceCount: Listing.count()], view:'index'
+            return
+        }
+    }
+
     @Transactional
     def save(Listing listingInstance) {
         if (listingInstance == null) {

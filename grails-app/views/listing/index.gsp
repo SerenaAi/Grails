@@ -25,7 +25,7 @@
                     <div class="message" role="status">${flash.message}</div>
                 </g:if>
                 <fieldset class="form">
-                    <g:form action="index" method="GET">
+                    <g:form action="search" method="POST">
                         <div class="fieldcontain">
                             <label for="query">Search by</label>
                             <select name="type"><option value="1">Name</option><option value="2">Description</option></select>

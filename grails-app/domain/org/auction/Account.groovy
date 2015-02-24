@@ -11,10 +11,13 @@ class Account {
   static hasMany = [listings: Listing]
     static constraints = {
       address(blank: false)
-      email(blank: false)
-      name(blank: false, size: 2..20)
+      email(blank: false, email: true)
+      name(blank: false)
       password(blank: false, size: 8..16)
+      password validator: { val-> return ( val.find(/[A-Z]/)|| val.find(/[a-z]/) ) && val.find(/\d/)
+      }
     }
+
     static mapping={
         autoTimestamp true
     }

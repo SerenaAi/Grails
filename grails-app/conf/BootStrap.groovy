@@ -4,14 +4,29 @@ import org.auction.Listing
 
 class BootStrap {
     def init = { servletContext ->
+        def option1,option2,option3;
+        def account1, account2;
         if(!Account.count()){
-            def account1= new Account(name: "Sijia",address: "aaa st",email:"a@a.com",password:"xxxxxxxx", type:1 ).save(failOnError: true)
-            def account2= new Account(name: "Gerar",address: "gg st",email:"g@g.com",password: "aaaaaaaa",type:2 ).save(failOnError: true)
+            account1= new Account(name: "Sijia",address: "aaa st",email:"a@a.com",password:"1xxxxxxx", type:1 ).save(failOnError: true)
+            account2= new Account(name: "Gerar",address: "gg st",email:"g@g.com",password: "1aaaaaaa",type:2 ).save(failOnError: true)
         }
         if (!DeliverOption.count()) {
-            def option1 = new DeliverOption(name: "US Only",id:1 ).save(failOnError: true)
-            def option2 = new DeliverOption(name: "Worldwide", id:2 ).save(failOnError: true)
-            def option3 = new DeliverOption(name: "Pick Up Only", id:3 ).save(failOnError: true)
+            option1 = new DeliverOption(name: "US Only" ).save(failOnError: true)
+            option2 = new DeliverOption(name: "Worldwide" ).save(failOnError: true)
+            option3 = new DeliverOption(name: "Pick Up Only" ).save(failOnError: true)
+        }
+        if (!Listing.count()) {
+            def listing1 = new Listing(name: "l1",description:"L-1",startDate:new Date()-2,startPrice:0.0,listingDays:1,biddings: null, deliverOption: option1, account: account1  ).save(failOnError: true)
+            def listing2 = new Listing(name: "l2",description:"L-2",startDate:new Date() ,startPrice:1.0,listingDays:2,biddings: null,deliverOption: option1, account: account1   ).save(failOnError: true)
+            def listing3 = new Listing(name: "l3",description:"L-3",startDate:new Date()-3,startPrice:0.0,listingDays:1,biddings: null,deliverOption: option1, account: account1   ).save(failOnError: true)
+            def listing4 = new Listing(name: "l4", description:"L-4",startDate:new Date() ,startPrice:3.0,listingDays:1,biddings: null,deliverOption: option1, account: account1 ).save(failOnError: true)
+            def listing5 = new Listing(name: "l5",description:"L-5",startDate:new Date()-1,startPrice:0.0,listingDays:1 ,biddings: null,deliverOption: option1, account: account1  ).save(failOnError: true)
+            def listing6 = new Listing(name: "l6",description:"L-6",startDate:new Date() ,startPrice:2.0 ,listingDays:1,biddings: null,deliverOption: option1, account: account1 ).save(failOnError: true)
+            def listing7 = new Listing(name: "l7",description:"L-7",startDate:new Date()-2 ,startPrice:4.0 ,listingDays:4 ,biddings: null,deliverOption: option1, account: account1).save(failOnError: true)
+            def listing8 = new Listing(name: "l8",description:"L-8",startDate:new Date()-4 ,startPrice:1.0 ,listingDays:1 ,biddings: null,deliverOption: option1, account: account1).save(failOnError: true)
+            def listing9 = new Listing(name: "l9", description:"L-9",startDate:new Date(),startPrice:0.0 ,listingDays:2 ,biddings: null,deliverOption: option1, account: account1).save(failOnError: true)
+            def listing10 = new Listing(name: "l10",description:"L-10",startDate:new Date() ,startPrice:1.0 ,listingDays:1,biddings: null,deliverOption: option1, account: account1 ).save(failOnError: true)
+            def listing11 = new Listing(name: "l11",description:"L-11",startDate:new Date()-5 ,startPrice:0.0 ,listingDays:6,biddings: null ,deliverOption: option1, account: account1).save(failOnError: true)
         }
     }
     def destroy = {

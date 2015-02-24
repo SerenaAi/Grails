@@ -11,8 +11,7 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link action="show" controller="account"><g:message message="Show Account" /></g:link></li>
-                <li><g:link action="create" controller="listing"><g:message message="Create List" /></g:link></li>
+                <li><g:link action="create" controller="listing"><g:message message="Create Listing" /></g:link></li>
             </ul>
 		</div>
 		<div id="list-listing" class="content scaffold-list" role="main">
@@ -28,8 +27,14 @@
                     <g:form action="index" method="GET">
                         <div class="fieldcontain">
                             <label for="query">Search by</label>
-                            <select name="type"><option value="1">Name</option><option value="2">Description</option></select>
+                            <g:select name="searchtype" value="${params.searchtype}"
+                                      from="${[1: 'Name', 2: 'Description']}"
+                                      optionKey="key" optionValue="value" />
+
                             <g:textField name="query" value="${params.query}"/>
+                            <g:select name="listtype" value="${params.listtype}"
+                                      from="${[1: 'Show All', 2: 'Show Completed', 3: 'Show Uncompleted']}"
+                                      optionKey="key" optionValue="value" />
                             <input type="submit" value="Go">
                         </div>
                     </g:form>
@@ -44,7 +49,7 @@
 						<g:sortableColumn property="startPrice" title="${message(code: 'listing.startPrice.label', default: 'Start Price')}" />
 						<g:sortableColumn property="startDate" title="${message(code: 'listing.startDate.label', default: 'Start Date')}" />
 						<g:sortableColumn property="listingDays" title="${message(code: 'listing.listingDays.label', default: 'Listing Days')}" />
-						<g:sortableColumn property="createdDate" title="${message(code: 'listing.createdDate.label', default: 'Created Date')}" />
+                        <g:sortableColumn property="completed" title="${message(code: 'listing.completed.label', default: 'Completed')}" />
 					</tr>
 				</thead>
 				<tbody>
@@ -55,14 +60,15 @@
 						<td>${fieldValue(bean: listingInstance, field: "startPrice")}</td>
 						<td><g:formatDate date="${listingInstance.startDate}" /></td>
 						<td>${fieldValue(bean: listingInstance, field: "listingDays")}</td>
-						<td><g:formatDate date="${listingInstance.createdDate}" /></td>
+                        <td>${fieldValue(bean: listingInstance, field: "completed")}</td>
                     </tr>
 				</g:each>
 				</tbody>
 			</table>
-			%{--<div class="pagination">--}%
-				%{--<g:paginate total="${listingInstanceCount ?: 0}" />--}%
-			%{--</div>--}%
+			<div class="pagination">
+				<g:paginate next="Forward" prev="Back" controller="listing"
+                            action="index" total="${listingInstanceCount ?: 0}" />
+			</div>
 		</div>
 	</body>
 </html>

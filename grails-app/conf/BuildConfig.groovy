@@ -40,6 +40,7 @@ grails.project.dependency.resolution = {
         mavenLocal()
         grailsCentral()
         mavenCentral()
+
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -56,6 +57,7 @@ grails.project.dependency.resolution = {
         test "org.codehaus.geb:geb-spock:$gebVersion"
         // Various webdrivers to drive your tests in different browsers
         test "org.gebish:geb-spock:0.10.0"
+        test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
         test "org.seleniumhq.selenium:selenium-support:2.44.0"
         test("com.github.detro.ghostdriver:phantomjsdriver:1.0.1") {
             transitive = false
@@ -85,7 +87,9 @@ grails.project.dependency.resolution = {
         //compile ":twitter-bootstrap:3.0.0"
         test "org.grails.plugins:geb:0.10.0"
         test ":geb:0.6.3"
-        test ":spock:0.6"
+        test(":spock:0.7") {
+            exclude "spock-grails-support"
+        }
         compile ":remote-control:1.5"
         // Not required, but very useful in speeding up working with functional tests
     }

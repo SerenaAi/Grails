@@ -47,15 +47,6 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'createdDate', 'error')} required">
-	<label for="createdDate">
-		<g:message code="listing.createdDate.label" default="Created Date" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:datePicker name="createdDate" precision="day"  value="${listingInstance?.createdDate}"  />
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'account', 'error')} ">
 	<label for="account">
 		<g:message code="listing.account.label" default="Account" />

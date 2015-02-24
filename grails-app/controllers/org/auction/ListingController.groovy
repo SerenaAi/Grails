@@ -1,6 +1,7 @@
 package org.auction
 
 import grails.transaction.Transactional
+import jdk.internal.org.objectweb.asm.tree.LdcInsnNode
 
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -18,9 +19,10 @@ class ListingController {
 
     def index (Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        if(!params.query){
-            respond Listing.list(params), model:[listingInstanceCount: Listing.count()]
-        }
+        params.offset = params.offset as Integer ?: 0
+
+
+        respond Listing.list(params), model:[listingInstanceCount: Listing.count()]
     }
     @Transactional
     def save(Listing listingInstance) {

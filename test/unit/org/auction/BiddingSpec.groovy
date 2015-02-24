@@ -8,16 +8,12 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.support.GrailsUnitTestMixin} for usage instructions
  */
 @TestMixin(GrailsUnitTestMixin)
-class AccountControllerSpec extends Specification {
-
+class BiddingSpec extends Specification {
     def setup() {
-
     }
-
     def cleanup() {
     }
-
-    void "be able to create"() {
+    void "test something"() {
 
     }
 }

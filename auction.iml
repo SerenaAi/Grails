@@ -108,6 +108,8 @@
           <root url="jar://$MAVEN_REPOSITORY$/org/gebish/geb-core/0.10.0/geb-core-0.10.0.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/gebish/geb-spock/0.10.0/geb-spock-0.10.0.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/geb/geb-implicit-assertions/0.7.0/geb-implicit-assertions-0.7.0.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/grails-2.4.4/lib/com.google.code.gson/gson/jars/gson-2.2.4.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/spockframework/spock-grails-support/0.7-groovy-2.0/spock-grails-support-0.7-groovy-2.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

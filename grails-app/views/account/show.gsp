@@ -28,7 +28,7 @@
                     <span id="listings-label" class="property-label"><g:message code="account.listings.label" default="Listings" /></span>
 
                     <g:each in="${accountInstance.listings}" var="l">
-                        <span class="property-value" aria-labelledby="listings-label"><g:link controller="listing" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></span>
+                        <span class="property-value" aria-labelledby="listings-label"><g:link controller="listing" action="show" id="${l.id}">${l?.name}</g:link></span>
                     </g:each>
 
                 </li>

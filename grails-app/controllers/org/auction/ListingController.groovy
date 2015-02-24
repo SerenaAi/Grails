@@ -17,10 +17,13 @@ class ListingController {
     }
 
     def index (Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        if(!params.query){
-            respond Listing.list(params), model:[listingInstanceCount: Listing.count()]
+        def now = new Date()
+
+        def criteria = Listing.createCriteria()
+        def results = criteria {
+            ge('startDate', now)
         }
+        respond results, view:'index' 
     }
 
     def search = {

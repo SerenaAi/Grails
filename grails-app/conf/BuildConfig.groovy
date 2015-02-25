@@ -52,7 +52,7 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         def gebVersion = "0.10.0"
-        def seleniumVersion = "2.40.0"
+        def seleniumVersion = "2.44.0"
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
         //test "org.codehaus.geb:geb-spock:$gebVersion"
         // Various webdrivers to drive your tests in different browsers
@@ -63,8 +63,11 @@ grails.project.dependency.resolution = {
             transitive = false
         }
         test "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
-        //test "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
+        test "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
         test "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
+        test("org.seleniumhq.selenium:selenium-htmlunit-driver:$seleniumVersion") {
+            exclude 'xml-apis'
+        }
         //test "org.seleniumhq.selenium:selenium-ie-driver:$seleniumVersion"
         //test("org.seleniumhq.selenium:selenium-htmlunit-driver:2.0rc3") {
         //    exclude "xml-apis"
@@ -94,11 +97,12 @@ grails.project.dependency.resolution = {
         //compile ":coffee-asset-pipeline:1.8.0"
         //compile ":handlebars-asset-pipeline:1.3.0.3"
         //compile ":twitter-bootstrap:3.0.0"
-        test "org.grails.plugins:geb:0.10.0"
-        test ":geb:0.6.3"
-        test(":spock:0.7") {
-            exclude "spock-grails-support"
-        }
+        test ":geb:0.10.0"
+        test ":spock:0.7"
+        //test ":geb:0.6.3"
+        //test(":spock:0.7") {
+        //    exclude "spock-grails-support"
+        //}
         compile ":remote-control:1.5"
         // Not required, but very useful in speeding up working with functional tests
     }

@@ -29,6 +29,16 @@ class BootStrap {
             def listing9 = new Listing(name: "l9", description:"L-9",startDate:new Date(),startPrice:0.0 ,listingDays:2 ,biddings: null,deliverOption: option1, account: account1).save(failOnError: true)
             def listing10 = new Listing(name: "l10",description:"L-10",startDate:new Date() ,startPrice:1.0 ,listingDays:1,biddings: null,deliverOption: option1, account: account1 ).save(failOnError: true)
             def listing11 = new Listing(name: "l11",description:"L-11",startDate:new Date()-5 ,startPrice:0.0 ,listingDays:6,biddings: null ,deliverOption: option1, account: account1).save(failOnError: true)
+            def listing12 = new Listing(name: "l12",description:"L-12",startDate:new Date() ,startPrice:1.0,listingDays:2,biddings: null,deliverOption: option1, account: account1   ).save(failOnError: true)
+            def listing13 = new Listing(name: "l13",description:"L-13",startDate:new Date()-3,startPrice:0.0,listingDays:1,biddings: null,deliverOption: option1, account: account1   ).save(failOnError: true)
+            def listing14 = new Listing(name: "l14", description:"L-14",startDate:new Date() ,startPrice:3.0,listingDays:1,biddings: null,deliverOption: option1, account: account1 ).save(failOnError: true)
+            def listing15 = new Listing(name: "l15",description:"L-15",startDate:new Date()-1,startPrice:0.0,listingDays:1 ,biddings: null,deliverOption: option1, account: account1  ).save(failOnError: true)
+            def listing16 = new Listing(name: "l16",description:"L-16",startDate:new Date() ,startPrice:2.0 ,listingDays:1,biddings: null,deliverOption: option1, account: account1 ).save(failOnError: true)
+            def listing17 = new Listing(name: "l17",description:"L-17",startDate:new Date()-2 ,startPrice:4.0 ,listingDays:4 ,biddings: null,deliverOption: option1, account: account1).save(failOnError: true)
+            def listing18 = new Listing(name: "l18",description:"L-18",startDate:new Date()-4 ,startPrice:1.0 ,listingDays:1 ,biddings: null,deliverOption: option1, account: account1).save(failOnError: true)
+            def listing19 = new Listing(name: "l19", description:"L-19",startDate:new Date(),startPrice:0.0 ,listingDays:2 ,biddings: null,deliverOption: option1, account: account1).save(failOnError: true)
+            def listing20 = new Listing(name: "l20",description:"L-20",startDate:new Date() ,startPrice:1.0 ,listingDays:1,biddings: null,deliverOption: option1, account: account1 ).save(failOnError: true)
+            def listing21 = new Listing(name: "l21",description:"L-21",startDate:new Date()-5 ,startPrice:0.0 ,listingDays:6,biddings: null ,deliverOption: option1, account: account1).save(failOnError: true)
 
         }
     }

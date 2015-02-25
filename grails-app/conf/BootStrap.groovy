@@ -1,3 +1,5 @@
+import groovy.time.TimeCategory
+
 import org.auction.Account
 import org.auction.DeliverOption
 import org.auction.Listing
@@ -27,6 +29,7 @@ class BootStrap {
             def listing9 = new Listing(name: "l9", description:"L-9",startDate:new Date(),startPrice:0.0 ,listingDays:2 ,biddings: null,deliverOption: option1, account: account1).save(failOnError: true)
             def listing10 = new Listing(name: "l10",description:"L-10",startDate:new Date() ,startPrice:1.0 ,listingDays:1,biddings: null,deliverOption: option1, account: account1 ).save(failOnError: true)
             def listing11 = new Listing(name: "l11",description:"L-11",startDate:new Date()-5 ,startPrice:0.0 ,listingDays:6,biddings: null ,deliverOption: option1, account: account1).save(failOnError: true)
+
         }
     }
     def destroy = {

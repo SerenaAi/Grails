@@ -19,11 +19,9 @@ class Listing {
         completed validator: { val, obj->
             Date currentDate = new Date();
             Date expireDate=obj.startDate+obj.listingDays
-
             if(currentDate.compareTo(expireDate)>=0) obj.completed=true
             else obj.completed=false;
             return true;
         }
     }
-
 }

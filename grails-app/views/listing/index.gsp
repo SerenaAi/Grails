@@ -19,7 +19,6 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-
                 <g:if test="${flash.message}">
                     <div class="message" role="status">${flash.message}</div>
                 </g:if>
@@ -39,8 +38,6 @@
                         </div>
                     </g:form>
                 </fieldset>
-                <table>
-
 			<table>
 			<thead>
 					<tr>
@@ -65,10 +62,11 @@
 				</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
-				<g:paginate next="Forward" prev="Back" controller="listing"
-                            action="index" total="${listingInstanceCount ?: 0}" />
-			</div>
-		</div>
+            <div class="pagination">
+            <g:paginate next="Forward" prev="Back" controller="listing"
+                        action="index" total="${listingInstanceCount ?: 0}" />
+        </div>
+     </div>
+
 	</body>
 </html>

@@ -17,16 +17,6 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="amount" value="${fieldValue(bean: biddingInstance, field: 'amount')}" required=""/>
-
 </div>
 
-
-<div class="fieldcontain ${hasErrors(bean: biddingInstance, field: 'listing', 'error')} required">
-	<label for="listing">
-		<g:message code="bidding.listing.label" default="Listing" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="listing" name="listing.id" from="${org.auction.Listing.list()}" optionKey="id" required="" optionValue="name" value="${biddingInstance?.listing?.id}" class="many-to-one"/>
-
-</div>
-
+    <g:hiddenField  name="listing.id" value="${params.id}" />

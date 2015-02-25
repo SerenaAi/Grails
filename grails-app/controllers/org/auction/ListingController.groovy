@@ -20,10 +20,44 @@ class ListingController {
     def index (Integer max) {
         params.max = Math.min(max ?: 10, 100)
         params.offset = params.offset as Integer ?: 0
+        def criteria1 = Listing.createCriteria()
+        def result1;
 
+        if(params.searchtype){
+            println "st "+params.searchtype
+            if(params.searchtype=="1"){
+                result1 = criteria1 {
+                        ilike('name', "%${params.query}%")
+                }
+            }
+            else{
+                result1 = criteria1 {
+                        ilike('description', "%${params.query}%")
+                }
+            }
+        }else{ result1=criteria1{ }}
 
-        respond Listing.list(params), model:[listingInstanceCount: Listing.count()]
+        def criteria2 = Listing.createCriteria()
+        def result2;
+        if(params.listtype){
+            if(params.listtype=="2"){
+                result2= criteria2 {
+                    eq('completed', true)
+                }
+            }else if(params.listtype=="3"){
+                result2=criteria2 {
+                    eq('completed', false)
+                }
+            }else{
+                result2=criteria2{ }
+            }
+        }else{ result2=criteria2{ }}
+
+        def retResult = result1.intersect(result2)
+        println retResult
+        respond retResult, model: [listingInstanceCount: retResult.size()], view: 'index'
     }
+
     @Transactional
     def save(Listing listingInstance) {
         if (listingInstance == null) {

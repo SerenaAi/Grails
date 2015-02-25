@@ -20,8 +20,6 @@ class BiddingController {
 
     @Transactional
     def save(Bidding biddingInstance) {
-
-
         if (biddingInstance == null) {
             notFound()
             return
@@ -30,26 +28,8 @@ class BiddingController {
             respond biddingInstance.errors, view:'create'
             return
         }
-        Bidding[] bidListing= Listing.findById(biddingInstance.listing.id).biddings as Bidding[];
-
-        def maxAmount=Bidding.createCriteria().get {
-            projections {
-                max("amount")
-            }
-        } as Float
-
-        if(maxAmount==null){
-            maxAmount=0;
-        }else{
-            maxAmount+=0.5;
-        }
-        println "asdfadfa  "+maxAmount
-
-        if(maxAmount <=biddingInstance.amount){
             biddingInstance.save flush:true
-        }else{
-            redirect biddingInstance
-        }
+
             request.withFormat {
                 form multipartForm {
                     flash.message = message(code: 'default.created.message', args: [message(code: 'bidding.label', default: 'Bidding'), biddingInstance.id])

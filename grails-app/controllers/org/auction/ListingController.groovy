@@ -20,44 +20,42 @@ class ListingController {
         params.max = Math.min(max ?: 10, 100)
         params.offset = params.offset as Integer ?: 0
         def criteria1 = Listing.createCriteria()
-        def result1;
+        def criteria2 = Listing.createCriteria()
+        def result1, total = 0, retResult
 
         if (params.searchtype) {
-            println "st " + params.searchtype
-            if (params.searchtype == "1") {
-                result1 = criteria1 {
-                    ilike('name', "%${params.query}%")
-                }
-            } else {
-                result1 = criteria1 {
-                    ilike('description', "%${params.query}%")
-                }
+            def field
+            if (params.searchtype == "1")
+                field = "name"
+            else
+                field = "description"
+            result1 = criteria1.list(max: 10, offset: params.offset) {
+                ilike(field, "%${params.query}%")
             }
         } else {
-            result1 = criteria1 {}
+            result1 = criteria1.list(max: 10, offset: params.offset) {}
         }
+        total = result1.getTotalCount()
 
-        def criteria2 = Listing.createCriteria()
         def result2;
         if (params.listtype) {
-            if (params.listtype == "2") {
-                result2 = criteria2 {
-                    eq('completed', true)
-                }
-            } else if (params.listtype == "3") {
-                result2 = criteria2 {
-                    eq('completed', false)
-                }
-            } else {
-                result2 = criteria2 {}
-            }
+            def comp
+            if (params.listtype == "2")
+                comp = true
+            else if (params.listtype == "3")
+                comp = false
+            if (comp == true || comp == false)
+                result2 = criteria2.list(max: 10, offset: params.offset) {
+                    eq('completed', comp)
+                } else
+                result2 = criteria2.list(max: 10, offset: params.offset) {}
         } else {
-            result2 = criteria2 {}
+            result2 = criteria2.list(max: 10, offset: params.offset) {}
         }
+        total = result2.getTotalCount()
 
-        def retResult = result1.intersect(result2)
-        println retResult
-        respond retResult, model: [listingInstanceCount: retResult.size()], view: 'index'
+        retResult = result1.intersect(result2)
+        respond retResult, model: [listingInstanceCount: total], view: 'index'
     }
 
     @Transactional

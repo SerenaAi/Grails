@@ -13,7 +13,6 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link controller="listing" action="index"><g:message message="Listing List" /></g:link></li>
-				<li><g:link action="create"><g:message message="Create Bidding" /></g:link></li>
 			</ul>
 		</div>
 		<div id="show-bidding" class="content scaffold-show" role="main">
@@ -51,7 +50,6 @@
 			</ol>
 			<g:form url="[resource:biddingInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${biddingInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>

@@ -54,7 +54,7 @@ class ListingController {
         }else{ result2=criteria2{ }}
 
         def retResult = result1.intersect(result2)
-        println retResult
+
         respond retResult, model: [listingInstanceCount: retResult.size()], view: 'index'
     }
 

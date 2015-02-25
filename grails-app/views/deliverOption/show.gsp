@@ -37,9 +37,7 @@
 				<g:if test="${deliverOptionInstance?.name}">
 				<li class="fieldcontain">
 					<span id="name-label" class="property-label"><g:message code="deliverOption.name.label" default="Name" /></span>
-					
 						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${deliverOptionInstance}" field="name"/></span>
-					
 				</li>
 				</g:if>
 			

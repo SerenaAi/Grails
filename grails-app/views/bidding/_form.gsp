@@ -19,4 +19,4 @@
 	<g:field name="amount" value="${fieldValue(bean: biddingInstance, field: 'amount')}" required=""/>
 </div>
 
-    <g:hiddenField  name="listing.id" value="${params.id}" />
+    <g:hiddenField  name="listing.id" value="${biddingInstance?.listing.id}" />

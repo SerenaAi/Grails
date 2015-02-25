@@ -15,7 +15,9 @@ class BiddingController {
     }
 
     def create() {
-        respond new Bidding(params)
+        def ret=new Bidding(params)
+        ret.listing=Listing.findById(params.id);
+        respond ret;
     }
 
     @Transactional
@@ -25,7 +27,7 @@ class BiddingController {
             return
         }
         if (biddingInstance.hasErrors()) {
-            respond biddingInstance.errors, view:'create'
+            respond biddingInstance.errors, view:'create', controller:"bidding"
             return
         }
             biddingInstance.save flush:true
@@ -35,36 +37,13 @@ class BiddingController {
                     flash.message = message(code: 'default.created.message', args: [message(code: 'bidding.label', default: 'Bidding'), biddingInstance.id])
                     redirect biddingInstance
                 }
-                '*' { respond biddingInstance, [status: CREATED] }
+                '*' { respond biddingInstance, [status: CREATED]}
             }
 
     }
 
     def edit(Bidding biddingInstance) {
         respond biddingInstance
-    }
-
-    @Transactional
-    def update(Bidding biddingInstance) {
-        if (biddingInstance == null) {
-            notFound()
-            return
-        }
-
-        if (biddingInstance.hasErrors()) {
-            respond biddingInstance.errors, view:'edit'
-            return
-        }
-
-        biddingInstance.save flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Bidding.label', default: 'Bidding'), biddingInstance.id])
-                redirect biddingInstance
-            }
-            '*'{ respond biddingInstance, [status: OK] }
-        }
     }
 
     @Transactional
@@ -90,7 +69,7 @@ class BiddingController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'bidding.label', default: 'Bidding'), params.id])
-                redirect action: "index", method: "GET"
+                     return
             }
             '*'{ render status: NOT_FOUND }
         }

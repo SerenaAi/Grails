@@ -62,6 +62,11 @@ grails.project.dependency.resolution = {
         test("com.github.detro.ghostdriver:phantomjsdriver:1.0.1") {
             transitive = false
         }
+        test("org.seleniumhq.selenium:selenium-htmlunit-driver:2.0rc3") {
+            exclude "xml-apis"
+        }
+        test("org.seleniumhq.selenium:selenium-chrome-driver:2.0rc3")
+        test("org.seleniumhq.selenium:selenium-firefox-driver:2.0rc3")
     }
 
     plugins {

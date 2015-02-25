@@ -1,11 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>
-        <meta name="layout" content="main">
-        <g:set var="entityName" value="${message(code: 'account.label', default: 'Account')}" />
-        <title><g:message code="default.list.label" args="[entityName]" /></title>
-    </title>
+    <meta name="layout" content="main">
+    <g:set var="entityName" value="${message(code: 'account.label', default: 'Account')}" />
+    <title>Login</title>
 </head>
 
 <body>

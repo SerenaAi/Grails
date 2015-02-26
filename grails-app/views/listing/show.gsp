@@ -52,13 +52,6 @@
 						<span class="property-value" aria-labelledby="listingDays-label"><g:fieldValue bean="${listingInstance}" field="listingDays"/></span>
 				</li>
 
-			
-				%{--<g:if test="${listingInstance?.account}">--}%
-				%{--<li class="fieldcontain">--}%
-					%{--<span id="account-label" class="property-label"><g:message code="listing.account.label" default="Account" /></span>--}%
-						%{--<span class="property-value" aria-labelledby="account-label"><g:link controller="account" action="show" id="${listingInstance?.account?.id}">${listingInstance?.account?.encodeAsHTML()}</g:link></span>--}%
-				%{--</li>--}%
-				%{--</g:if>--}%
 				<g:if test="${listingInstance?.deliverOption}">
 				<li class="fieldcontain">
 					<span id="deliverOption-label" class="property-label"><g:message code="listing.deliverOption.label" default="DeliverOption" /></span>
@@ -67,14 +60,28 @@
 				</g:if>
 			</ol>
 
-
-            <div id="list-bidding" class="content scaffold-list" role="main">
-                <h1><g:message message="Bidding List" /></h1>
+            <div>
+                <g:if test="${listingInstance.completed}">
+                    <h1>Winner Account</h1>
+                    <div class="property-list listing">
+                        ${listingInstance.highBidAccount?.name}
+                    </div>
+                </g:if>
+            </div>
+            <div>
+                    <h1>Highest Bid</h1>
+                    <div class="property-list listing">
+                        ${listingInstance.highBid}
+                    </div>
+            </div>
+            <div>
+                <h1>Bidding History</h1>
+                <div class="property-list listing">
                 <table>
                     <thead>
-                    <tr>
-                        <th><g:message code="bidding.account.label" default="Account" /></th>
-                        <g:sortableColumn property="amount" title="${message(code: 'bidding.amount.label', default: 'Amount')}" />
+                    <tr style="background-image:none">
+                        <th style="background-image:none"><g:message message="Account" /></th>
+                        <th style="background-image:none"><g:message message="Amount" /></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -86,13 +93,14 @@
                     </g:each>
                     </tbody>
                 </table>
+                </div>
             </div>
 
 			<g:form url="[resource:listingInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
 					<g:link action="edit" resource="${listingInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                        <g:link action="create" controller="bidding" id="${params.id}"><g:message message="Create Bidding" /></g:link>
+                        <g:link action="create" id="${params.id}" controller="bidding"><g:message message="Create Bidding" /></g:link>
 				</fieldset>
 			</g:form>
 

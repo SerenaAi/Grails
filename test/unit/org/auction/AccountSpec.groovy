@@ -46,13 +46,13 @@ class AccountSpec extends Specification {
     void "test when password has no letter"() {
         //all valid:
         setup:
-        def count=Account.count()
+            def count=Account.count()
         when:
-        Account account=new Account(name:"a", email:"a@a.com", address: "a", password: "11111111")
-        account.save(failOnError: true);
+            Account account=new Account(name:"a", email:"a@a.com", address: "a", password: "11111111")
+            account.save(failOnError: true);
         then:
-        count==Account.count()
-        thrown(grails.validation.ValidationException)
+            count==Account.count()
+            thrown(grails.validation.ValidationException)
     }
     void "test when password length is invalid"() {
         //all valid:

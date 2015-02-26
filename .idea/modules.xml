@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/auction.iml" filepath="$PROJECT_DIR$/auction.iml" />
-      <module fileurl="file://$PROJECT_DIR$/auction-grailsPlugins.iml" filepath="$PROJECT_DIR$/auction-grailsPlugins.iml" />
     </modules>
   </component>
 </project>

@@ -1,4 +1,4 @@
-package pages
+package org.auction
 import geb.Page
 
 class LoginPage extends Page {

@@ -1,4 +1,4 @@
-package pages
+package org.auction
 
 import geb.Page
 import geb.spock.GebReportingSpec

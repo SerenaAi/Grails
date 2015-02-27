@@ -22,6 +22,16 @@ class AccountController {
             redirect(controller:'account', action: 'show', id:account.id )
         }
     }
+    def ThumbUp(Account accountInstance){
+        accountInstance.thumbUp++;
+        accountInstance.save flush: true
+        redirect(controller:'account', action: 'show', id:accountInstance.id )
+    }
+    def ThumbDown(Account accountInstance){
+        accountInstance.thumbDown++;
+        accountInstance.save flush: true
+        redirect(controller:'account', action: 'show', id:accountInstance.id)
+    }
     def create() {
         respond new Account(params)
     }

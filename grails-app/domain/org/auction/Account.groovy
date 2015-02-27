@@ -7,6 +7,8 @@ class Account {
     String password
     int type
     Date lastUpdated
+    int thumbUp=0
+    int thumbDown=0
 
     static hasMany = [listings: Listing]
     static constraints = {

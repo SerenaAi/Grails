@@ -22,18 +22,6 @@
             <div class="message" role="status">${flash.message}</div>
         </g:if>
         <ol class="property-list account">
-
-            <g:if test="${accountInstance?.listings}">
-                <li class="fieldcontain">
-                    <span id="listings-label" class="property-label"><g:message code="account.listings.label" default="Listings" /></span>
-
-                    <g:each in="${accountInstance.listings}" var="l">
-                        <span class="property-value" aria-labelledby="listings-label"><g:link controller="listing" action="show" id="${l.id}">${l?.name}</g:link></span>
-                    </g:each>
-
-                </li>
-            </g:if>
-
             <g:if test="${accountInstance?.name}">
                 <li class="fieldcontain">
                     <span id="name-label" class="property-label"><g:message code="account.name.label" default="Name" /></span>
@@ -64,6 +52,19 @@
                     <span class="property-value" aria-labelledby="lastUpdated-label"><g:fieldValue bean="${accountInstance}" field="lastUpdated"/></span>
                 </li>
             </g:if>
+            <g:form url="[resource:accountInstance, action:'ThumbUp']" method="GET">
+            <li class="fieldcontain">
+                <span id="thumbUp-label" class="property-label"><g:message code="account.thumbUp.label" default="ThumbUp" /></span>
+                <span class="property-value" aria-labelledby="thumbUp-label"><g:link url="[resource:accountInstance, action:'ThumbUp']" ><g:fieldValue bean="${accountInstance}" field="thumbUp"/></g:link></span>
+            </li>
+            </g:form>
+
+            <li class="fieldcontain">
+                <span id="thumbDown-label" class="property-label"><g:message code="account.thumbDown.label" default="ThumbDown" /></span>
+                <span class="property-value" aria-labelledby="thumbDown-label"><g:link url="[resource:accountInstance, action:'ThumbDown']" ><g:fieldValue bean="${accountInstance}" field="thumbDown"/></g:link></span>
+            </li>
+
+
         </ol>
         <g:form url="[resource:accountInstance, action:'delete']" method="DELETE">
             <fieldset class="buttons">

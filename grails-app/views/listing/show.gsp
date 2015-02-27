@@ -52,6 +52,12 @@
 						<span class="property-value" aria-labelledby="listingDays-label"><g:fieldValue bean="${listingInstance}" field="listingDays"/></span>
 				</li>
 
+                <g:if test="${listingInstance?.account}">
+                    <li class="fieldcontain">
+                        <span id="account-label" class="property-label"><g:message code="listing.account.label" default="Account" /></span>
+                        <span class="property-value" aria-labelledby="account-label"><g:link controller="account" action="show" id="${listingInstance?.account?.id}">${listingInstance?.account?.name}</g:link></span>
+                    </li>
+                </g:if>
 				<g:if test="${listingInstance?.deliverOption}">
 				<li class="fieldcontain">
 					<span id="deliverOption-label" class="property-label"><g:message code="listing.deliverOption.label" default="DeliverOption" /></span>
@@ -82,6 +88,9 @@
                     <tr style="background-image:none">
                         <th style="background-image:none"><g:message message="Account" /></th>
                         <th style="background-image:none"><g:message message="Amount" /></th>
+                        <g:if test="${listingInstance.completed}">
+                        <th style="background-image:none"><g:message message="Thumb Up" /></th>
+                        <th style="background-image:none"><g:message message="Thumb Down" /></th></g:if>
                     </tr>
                     </thead>
                     <tbody>
@@ -89,6 +98,9 @@
                         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                             <td><g:link controller="bidding" action="show" id="${biddingInstance.id}">${fieldValue(bean: biddingInstance, field: "account.name")}</g:link></td>
                             <td>${fieldValue(bean: biddingInstance, field: "amount")}</td>
+                            <g:if test="${listingInstance.completed}">
+                            <td><g:link >${fieldValue(bean: biddingInstance, field: "account.thumbUp")}</g:link></td>
+                            <td><g:link>${fieldValue(bean: biddingInstance, field: "account.thumbDown")}</td></g:link></g:if>
                         </tr>
                     </g:each>
                     </tbody>

@@ -98,7 +98,7 @@ grails.project.dependency.resolution = {
         //compile ":handlebars-asset-pipeline:1.3.0.3"
         //compile ":twitter-bootstrap:3.0.0"
         test ":geb:0.10.0"
-        test ":spock:0.7"
+        // test ":spock:0.7"
         //test ":geb:0.6.3"
         //test(":spock:0.7") {
         //    exclude "spock-grails-support"

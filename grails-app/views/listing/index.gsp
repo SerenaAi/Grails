@@ -60,8 +60,7 @@
 				</tbody>
 			</table>
             <div class="pagination">
-            <g:paginate next="Forward" prev="Back" controller="listing"
-                        action="index" total="${listingInstanceCount ?: 0}" />
+            <g:paginate next="Forward" prev="Back" controller="listing" action="index" total="${listingInstanceCount ?: 0}" params="${params}" />
         </div>
      </div>
 

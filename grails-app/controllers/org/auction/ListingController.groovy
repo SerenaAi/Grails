@@ -20,42 +20,22 @@ class ListingController {
         params.max = Math.min(max ?: 10, 100)
         params.offset = params.offset as Integer ?: 0
         def criteria1 = Listing.createCriteria()
-        def criteria2 = Listing.createCriteria()
-        def result1, total = 0, retResult
+        def total = 0, retResult
 
-        if (params.searchtype) {
-            def field
-            if (params.searchtype == "1")
-                field = "name"
-            else
-                field = "description"
-            result1 = criteria1.list(max: 10, offset: params.offset) {
-                ilike(field, "%${params.query}%")
+        retResult = criteria1.list(max: 10, offset: params.offset) {
+            and {
+                if (params.query && params.searchtype == "1")
+                    ilike("name", "%${params.query}%") 
+                if (params.query && params.searchtype == "2")
+                    ilike("description", "%${params.query}%") 
+                if (params.listtype == "2")
+                     eq('completed', true)
+                if (params.listtype == "3")
+                     eq('completed', false)
             }
-        } else {
-            result1 = criteria1.list(max: 10, offset: params.offset) {}
         }
-        total = result1.getTotalCount()
-
-        def result2;
-        if (params.listtype) {
-            def comp
-            if (params.listtype == "2")
-                comp = true
-            else if (params.listtype == "3")
-                comp = false
-            if (comp == true || comp == false)
-                result2 = criteria2.list(max: 10, offset: params.offset) {
-                    eq('completed', comp)
-                } else
-                result2 = criteria2.list(max: 10, offset: params.offset) {}
-        } else {
-            result2 = criteria2.list(max: 10, offset: params.offset) {}
-        }
-        total = result2.getTotalCount()
-
-        retResult = result1.intersect(result2)
-        respond retResult, model: [listingInstanceCount: total], view: 'index'
+        total += retResult.getTotalCount()
+        respond retResult, model: [listingInstanceCount: total], view: 'index', params:params
     }
 
     @Transactional

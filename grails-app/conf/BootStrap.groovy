@@ -9,8 +9,8 @@ class BootStrap {
         def option1,option2,option3;
         def account1, account2;
         if(!Account.count()){
-            account1= new Account(name: "Sijia",address: "aaa st",email:"a@a.com",password:"1xxxxxxx", type:1 ).save(failOnError: true)
-            account2= new Account(name: "Gerar",address: "gg st",email:"g@g.com",password: "1aaaaaaa",type:2 ).save(failOnError: true)
+            account1= new Account(name: "Sijia",address: "aaa st",email:"a@a.com",password:"1xxxxxxx", type:1, reviews: null ).save(failOnError: true)
+            account2= new Account(name: "Gerar",address: "gg st",email:"g@g.com",password: "1aaaaaaa",type:2, reviews:null ).save(failOnError: true)
         }
         if (!DeliverOption.count()) {
             option1 = new DeliverOption(name: "US Only" ).save(failOnError: true)
@@ -18,7 +18,7 @@ class BootStrap {
             option3 = new DeliverOption(name: "Pick Up Only" ).save(failOnError: true)
         }
         if (!Listing.count()) {
-            def listing1 = new Listing(name: "l1",description:"L-1",startDate:new Date()-2,startPrice:0.0,listingDays:1,biddings: null, deliverOption: option1, account: account1  ).save(failOnError: true)
+           /* def listing1 = new Listing(name: "l1",description:"L-1",startDate:new Date()-2,startPrice:0.0,listingDays:1,biddings: null, deliverOption: option1, account: account1  ).save(failOnError: true)
             def listing2 = new Listing(name: "l2",description:"L-2",startDate:new Date() ,startPrice:1.0,listingDays:2,biddings: null,deliverOption: option1, account: account1   ).save(failOnError: true)
             def listing3 = new Listing(name: "l3",description:"L-3",startDate:new Date()-3,startPrice:0.0,listingDays:1,biddings: null,deliverOption: option1, account: account1   ).save(failOnError: true)
             def listing4 = new Listing(name: "l4", description:"L-4",startDate:new Date() ,startPrice:3.0,listingDays:1,biddings: null,deliverOption: option1, account: account1 ).save(failOnError: true)
@@ -39,7 +39,7 @@ class BootStrap {
             def listing19 = new Listing(name: "l19", description:"L-19",startDate:new Date(),startPrice:0.0 ,listingDays:2 ,biddings: null,deliverOption: option1, account: account1).save(failOnError: true)
             def listing20 = new Listing(name: "l20",description:"L-20",startDate:new Date() ,startPrice:1.0 ,listingDays:1,biddings: null,deliverOption: option1, account: account1 ).save(failOnError: true)
             def listing21 = new Listing(name: "l21",description:"L-21",startDate:new Date()-5 ,startPrice:0.0 ,listingDays:6,biddings: null ,deliverOption: option1, account: account1).save(failOnError: true)
-
+*/
         }
     }
     def destroy = {

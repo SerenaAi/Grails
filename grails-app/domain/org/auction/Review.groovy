@@ -1,17 +1,14 @@
 package org.auction
 
 class Review {
-
-    static belongsTo = [reviewer: Account, reviewing: Account, listing: Listing]
-
-    Account reviewer 
-    Account reviewing
-    Listing listing
-
-    Boolean voted 
-    String comment
-
+    Account reviewerAccount
+    Account revieweeAccount
+    boolean reviewedSeller=false
+    boolean reviewedBidder=false
+    String sellerComment;
+    String bidderComment;
     static constraints = {
-        comment size: 0..50
+        sellerComment(size: 0..50, nullable: true)
+        bidderComment(size: 0..50, nullable: true)
     }
 }

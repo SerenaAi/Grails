@@ -5,12 +5,17 @@ class Account {
     String email
     String name
     String password
-    int type
     Date lastUpdated
     int thumbUp=0
     int thumbDown=0
+    static belongsTo = org.auction.Review
+    static hasMany = [listings: Listing, biddings: Bidding, receivedReviews: Review, sentReviews: Review]
 
-    static hasMany = [listings: Listing]
+    static mappedBy = [listings: 'sellerAccount',
+                         biddings: 'biddingAccount',
+                         receivedReviews:  'revieweeAccount',
+                         sentReviews:  'reviewerAccount'
+                         ]
     static constraints = {
       address(blank: false)
       email(blank: false, email: true)

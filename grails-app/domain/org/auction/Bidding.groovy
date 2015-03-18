@@ -3,9 +3,8 @@ package org.auction
 class Bidding {
     float amount;
     Date dateCreated;
-    Account account;
 
-    static belongsTo = [listing:Listing]
+    static belongsTo = [listing:Listing, biddingAccount:Account]
     static constraints = {
         amount validator: {val, obj->
             def min;

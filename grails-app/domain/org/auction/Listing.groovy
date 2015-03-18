@@ -9,9 +9,10 @@ class Listing {
     Account highBidAccount;
     float highBid;
     boolean completed;
-
-    static belongsTo = [account: Account, deliverOption: DeliverOption]
     static hasMany=[biddings: Bidding]
+
+    static belongsTo = [sellerAccount: Account, deliverOption: DeliverOption]
+
     static constraints = {
         name(blank: false)
         description(blank: false)
@@ -29,7 +30,7 @@ class Listing {
         highBidAccount validator: {val, obj->
             if(obj.biddings){
                 obj.highBid = obj.biddings.amount.max();
-                obj.highBidAccount= Bidding.findByAmount(obj.highBid).account;
+                obj.highBidAccount= Bidding.findByAmount(obj.highBid).biddingAccount;
             }else{
                 obj.highBid=0;
                 obj.highBidAccount=null;

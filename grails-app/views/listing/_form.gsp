@@ -47,12 +47,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'account', 'error')} ">
-	<label for="account">
+<div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'sellerAccount', 'error')} ">
+	<label for="sellerAccount">
 		<g:message code="listing.account.label" default="Account" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="account" name="account.id" from="${org.auction.Account.list()}" optionKey="id" required="" optionValue="name" value="${listingInstance?.account?.id}" class="many-to-one"/>
+	<g:select id="sellerAccount" name="sellerAccount.id" from="${org.auction.Account.list()}" optionKey="id" required="" optionValue="name" value="${listingInstance?.sellerAccount?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'deliverOption', 'error')} ">

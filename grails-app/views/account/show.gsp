@@ -52,20 +52,36 @@
                     <span class="property-value" aria-labelledby="lastUpdated-label"><g:fieldValue bean="${accountInstance}" field="lastUpdated"/></span>
                 </li>
             </g:if>
-            <g:form url="[resource:accountInstance, action:'ThumbUp']" method="GET">
-            <li class="fieldcontain">
-                <span id="thumbUp-label" class="property-label"><g:message code="account.thumbUp.label" default="ThumbUp" /></span>
-                <span class="property-value" aria-labelledby="thumbUp-label"><g:link url="[resource:accountInstance, action:'ThumbUp']" ><g:fieldValue bean="${accountInstance}" field="thumbUp"/></g:link></span>
-            </li>
-            </g:form>
-
-            <li class="fieldcontain">
-                <span id="thumbDown-label" class="property-label"><g:message code="account.thumbDown.label" default="ThumbDown" /></span>
-                <span class="property-value" aria-labelledby="thumbDown-label"><g:link url="[resource:accountInstance, action:'ThumbDown']" ><g:fieldValue bean="${accountInstance}" field="thumbDown"/></g:link></span>
-            </li>
-
-
         </ol>
+
+        <div id="list-review" class="content scaffold-list" role="main">
+            <h1><g:message message="Review List" /></h1>
+            <g:if test="${flash.message}">
+                <div class="message" role="status">${flash.message}</div>
+            </g:if>
+            <table>
+                <thead>
+                <tr>
+                    <th style="background-image:none"><g:message code="account.receivedReviews.label" default="Seller Comments" /></th>
+                    <th style="background-image:none"><g:message code="account.receivedReviews.label" default="Bidder Comments" /></th>
+                    <th style="background-image:none"><g:message code="account.receivedReviews.label" default="Reviewers" /></th>
+                </tr>
+                </thead>
+                <tbody>
+                <g:each in="${accountInstance?.receivedReviews}" status="i" var="reviewInstance">
+                    <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                        <td><g:link action="show" id="${reviewInstance.id}">${fieldValue(bean: reviewInstance, field: "sellerComment")}</g:link></td>
+                        <td><g:link action="show" id="${reviewInstance.id}">${fieldValue(bean: reviewInstance, field: "bidderComment")}</g:link></td>
+                        <td>${fieldValue(bean: reviewInstance, field: "reviewerAccount.name")}</td>
+                    </tr>
+                </g:each>
+                </tbody>
+            </table>
+            <div class="pagination">
+                <g:paginate total="${reviewInstanceCount ?: 0}" />
+            </div>
+        </div>
+
         <g:form url="[resource:accountInstance, action:'delete']" method="DELETE">
             <fieldset class="buttons">
                 <g:link class="edit" action="edit" resource="${accountInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
@@ -73,6 +89,8 @@
             </fieldset>
         </g:form>
     </div>
+
+
 
 	</body>
 </html>

@@ -2,12 +2,12 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: biddingInstance, field: 'account', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: biddingInstance, field: 'biddingAccount', 'error')} required">
 	<label for="account">
-		<g:message code="bidding.account.label" default="Account" />
+		<g:message code="bidding.biddingAccount.label" default="Bidding Account" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="account" name="account.id" from="${org.auction.Account.list()}" optionKey="id" required="" optionValue="name" value="${biddingInstance?.account?.id}" class="many-to-one"/>
+	<g:select id="biddingAccount" name="biddingAccount.id" from="${org.auction.Account.list()}" optionKey="id" required="" optionValue="name" value="${biddingInstance?.biddingAccount?.id}" class="many-to-one"/>
 
 </div>
 

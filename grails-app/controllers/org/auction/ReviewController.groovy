@@ -10,86 +10,107 @@ class ReviewController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Review.list(params), model:[reviewInstanceCount: Review.count()]
-    }
-
     def show(Review reviewInstance) {
         respond reviewInstance
     }
 
-    def create() {
-        respond new Review(params)
+    def createseller() {
+        Review review=new Review(params)
+        review.revieweeAccount=Account.findById(params.id)
+        respond review
     }
 
-    @Transactional
-    def save(Review reviewInstance) {
+    def createbidder() {
+        Review review=new Review(params)
+        review.revieweeAccount=Account.findById(params.id)
+        respond review
+    }
+
+    def savebidder(Review reviewInstance) {
+        if (reviewInstance == null) {
+            notFound()
+            return
+        }
+        if (reviewInstance.hasErrors()) {
+            respond reviewInstance.errors, view:'createbidder'
+            return
+        }
+        def reviews = Review.where { revieweeAccount.id==reviewInstance.revieweeAccount.id && reviewerAccount.id==reviewInstance.reviewerAccount.id }.list()
+        if( !reviews ){
+            reviewInstance.reviewedBidder=true
+            reviewInstance.save flush:true
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.created.message', args: [message(code: 'review.label', default: 'Review'), reviewInstance.id])
+                    redirect reviewInstance
+                }
+                '*' { respond reviewInstance, [status: CREATED] }
+            }
+        }else{
+            Review review=reviews.first();
+            if(review.reviewedBidder==false){
+                review.bidderComment = reviewInstance.bidderComment
+                review.reviewedBidder = true
+                review.save flush:true
+
+                request.withFormat {
+                    form multipartForm {
+                        flash.message = message(code: 'default.created.message', args: [message(code: 'review.label', default: 'Review'), review.id])
+                        redirect review
+                    }
+                    '*' { respond review, [status: OK] }
+                }
+            }else{
+                respond reviewInstance.errors, view:'createbidder'
+                return
+            }
+        }
+    }
+
+    def saveseller(Review reviewInstance) {
         if (reviewInstance == null) {
             notFound()
             return
         }
 
         if (reviewInstance.hasErrors()) {
-            respond reviewInstance.errors, view:'create'
+            respond reviewInstance.errors, view:'createseller'
             return
         }
 
-        reviewInstance.save flush:true
+        def reviews = Review.where { revieweeAccount.id==reviewInstance.revieweeAccount.id && reviewerAccount.id==reviewInstance.reviewerAccount.id }.list()
+        Review review;
+        if(!reviews){
+            reviewInstance.reviewedSeller=true;
+            reviewInstance.save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'review.label', default: 'Review'), reviewInstance.id])
-                redirect reviewInstance
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.created.message', args: [message(code: 'review.label', default: 'Review'), reviewInstance.id])
+                    redirect reviewInstance
+                }
+                '*' { respond reviewInstance, [status: CREATED] }
             }
-            '*' { respond reviewInstance, [status: CREATED] }
-        }
-    }
-
-    def edit(Review reviewInstance) {
-        respond reviewInstance
-    }
-
-    @Transactional
-    def update(Review reviewInstance) {
-        if (reviewInstance == null) {
-            notFound()
-            return
-        }
-
-        if (reviewInstance.hasErrors()) {
-            respond reviewInstance.errors, view:'edit'
-            return
-        }
-
-        reviewInstance.save flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Review.label', default: 'Review'), reviewInstance.id])
-                redirect reviewInstance
+        }else{
+            review=reviews.first()
+            if(!review.reviewedSeller){
+                review.sellerComment=reviewInstance.sellerComment
+                review.reviewedSeller=true
+                review.save flush:true
+                request.withFormat {
+                    form multipartForm {
+                        flash.message = message(code: 'default.created.message', args: [message(code: 'review.label', default: 'Review'), review.id])
+                        redirect review
+                    }
+                    '*' { respond review, [status: OK] }
+                }
             }
-            '*'{ respond reviewInstance, [status: OK] }
-        }
-    }
-
-    @Transactional
-    def delete(Review reviewInstance) {
-
-        if (reviewInstance == null) {
-            notFound()
-            return
-        }
-
-        reviewInstance.delete flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Review.label', default: 'Review'), reviewInstance.id])
-                redirect action:"index", method:"GET"
+            else{
+                respond reviewInstance.errors, view:'createseller'
+                return
             }
-            '*'{ render status: NO_CONTENT }
         }
+
     }
 
     protected void notFound() {

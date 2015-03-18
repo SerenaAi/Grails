@@ -12,8 +12,7 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+                <li><g:link action="index" controller="listing"><g:message message="Listing List" /></g:link></li>
 			</ul>
 		</div>
 		<div id="show-review" class="content scaffold-show" role="main">
@@ -22,59 +21,35 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list review">
-			
-				<g:if test="${reviewInstance?.comment}">
+				<g:if test="${reviewInstance?.sellerComment}">
 				<li class="fieldcontain">
-					<span id="comment-label" class="property-label"><g:message code="review.comment.label" default="Comment" /></span>
-					
-						<span class="property-value" aria-labelledby="comment-label"><g:fieldValue bean="${reviewInstance}" field="comment"/></span>
-					
+					<span id="sellerComment-label" class="property-label"><g:message code="review.sellerComment.label" default="Seller Comment" /></span>
+						<span class="property-value" aria-labelledby="sellerComment-label"><g:fieldValue bean="${reviewInstance}" field="sellerComment"/></span>
 				</li>
 				</g:if>
 			
-				<g:if test="${reviewInstance?.listing}">
+				<g:if test="${reviewInstance?.bidderComment}">
 				<li class="fieldcontain">
-					<span id="listing-label" class="property-label"><g:message code="review.listing.label" default="Listing" /></span>
-					
-						<span class="property-value" aria-labelledby="listing-label"><g:link controller="listing" action="show" id="${reviewInstance?.listing?.id}">${reviewInstance?.listing?.encodeAsHTML()}</g:link></span>
-					
+					<span id="bidderComment-label" class="property-label"><g:message code="review.bidderComment.label" default="Bidder Comment" /></span>
+						<span class="property-value" aria-labelledby="bidderComment-label"><g:fieldValue bean="${reviewInstance}" field="bidderComment"/></span>
 				</li>
 				</g:if>
 			
-				<g:if test="${reviewInstance?.reviewer}">
+				<g:if test="${reviewInstance?.revieweeAccount}">
 				<li class="fieldcontain">
-					<span id="reviewer-label" class="property-label"><g:message code="review.reviewer.label" default="Reviewer" /></span>
-					
-						<span class="property-value" aria-labelledby="reviewer-label"><g:link controller="account" action="show" id="${reviewInstance?.reviewer?.id}">${reviewInstance?.reviewer?.encodeAsHTML()}</g:link></span>
-					
+					<span id="revieweeAccount-label" class="property-label"><g:message code="review.revieweeAccount.label" default="Reviewee Account" /></span>
+						<span class="property-value" aria-labelledby="revieweeAccount-label"><g:link controller="account" action="show" id="${reviewInstance?.revieweeAccount?.id}">${reviewInstance?.revieweeAccount?.name}</g:link></span>
 				</li>
 				</g:if>
 			
-				<g:if test="${reviewInstance?.reviewing}">
+				<g:if test="${reviewInstance?.reviewerAccount}">
 				<li class="fieldcontain">
-					<span id="reviewing-label" class="property-label"><g:message code="review.reviewing.label" default="Reviewing" /></span>
-					
-						<span class="property-value" aria-labelledby="reviewing-label"><g:link controller="account" action="show" id="${reviewInstance?.reviewing?.id}">${reviewInstance?.reviewing?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${reviewInstance?.voted}">
-				<li class="fieldcontain">
-					<span id="voted-label" class="property-label"><g:message code="review.voted.label" default="Voted" /></span>
-					
-						<span class="property-value" aria-labelledby="voted-label"><g:formatBoolean boolean="${reviewInstance?.voted}" /></span>
-					
+					<span id="reviewerAccount-label" class="property-label"><g:message code="review.reviewerAccount.label" default="Reviewer Account" /></span>
+						<span class="property-value" aria-labelledby="reviewerAccount-label"><g:link controller="account" action="show" id="${reviewInstance?.reviewerAccount?.id}">${reviewInstance?.reviewerAccount?.name}</g:link></span>
 				</li>
 				</g:if>
 			
 			</ol>
-			<g:form url="[resource:reviewInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${reviewInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
 		</div>
 	</body>
 </html>

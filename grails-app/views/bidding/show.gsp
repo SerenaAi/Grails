@@ -1,4 +1,5 @@
 
+
 <%@ page import="org.auction.Bidding" %>
 <!DOCTYPE html>
 <html>
@@ -22,11 +23,11 @@
 			</g:if>
 			<ol class="property-list bidding">
 			
-				<g:if test="${biddingInstance?.account}">
+				<g:if test="${biddingInstance?.biddingAccount}">
 				<li class="fieldcontain">
-					<span id="account-label" class="property-label"><g:message code="bidding.account.label" default="Account" /></span>
+					<span id="biddingAccount-label" class="property-label"><g:message code="bidding.biddingAccount.label" default="Bidding Account" /></span>
 					
-						<span class="property-value" aria-labelledby="account-label"><g:link controller="account" action="show" id="${biddingInstance?.account?.id}">${biddingInstance?.account?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="biddingAccount-label"><g:link controller="account" action="show" id="${biddingInstance?.biddingAccount?.id}">${biddingInstance?.biddingAccount?.name}</g:link></span>
 					
 				</li>
 				</g:if>

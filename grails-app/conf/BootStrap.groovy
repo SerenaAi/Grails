@@ -16,10 +16,6 @@ class BootStrap {
             user_user = new User(username: 'user', enabled: true, password: 'user').save(flush: true)
         }
         UserRole.create user_admin, adminRole, true  */
-        if(!Account.count()){
-            account1= new Account(username: "Sijia",address: "aaa st",email:"a@a.com",password:"1xxxxxxx", reviews: null ).save(failOnError: true)
-            account2= new Account(username: "Gerar",address: "gg st",email:"g@g.com",password: "1aaaaaaa", reviews:null ).save(failOnError: true)
-        }
         if (!DeliverOption.count()) {
             option1 = new DeliverOption(name: "US Only" ).save(failOnError: true)
             option2 = new DeliverOption(name: "Worldwide" ).save(failOnError: true)

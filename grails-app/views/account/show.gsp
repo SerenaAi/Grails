@@ -1,4 +1,3 @@
-
 <%@ page import="org.auction.Account" %>
 <!DOCTYPE html>
 <html>
@@ -11,9 +10,14 @@
 		<a href="#show-account" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link action="index" controller="listing"><g:message message="Check Listing" /></g:link></li>
-			</ul>
+				<!--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li> -->
+				<li><g:link action="index" controller="listing" id="${accountInstance?.id}" ><g:message message="Check Listing" /></g:link></li>
+                <li class="pull-right">
+                    <g:form controller="logout">
+                        <a href="#" onclick="document.forms[0].submit()">Logout</a>
+                     </g:form>
+                </li>
+            </ul>
 		</div>
 
     <div id="show-account" class="content scaffold-show" role="main">

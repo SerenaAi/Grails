@@ -115,23 +115,11 @@ log4j.main = {
            'net.sf.ehcache.hibernate'
 }
 
-
-// Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.auction.User'
-grails.plugin.springsecurity.authority.className = 'org.auction.Role'
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
-	'/assets/**':                     ['permitAll'],
-	'/**/js/**':                      ['permitAll'],
-	'/**/css/**':                     ['permitAll'],
-	'/**/images/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
-]
-
-
-
+grails.plugin.springsecurity.securityConfigType = "Annotation"
+grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/account/show'
+grails.plugin.springsecurity.logout.afterLogoutUrl ="/login/auth"
+grails.plugin.springsecurity.failureHandler.defaultFailureUrl = '/login/auth'
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.auction.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.auction.UserRole'
@@ -140,8 +128,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
 	'/index':                         ['permitAll'],
      '/account/create':             ['permitAll'],
-     '/account/save':             ['permitAll'],
-        '/account/show':             ['permitAll'],
+     '/account/save':                ['permitAll'],
 	'/index.gsp':                     ['permitAll'],
 	'/assets/**':                     ['permitAll'],
 	'/**/js/**':                      ['permitAll'],

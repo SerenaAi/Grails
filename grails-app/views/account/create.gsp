@@ -8,12 +8,17 @@
 	<body>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				<!--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li> -->
 				<li><g:link action="auth" controller="login"><g:message message="Login" /></g:link></li>
 			</ul>
 		</div>
 		<div class="content scaffold-create" role="main">
 			<h1><g:message message="Create Account" /></h1>
+            <g:if test="${flash.error}">
+                <ul class="errors" role="alert">
+                    <li>${flash.error}</li>
+                </ul>
+            </g:if>
 			<g:hasErrors bean="${accountInstance}">
 			<ul class="errors" role="alert">
 				<g:eachError bean="${accountInstance}" var="error">

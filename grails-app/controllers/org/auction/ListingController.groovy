@@ -1,11 +1,12 @@
 package org.auction
 
 import grails.transaction.Transactional
-
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.NO_CONTENT
 import static org.springframework.http.HttpStatus.OK
+import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.*
 
 class ListingController {
 
@@ -15,7 +16,9 @@ class ListingController {
     def show(Listing listingInstance) {
         respond listingInstance
     }
-
+    @Secured(closure = {
+        authentication.principal.username == "miao"
+    })
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         params.offset = params.offset as Integer ?: 0

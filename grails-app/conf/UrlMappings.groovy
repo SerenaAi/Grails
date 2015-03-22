@@ -11,11 +11,11 @@ class UrlMappings {
             }
         }
 
-     /*   "/" {
+        "/" {
             controller = "login"
             action = "auth"
-        }*/
-        "/" (view: "/index")
+        }
+     //   "/" (view: "/index")
         "500" (view: '/error')
     }
 }

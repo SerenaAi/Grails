@@ -5,7 +5,7 @@
         <g:message code="review.reviewerAccount.label" default="Reviewer" />
         <span class="required-indicator">*</span>
     </label>
-    <g:select id="reviewerAccount" name="reviewerAccount.id" from="${org.auction.Account.list()}" optionKey="id" required="" optionValue="name"  value="${reviewInstance?.reviewerAccount?.id}" class="many-to-one"/>
+    <g:select id="reviewerAccount" name="reviewerAccount.id" from="${org.auction.Account.list()}" optionKey="id" required="" optionValue="username"  value="${reviewInstance?.reviewerAccount?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: reviewInstance, field: 'bidderComment', 'error')} required">

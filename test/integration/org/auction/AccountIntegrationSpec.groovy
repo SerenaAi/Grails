@@ -14,7 +14,7 @@ class AccountIntegrationSpec extends Specification {
 
     void "Test creating a new user account into the DB"() { 
         given: 'Account Controller'
-        ac = new Account(name: "Peter Pan", address: "123 Some St", email: "x@x.com", password:"99912456z", type: 2).save(failOnError: true)
+        ac = new Account(username: "Peter Pan", address: "123 Some St", email: "x@x.com", password:"99912456z", type: 2).save(failOnError: true)
 
         when: 'Creating account called'
         ac.create()
@@ -25,7 +25,7 @@ class AccountIntegrationSpec extends Specification {
 
     void "Test deleting a new user account from the DB"() { 
         given: 'Account Controller'
-        ac = new Account(name: "Peter Pan", address: "123 Some St", email: "x@x.com", password:"99912456z", type: 2).save(failOnError: true)
+        ac = new Account(username: "Peter Pan", address: "123 Some St", email: "x@x.com", password:"99912456z", type: 2).save(failOnError: true)
 
         when: 'Deleting account called'
         ac.delete()

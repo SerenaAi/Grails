@@ -22,10 +22,10 @@
             <div class="message" role="status">${flash.message}</div>
         </g:if>
         <ol class="property-list account">
-            <g:if test="${accountInstance?.name}">
+            <g:if test="${accountInstance?.username}">
                 <li class="fieldcontain">
                     <span id="name-label" class="property-label"><g:message code="account.name.label" default="Name" /></span>
-                    <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${accountInstance}" field="name"/></span>
+                    <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${accountInstance}" field="username"/></span>
                 </li>
             </g:if>
             <g:if test="${accountInstance?.email}">
@@ -56,9 +56,6 @@
 
         <div id="list-review" class="content scaffold-list" role="main">
             <h1><g:message message="Review List" /></h1>
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
             <table>
                 <thead>
                 <tr>
@@ -72,7 +69,7 @@
                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                         <td><g:link action="show" id="${reviewInstance.id}">${fieldValue(bean: reviewInstance, field: "sellerComment")}</g:link></td>
                         <td><g:link action="show" id="${reviewInstance.id}">${fieldValue(bean: reviewInstance, field: "bidderComment")}</g:link></td>
-                        <td>${fieldValue(bean: reviewInstance, field: "reviewerAccount.name")}</td>
+                        <td>${fieldValue(bean: reviewInstance, field: "reviewerAccount.username")}</td>
                     </tr>
                 </g:each>
                 </tbody>

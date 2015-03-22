@@ -7,7 +7,7 @@
 		<g:message code="bidding.biddingAccount.label" default="Bidding Account" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="biddingAccount" name="biddingAccount.id" from="${org.auction.Account.list()}" optionKey="id" required="" optionValue="name" value="${biddingInstance?.biddingAccount?.id}" class="many-to-one"/>
+	<g:select id="biddingAccount" name="biddingAccount.id" from="${org.auction.Account.list()}" optionKey="id" required="" optionValue="username" value="${biddingInstance?.biddingAccount?.id}" class="many-to-one"/>
 
 </div>
 

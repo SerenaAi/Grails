@@ -11,7 +11,7 @@
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
-grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
+grails.project.groupId = appName // change this to alter the default package username and Maven publishing destination
 
 // The ACCEPT header will not be used for content negotiation for user agents containing the following strings (defaults to the 4 major rendering engines)
 grails.mime.disable.accept.header.userAgents = ['Gecko', 'WebKit', 'Presto', 'Trident']
@@ -40,7 +40,6 @@ grails.views.default.codec = "html"
 // The default scope for controllers. May be prototype, session or singleton.
 // If unspecified, controllers are prototype scoped.
 grails.controllers.defaultScope = 'singleton'
-
 // GSP settings
 grails {
     views {
@@ -100,7 +99,7 @@ log4j.main = {
     // Example of changing the log pattern for the default console appender:
     //
     //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+    //    console username:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
@@ -118,12 +117,31 @@ log4j.main = {
 
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.auction.Account.asuka'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.auction.Account.asukauser'
-grails.plugin.springsecurity.authority.className = 'org.auction.Account.user'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.auction.User'
+grails.plugin.springsecurity.authority.className = 'org.auction.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
 	'/index':                         ['permitAll'],
+	'/index.gsp':                     ['permitAll'],
+	'/assets/**':                     ['permitAll'],
+	'/**/js/**':                      ['permitAll'],
+	'/**/css/**':                     ['permitAll'],
+	'/**/images/**':                  ['permitAll'],
+	'/**/favicon.ico':                ['permitAll']
+]
+
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.auction.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.auction.UserRole'
+grails.plugin.springsecurity.authority.className = 'org.auction.Role'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/':                              ['permitAll'],
+	'/index':                         ['permitAll'],
+     '/account/create':             ['permitAll'],
+     '/account/save':             ['permitAll'],
+        '/account/show':             ['permitAll'],
 	'/index.gsp':                     ['permitAll'],
 	'/assets/**':                     ['permitAll'],
 	'/**/js/**':                      ['permitAll'],

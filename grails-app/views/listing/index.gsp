@@ -38,7 +38,7 @@
 			<table>
 			<thead>
 					<tr>
-						<g:sortableColumn property="name" title="${message(code: 'listing.name.label', default: 'Name')}" />
+						<g:sortableColumn property="name" title="${message(code: 'listing.username.label', default: 'Name')}" />
 						<g:sortableColumn property="description" title="${message(code: 'listing.description.label', default: 'Description')}" />
 						<g:sortableColumn property="startPrice" title="${message(code: 'listing.startPrice.label', default: 'Start Price')}" />
 						<g:sortableColumn property="startDate" title="${message(code: 'listing.startDate.label', default: 'Start Date')}" />
@@ -49,7 +49,7 @@
 				<tbody>
 				<g:each in="${listingInstanceList}" status="i" var="listingInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-						<td><g:link action="show" id="${listingInstance.id}">${fieldValue(bean: listingInstance, field: "name")}</g:link></td>
+						<td><g:link action="show" id="${listingInstance.id}">${fieldValue(bean: listingInstance, field: "username")}</g:link></td>
 						<td>${fieldValue(bean: listingInstance, field: "description")}</td>
 						<td>${fieldValue(bean: listingInstance, field: "startPrice")}</td>
 						<td><g:formatDate date="${listingInstance.startDate}" /></td>

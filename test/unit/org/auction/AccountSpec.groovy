@@ -17,7 +17,7 @@ class AccountSpec extends Specification {
         setup:
             def count=Account.count()
         when:
-            Account account=new Account(name:null, email:null, address: null, password: null)
+            Account account=new Account(username:null, email:null, address: null, password: null)
             account.save();
         then:
             Account.count()==count
@@ -27,7 +27,7 @@ class AccountSpec extends Specification {
         setup:
             def count=Account.count()
         when:
-            Account account=new Account(name:"a", email:"a@a.com", address: "a", password: "1aaaaaaa")
+            Account account=new Account(username:"a", email:"a@a.com", address: "a", password: "1aaaaaaa")
             account.save();
         then:
             Account.count()==count+1
@@ -37,7 +37,7 @@ class AccountSpec extends Specification {
         setup:
             def count=Account.count()
         when:
-            Account account=new Account(name:"a", email:"a@a.com", address: "a", password: "aaaaaaaa")
+            Account account=new Account(username:"a", email:"a@a.com", address: "a", password: "aaaaaaaa")
             account.save(failOnError: true);
         then:
             count==Account.count()
@@ -48,7 +48,7 @@ class AccountSpec extends Specification {
         setup:
             def count=Account.count()
         when:
-            Account account=new Account(name:"a", email:"a@a.com", address: "a", password: "11111111")
+            Account account=new Account(username:"a", email:"a@a.com", address: "a", password: "11111111")
             account.save(failOnError: true);
         then:
             count==Account.count()
@@ -59,7 +59,7 @@ class AccountSpec extends Specification {
         setup:
         def count=Account.count()
         when:
-        Account account=new Account(name:"a", email:"a@a.com", address: "a", password: "1aaaaaa")
+        Account account=new Account(username:"a", email:"a@a.com", address: "a", password: "1aaaaaa")
         account.save(failOnError: true);
         then:
         count==Account.count()
@@ -70,7 +70,7 @@ class AccountSpec extends Specification {
         setup:
         def count=Account.count()
         when:
-        Account account=new Account(name:"a", email:"a.com", address: "a", password: "1aaaaaa")
+        Account account=new Account(username:"a", email:"a.com", address: "a", password: "1aaaaaa")
         account.save(failOnError: true);
         then:
         count==Account.count()

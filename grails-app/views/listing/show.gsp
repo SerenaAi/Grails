@@ -101,7 +101,7 @@
                     <tbody>
                     <g:each in="${listingInstance.biddings}" status="i" var="biddingInstance">
                         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                            <td><g:link controller="bidding" action="show" id="${biddingInstance.id}">${fieldValue(bean: biddingInstance, field: "biddingAccount.name")}</g:link></td>
+                            <td><g:link controller="bidding" action="show" id="${biddingInstance.id}">${fieldValue(bean: biddingInstance, field: "biddingAccount.username")}</g:link></td>
                             <td>${fieldValue(bean: biddingInstance, field: "amount")}</td>
                             <g:if test="${listingInstance.completed}">
                                 <td><g:link action="createbidder" controller="review" id="${biddingInstance.biddingAccount.id}">[Rate this account]</g:link></td>

@@ -16,12 +16,12 @@
 	<g:textField name="email" required="" value="${accountInstance?.email}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: accountInstance, field: 'name', 'error')} required">
-	<label for="name">
+<div class="fieldcontain ${hasErrors(bean: accountInstance, field: 'username', 'error')} required">
+	<label for="username">
 		<g:message code="account.name.label" default="Name" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="name" maxlength="20" required="" value="${accountInstance?.name}"/>
+	<g:textField name="username" maxlength="20" required="" value="${accountInstance?.username}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: accountInstance, field: 'password', 'error')} required">

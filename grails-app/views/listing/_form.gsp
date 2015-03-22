@@ -2,7 +2,7 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'name', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'username', 'error')} required">
 	<label for="name">
 		<g:message code="listing.name.label" default="Name" />
 		<span class="required-indicator">*</span>
@@ -52,7 +52,7 @@
 		<g:message code="listing.account.label" default="Account" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="sellerAccount" name="sellerAccount.id" from="${org.auction.Account.list()}" optionKey="id" required="" optionValue="name" value="${listingInstance?.sellerAccount?.id}" class="many-to-one"/>
+	<g:select id="sellerAccount" name="sellerAccount.id" from="${org.auction.Account.list()}" optionKey="id" required="" optionValue="username" value="${listingInstance?.sellerAccount?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'deliverOption', 'error')} ">

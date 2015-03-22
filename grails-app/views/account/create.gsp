@@ -9,7 +9,7 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link action="index"><g:message message="Login" /></g:link></li>
+				<li><g:link action="auth" controller="login"><g:message message="Login" /></g:link></li>
 			</ul>
 		</div>
 		<div class="content scaffold-create" role="main">

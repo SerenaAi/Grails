@@ -1,7 +1,6 @@
 package org.auction
 
 class User {
-
 	transient springSecurityService
 
 	String username

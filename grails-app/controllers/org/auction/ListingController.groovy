@@ -73,9 +73,14 @@ class ListingController {
         }
     }
 
-
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def edit(Listing listingInstance) {
-        respond listingInstance
+        User user= springSecurityService.currentUser;
+        if(listingInstance.sellerAccount.username.equals(user.username) ){
+            respond listingInstance
+        }else{
+            redirect controller: "login", action:"denied"
+        }
     }
     @Transactional
     def update(Listing listingInstance) {
@@ -100,25 +105,30 @@ class ListingController {
         }
     }
 
-    @Transactional
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def delete(Listing listingInstance) {
         if (listingInstance == null) {
             notFound()
             return
         }
-        listingInstance.delete flush: true
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Listing.label',
-                    default: 'Listing'), listingInstance.id])
-                redirect action: "index", method: "GET"
+
+        User user= springSecurityService.currentUser;
+        if(listingInstance.sellerAccount.username.equals(user.username) ){
+            listingInstance.delete flush: true
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.deleted.message', args: [message(code: 'Listing.label',
+                            default: 'Listing'), listingInstance.id])
+                    redirect action: "index", method: "GET"
+                }
+                '*' {
+                    render status: NO_CONTENT
+                }
             }
-            '*' {
-                render status: NO_CONTENT
-            }
+        }else{
+            redirect controller: "login", action:"denied"
         }
     }
-
 
     protected void notFound() {
         request.withFormat {

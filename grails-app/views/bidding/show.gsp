@@ -30,14 +30,14 @@
 				<g:if test="${biddingInstance?.amount}">
 				<li class="fieldcontain">
 					<span id="amount-label" class="property-label"><g:message code="bidding.amount.label" default="Amount" /></span>
-						<span class="property-value" aria-labelledby="amount-label"><g:fieldValue bean="${biddingInstance}" field="amount"/></span>
+					<span class="property-value" aria-labelledby="amount-label">$<g:fieldValue bean="${biddingInstance}" field="amount"/></span>
 				</li>
 				</g:if>
 			
 				<g:if test="${biddingInstance?.dateCreated}">
 				<li class="fieldcontain">
 					<span id="dateCreated-label" class="property-label"><g:message code="bidding.dateCreated.label" default="Date Created" /></span>
-						<span class="property-value" aria-labelledby="dateCreated-label"><g:formatDate date="${biddingInstance?.dateCreated}" /></span>
+					<span class="property-value" aria-labelledby="dateCreated-label"><g:formatDate date="${biddingInstance?.dateCreated}" /></span>
 				</li>
 				</g:if>
 			</ol>

@@ -49,29 +49,6 @@ class BiddingController {
         }
     }
 
-    def edit(Bidding biddingInstance) {
-        respond biddingInstance
-    }
-
-    @Transactional
-    def delete(Bidding biddingInstance) {
-
-        if (biddingInstance == null) {
-            notFound()
-            return
-        }
-
-        biddingInstance.delete flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Bidding.label', default: 'Bidding'), biddingInstance.id])
-                redirect controller:"listing", action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
-    }
-
     protected void notFound() {
         request.withFormat {
             form multipartForm {

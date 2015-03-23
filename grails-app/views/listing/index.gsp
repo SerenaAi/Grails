@@ -53,7 +53,7 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 						<td><g:link action="show" id="${listingInstance.id}">${fieldValue(bean: listingInstance, field: "name")}</g:link></td>
 						<td>${fieldValue(bean: listingInstance, field: "description")}</td>
-						<td>${fieldValue(bean: listingInstance, field: "startPrice")}</td>
+						<td>$${fieldValue(bean: listingInstance, field: "startPrice")}</td>
 						<td><g:formatDate date="${listingInstance.startDate}" format="yyyy-MM-dd" /></td>
 						<td>${fieldValue(bean: listingInstance, field: "listingDays")}</td>
                         <td>${fieldValue(bean: listingInstance, field: "completed")}</td>

@@ -10,8 +10,8 @@
 		<a href="#edit-account" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link action="index" controller="listing"><g:message message="Check Listing" /></g:link></li>
+				<!--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>-->
+                <li><g:link action="index" controller="listing"><g:message message="Listing List" /></g:link></li>
 			</ul>
 		</div>
 		<div id="edit-account" class="content scaffold-edit" role="main">
@@ -32,7 +32,7 @@
 					<g:render template="signupform"/>
 				</fieldset>
 				<fieldset class="buttons">
-					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<g:actionSubmit action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 				</fieldset>
 			</g:form>
 		</div>

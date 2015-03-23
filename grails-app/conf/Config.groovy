@@ -114,7 +114,7 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
-
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.securityConfigType = "Annotation"
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/account/show'
@@ -129,6 +129,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/index':                         ['permitAll'],
     '/account/create':             ['permitAll'],
     '/**/save':                     ['permitAll'],
+    '/**/update':                     ['permitAll'],
     '/listing/index':                ['permitAll'],
     '/listing/show/**':                ['permitAll'],
     '/bidding/show/**':                ['permitAll'],

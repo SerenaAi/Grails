@@ -17,9 +17,12 @@ class AccountController {
 	}
 
     def show() {
-        if(springSecurityService.isLoggedIn()){
+        if(springSecurityService?.isLoggedIn()){
             User user= springSecurityService.currentUser;
             Account account= Account.findByUsername(user.username);
+            if(!account){
+                redirect controller: "login", action:"auth"
+            }
             respond account
         }else{
             redirect controller: "login", action:"auth"
@@ -36,11 +39,11 @@ class AccountController {
             respond accountInstance.errors, view:'create'
             return
         }
-        User user = new User(username:accountInstance.username, password: accountInstance.password)
 
+        User user = new User(username:accountInstance.username, password: accountInstance.password)
+        user.id=accountInstance.id
         if (!accountInstance.validate() || !user.validate()) {
             flash.error = "The username or email is already exist!"
-          //  flash.message = message(code: 'default.created.message', args: [message(code: 'account.label', default: 'Account'), accountInstance.id])
             redirect action: "create", controller:"account"
         }else{
             accountInstance.save flush:true
@@ -48,15 +51,25 @@ class AccountController {
             request.withFormat {
                 form multipartForm {
                     flash.message = message(code: 'default.created.message', args: [message(code: 'account.label', default: 'Account'), accountInstance.id])
-
                     redirect controller:"login",action:"auth"
                 }
                 '*' { respond accountInstance, [status: CREATED] }
             }
         }
 	}
-	def edit(Account accountInstance) {
-		respond accountInstance
+
+    @Secured(["IS_AUTHENTICATED_FULLY"])
+	def edit() {
+        if(springSecurityService.isLoggedIn()){
+            User user= springSecurityService.currentUser;
+            Account account= Account.findByUsername(user.username);
+            if(!account){
+                redirect controller: "login", action:"auth"
+            }
+            respond account
+        }else{
+            redirect controller: "login", action:"auth"
+        }
 	}
 
 	@Transactional
@@ -69,30 +82,41 @@ class AccountController {
 			respond accountInstance.errors, view:'edit'
 			return
 		}
-		accountInstance.save flush:true
 
-		request.withFormat {
-			form multipartForm {
-				flash.message = message(code: 'default.updated.message', args: [message(code: 'Account.label', default: 'Account'), accountInstance.id])
-				redirect accountInstance
-			}
-			'*'{ respond accountInstance, [status: OK] }
-		}
+        User user= springSecurityService.currentUser;
+        user.username =accountInstance.username;
+        user.password=accountInstance.password;
+        if (!accountInstance.validate() || !user.validate()) {
+            flash.error = "The username or email is already exist!"
+            redirect action: "create", controller:"account"
+        }else{
+            accountInstance.save flush:true
+            user.save flush:true
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.created.message', args: [message(code: 'account.label', default: 'Account'), accountInstance.id])
+                    redirect controller:"login",action:"auth"
+                }
+                '*' { respond accountInstance, [status: CREATED] }
+            }
+        }
 	}
-	@Transactional
-	def delete(Account accountInstance) {
+
+    @Secured(["IS_AUTHENTICATED_FULLY"])
+	def delete() {
+        User user= springSecurityService.currentUser;
+        Account accountInstance= Account.findByUsername(user.username);
 		if (accountInstance == null) {
 			notFound()
 			return
 		}
+
+        Collection<UserRole> userRoles = UserRole.findAllByUser(user);
+        userRoles*.delete()
+        user.delete()
 		accountInstance.delete flush:true
-		request.withFormat {
-			form multipartForm {
-				flash.message = message(code: 'default.deleted.message', args: [message(code: 'Account.label', default: 'Account'), accountInstance.id])
-				redirect action: "auth", controller:"login", method: "GET"
-			}
-			'*'{ render status: NO_CONTENT }
-		}
+
+		redirect controller:"logout", method: "POST"
 	}
 	protected void notFound() {
 		request.withFormat {

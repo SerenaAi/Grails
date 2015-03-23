@@ -5,11 +5,11 @@ class BootStrap {
     def init = { servletContext ->
         def option1,option2,option3;
         def account1, account2;
-        def adminRole, userRole
+        def sellerRole, bidderRole
         def user_admin, user_user
         if(!Role.count()){
-             adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
-             userRole = new Role(authority: 'ROLE_USER').save(flush: true)
+             sellerRole = new Role(authority: 'SELLER').save(flush: true)
+             bidderRole = new Role(authority: 'BIDDER').save(flush: true)
         }
    /*     if(!User.count()){
             user_admin = new User(username: 'admin', enabled: true, password: 'admin').save(flush: true)

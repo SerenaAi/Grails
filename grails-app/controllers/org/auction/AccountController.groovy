@@ -16,17 +16,14 @@ class AccountController {
 		respond new Account(params)
 	}
 
-    @Secured(closure = {
-        authentication.principal.username == "miao"
-    })
     def show() {
-       // if(springSecurityService.isLoggedIn()){
+        if(springSecurityService.isLoggedIn()){
             User user= springSecurityService.currentUser;
             Account account= Account.findByUsername(user.username);
             respond account
-       /* }else{
+        }else{
             redirect controller: "login", action:"auth"
-        } */
+        }
     }
 
 	@Transactional

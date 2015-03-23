@@ -10,8 +10,9 @@
 		<a href="#list-listing" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				<!--<li><a href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li> -->
                 <li><g:link action="create" controller="listing"><g:message message="Create Listing" /></g:link></li>
+                <li class="pull-right"><g:link action="show" controller="account"><g:message message="My Account" /></g:link></li>
             </ul>
 		</div>
 		<div id="list-listing" class="content scaffold-list" role="main">
@@ -38,23 +39,25 @@
 			<table>
 			<thead>
 					<tr>
-						<g:sortableColumn property="name" title="${message(code: 'listing.username.label', default: 'Name')}" />
+						<g:sortableColumn property="name" title="${message(code: 'listing.name.label', default: 'Name')}" />
 						<g:sortableColumn property="description" title="${message(code: 'listing.description.label', default: 'Description')}" />
 						<g:sortableColumn property="startPrice" title="${message(code: 'listing.startPrice.label', default: 'Start Price')}" />
 						<g:sortableColumn property="startDate" title="${message(code: 'listing.startDate.label', default: 'Start Date')}" />
 						<g:sortableColumn property="listingDays" title="${message(code: 'listing.listingDays.label', default: 'Listing Days')}" />
                         <g:sortableColumn property="completed" title="${message(code: 'listing.completed.label', default: 'Completed')}" />
-					</tr>
+                        <g:sortableColumn property="account" title="${message(message: 'Seller Account')}" />
+                    </tr>
 				</thead>
 				<tbody>
 				<g:each in="${listingInstanceList}" status="i" var="listingInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-						<td><g:link action="show" id="${listingInstance.id}">${fieldValue(bean: listingInstance, field: "username")}</g:link></td>
+						<td><g:link action="show" id="${listingInstance.id}">${fieldValue(bean: listingInstance, field: "name")}</g:link></td>
 						<td>${fieldValue(bean: listingInstance, field: "description")}</td>
 						<td>${fieldValue(bean: listingInstance, field: "startPrice")}</td>
-						<td><g:formatDate date="${listingInstance.startDate}" /></td>
+						<td><g:formatDate date="${listingInstance.startDate}" format="yyyy-MM-dd" /></td>
 						<td>${fieldValue(bean: listingInstance, field: "listingDays")}</td>
                         <td>${fieldValue(bean: listingInstance, field: "completed")}</td>
+                        <td>${fieldValue(bean: listingInstance, field: "sellerAccount.username")}</td>
                     </tr>
 				</g:each>
 				</tbody>

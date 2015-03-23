@@ -44,16 +44,10 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="listingDays" type="number" value="${listingInstance.listingDays}" required=""/>
-
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'sellerAccount', 'error')} ">
-	<label for="sellerAccount">
-		<g:message code="listing.account.label" default="Account" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="sellerAccount" name="sellerAccount.id" from="${org.auction.Account.list()}" optionKey="id" required="" optionValue="username" value="${listingInstance?.sellerAccount?.id}" class="many-to-one"/>
-</div>
+	<g:textField hidden="true" id="sellerAccount" name="sellerAccount.id" value="${listingInstance?.sellerAccount?.id}" />
+
 
 <div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'deliverOption', 'error')} ">
 	<label for="deliverOption">

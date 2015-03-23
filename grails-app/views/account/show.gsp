@@ -11,7 +11,7 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<!--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li> -->
-				<li><g:link action="index" controller="listing" id="${accountInstance?.id}" ><g:message message="Check Listing" /></g:link></li>
+				<li><g:link action="index" controller="listing"><g:message message="Listing List" /></g:link></li>
                 <li class="pull-right">
                     <g:form controller="logout">
                         <a href="#" onclick="document.forms[0].submit()">Logout</a>
@@ -85,8 +85,8 @@
 
         <g:form url="[resource:accountInstance, action:'delete']" method="DELETE">
             <fieldset class="buttons">
-                <g:link class="edit" action="edit" resource="${accountInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                <g:link action="edit" resource="${accountInstance}"><g:message code="default.button.edit.label" message="Edit Account" /></g:link>
+                <g:actionSubmit action="delete" value="${message(code: 'default.button.delete.label', message: 'Delete Account')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
             </fieldset>
         </g:form>
     </div>

@@ -10,10 +10,12 @@
 		<a href="#show-listing" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				<!--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>-->
 				<li><g:link action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link action="create"><g:message message="Create Listing" /></g:link></li>
-			</ul>
+                <li class="pull-right"><g:link action="show" controller="account"><g:message message="My Account" /></g:link></li>
+
+            </ul>
 		</div>
 		<div id="show-listing" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
@@ -55,7 +57,7 @@
                 <g:if test="${listingInstance?.sellerAccount}">
                     <li class="fieldcontain">
                         <span id="sellerAccount-label" class="property-label"><g:message code="listing.sellerAccount.label" default="Seller Account" /></span>
-                        <span class="property-value" aria-labelledby="sellerAccount-label"><g:link controller="account" action="show" id="${listingInstance?.sellerAccount?.id}">${listingInstance?.sellerAccount?.name}</g:link></span>
+                        <span class="property-value" aria-labelledby="sellerAccount-label"><g:link controller="account" action="show" id="${listingInstance?.sellerAccount?.id}">${listingInstance?.sellerAccount?.username}</g:link></span>
                         <span class="property-value" aria-labelledby="sellerAccount-label" ><g:link action="createseller" controller="review" id="${listingInstance?.sellerAccount?.id}" >[Rate this account]</g:link></span>
                     </li>
 
@@ -64,11 +66,22 @@
 				<g:if test="${listingInstance?.deliverOption}">
 				<li class="fieldcontain">
 					<span id="deliverOption-label" class="property-label"><g:message code="listing.deliverOption.label" default="DeliverOption" /></span>
-						<span class="property-value" aria-labelledby="deliverOption-label"><g:link controller="deliverOption" action="show" id="${listingInstance?.deliverOption?.id}">${listingInstance?.deliverOption?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="deliverOption-label">${listingInstance?.deliverOption?.name}</span>
 				</li>
 				</g:if>
 			</ol>
 
+            <g:form url="[resource:listingInstance, action:'delete']" method="DELETE">
+                <fieldset class="buttons">
+                    <g:link action="edit" resource="${listingInstance}"><g:message code="default.button.edit.label" message="Edit Listing" /></g:link>
+                    <g:actionSubmit action="delete" value="${message(code: 'default.button.delete.label', message: 'Delete Listing')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                    <g:if test="${!listingInstance.completed}">
+                        <g:link action="create" id="${params.id}" controller="bidding"><g:message message="Create Bidding" /></g:link>
+                    </g:if>
+                </fieldset>
+            </g:form>
+
+            <div style="height: 20px"></div>
             <div>
                 <g:if test="${listingInstance.completed}">
                     <h1>Winner Account</h1>
@@ -84,8 +97,8 @@
                         ${listingInstance.highBid}
                     </div>
             </div>
-            <div>
 
+            <div>
                 <h1 style="border: 0">Bidding History</h1>
                 <div>
                 <table>
@@ -112,16 +125,6 @@
                 </table>
                 </div>
             </div>
-
-			<g:form url="[resource:listingInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link action="edit" resource="${listingInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                        <g:link action="create" id="${params.id}" controller="bidding"><g:message message="Create Bidding" /></g:link>
-				</fieldset>
-			</g:form>
-
 		</div>
-
 	</body>
 </html>

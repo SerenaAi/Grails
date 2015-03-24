@@ -1,6 +1,7 @@
 package org.auction
 
 import grails.plugin.springsecurity.SpringSecurityService
+import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -11,13 +12,29 @@ class ReviewController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def springSecurityService= new SpringSecurityService()
 
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def show(Review reviewInstance) {
+        User user=springSecurityService.currentUser
+        Account account=Account.findByUsername(user.username)
+        def roles = user.getAuthorities()
+        def sellerRole = Role.findByAuthority("SELLER")
+
+        if(roles.contains(sellerRole)||Listing.findByHighBidAccount(account) ){
+        }else{ redirect action:"denied", controller:"login"}
+
         respond reviewInstance
     }
 
-
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def createseller() {
         User user=springSecurityService.currentUser
+        Account account=Account.findByUsername(user.username)
+        def roles = user.getAuthorities()
+        def sellerRole = Role.findByAuthority("SELLER")
+
+        if(roles.contains(sellerRole)||Listing.findByHighBidAccount(account) ){
+        }else{ redirect action:"denied", controller:"login"}
+
         Account rwrAccount= Account.findByUsername(user.username)
         def revieweeId= params.name
         def listingId= params.id
@@ -30,8 +47,17 @@ class ReviewController {
         respond review
     }
 
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def createbidder() {
+
         User user=springSecurityService.currentUser
+        Account account=Account.findByUsername(user.username)
+        def roles = user.getAuthorities()
+        def sellerRole = Role.findByAuthority("SELLER")
+
+        if(roles.contains(sellerRole)||Listing.findByHighBidAccount(account) ){
+        }else{ redirect action:"denied", controller:"login"}
+
         Account rwrAccount= Account.findByUsername(user.username)
         def revieweeId= params.name
         def listingId= params.id

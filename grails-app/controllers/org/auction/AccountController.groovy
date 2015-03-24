@@ -61,7 +61,6 @@ class AccountController {
         User user= springSecurityService.currentUser
         Account account= Account.findByUsername(user.username)
         def id=account.id
-        println id+"id"+accountInstance.id
         if(!id.equals(accountInstance.id)){
             redirect controller: "login", action:"denied"
         }

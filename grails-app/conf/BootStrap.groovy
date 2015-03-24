@@ -10,6 +10,8 @@ class BootStrap {
         if(!Role.count()){
              sellerRole = new Role(authority: 'SELLER').save(flush: true)
              bidderRole = new Role(authority: 'BIDDER').save(flush: true)
+
+
         }
    /*     if(!User.count()){
             user_admin = new User(username: 'admin', enabled: true, password: 'admin').save(flush: true)

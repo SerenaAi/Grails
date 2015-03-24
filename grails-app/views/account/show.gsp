@@ -21,7 +21,7 @@
 		</div>
 
     <div id="show-account" class="content scaffold-show" role="main">
-        <h1><g:message code="default.show.label" args="[entityName]" /></h1>
+        <h1><g:message message="Show Account" /></h1>
         <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
         </g:if>
@@ -83,9 +83,9 @@
             </div>
         </div>
 
-        <g:form url="[action:'delete']" method="DELETE">
+        <g:form url="[action:'delete', resource:accountInstance ]" method="DELETE">
             <fieldset class="buttons">
-                <g:link action="edit"><g:message code="default.button.edit.label" message="Edit Account" /></g:link>
+                <g:link action="edit" resource="${accountInstance}"><g:message code="default.button.edit.label" message="Edit Account" /></g:link>
                 <g:actionSubmit action="delete" value="${message(code: 'default.button.delete.label', message: 'Delete Account')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
             </fieldset>
         </g:form>

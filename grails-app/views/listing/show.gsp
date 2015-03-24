@@ -10,10 +10,7 @@
 		<a href="#show-listing" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<!--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>-->
 				<li><g:link action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-
-                <li class="pull-right"><g:link action="show" controller="account"><g:message message="My Account" /></g:link></li>
             </ul>
 		</div>
 		<div id="show-listing" class="content scaffold-show" role="main">
@@ -57,11 +54,12 @@
                     <li class="fieldcontain">
                         <span id="sellerAccount-label" class="property-label"><g:message code="listing.sellerAccount.label" default="Seller Account" /></span>
                         <span class="property-value" aria-labelledby="sellerAccount-label"><g:link controller="account" action="show" id="${listingInstance?.sellerAccount?.id}">${listingInstance?.sellerAccount?.username}</g:link></span>
-                        <span class="property-value" aria-labelledby="sellerAccount-label" ><g:link action="createseller" controller="review" id="${listingInstance?.sellerAccount?.id}" >[Rate this account]</g:link></span>
+                        <g:if test="${listingInstance.completed}">
+                            <span class="property-value" aria-labelledby="sellerAccount-label" ><g:link action="createseller" controller="review" params="[id:params.id, name:listingInstance?.sellerAccount?.id]" >[Rate this account]</g:link></span>
+                        </g:if>
                     </li>
-
-
                 </g:if>
+
 				<g:if test="${listingInstance?.deliverOption}">
 				<li class="fieldcontain">
 					<span id="deliverOption-label" class="property-label"><g:message code="listing.deliverOption.label" default="DeliverOption" /></span>
@@ -72,7 +70,6 @@
 
             <g:form url="[resource:listingInstance, action:'delete']" method="DELETE">
                 <fieldset class="buttons">
-
                     <g:link action="edit" resource="${listingInstance}"><g:message code="default.button.edit.label" message="Edit Listing" /></g:link>
                     <g:actionSubmit action="delete" value="${message(code: 'default.button.delete.label', message: 'Delete Listing')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                     <g:if test="${!listingInstance.completed}">
@@ -86,7 +83,7 @@
                 <g:if test="${listingInstance.completed}">
                     <h1>Winner Account</h1>
                     <div class="property-list listing">
-                        ${listingInstance.highBidAccount?.name}
+                       ${listingInstance.highBidAccount?.username}
                     </div>
                 </g:if>
             </div>
@@ -117,7 +114,7 @@
                             <td><g:link controller="bidding" action="show" id="${biddingInstance.id}">${fieldValue(bean: biddingInstance, field: "biddingAccount.username")}</g:link></td>
                             <td>$${fieldValue(bean: biddingInstance, field: "amount")}</td>
                             <g:if test="${listingInstance.completed}">
-                                <td><g:link action="createbidder" controller="review" id="${biddingInstance.biddingAccount.id}">[Rate this account]</g:link></td>
+                                <td><g:link action="createbidder" controller="review" params="[id:params.id, name:biddingInstance?.biddingAccount.id]" >[Rate this account]</g:link></td>
                             </g:if>
                         </tr>
                     </g:each>

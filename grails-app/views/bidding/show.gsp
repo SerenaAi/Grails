@@ -41,11 +41,6 @@
 				</li>
 				</g:if>
 			</ol>
-			<g:form url="[resource:biddingInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:actionSubmit action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
 		</div>
 	</body>
 </html>

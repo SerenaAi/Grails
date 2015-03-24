@@ -14,9 +14,9 @@
 		</div>
 		<div class="content scaffold-create" role="main">
 			<h1><g:message message="Create Account" /></h1>
-            <g:if test="${flash.error}">
+            <g:if test="${flash.message}">
                 <ul class="errors" role="alert">
-                    <li>${flash.error}</li>
+                    <li>${flash.message}</li>
                 </ul>
             </g:if>
 			<g:hasErrors bean="${accountInstance}">

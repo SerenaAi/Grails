@@ -11,7 +11,6 @@
 			<ul>
 				<!--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>-->
 				<li><g:link action="index" id="${params.id}"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li class="pull-right"><g:link action="show" controller="account"><g:message message="My Account" /></g:link></li>
 			</ul>
 		</div>
 		<div id="create-listing" class="content scaffold-create" role="main">

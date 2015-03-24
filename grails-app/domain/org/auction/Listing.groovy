@@ -1,15 +1,15 @@
 package org.auction
 
 class Listing {
-    Date startDate;
-    String description;
-    String name;
-    float startPrice;
-    int listingDays ;
-    Account highBidAccount;
-    float highBid;
-    boolean completed;
-    static hasMany=[biddings: Bidding]
+    Date startDate
+    String description
+    String name
+    float startPrice
+    int listingDays
+    Account highBidAccount
+    float highBid
+    boolean completed
+    static hasMany=[biddings: Bidding, reviews:Review]
 
     static belongsTo = [sellerAccount: Account, deliverOption: DeliverOption]
 

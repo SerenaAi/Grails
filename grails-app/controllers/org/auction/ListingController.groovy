@@ -37,7 +37,7 @@ class ListingController {
         retResult = criteria1.list(max: 10, offset: params.offset) {
             and {
                 if (params.query && params.searchtype == "1")
-                    ilike("username", "%${params.query}%")
+                    ilike("name", "%${params.query}%")
                 if (params.query && params.searchtype == "2")
                     ilike("description", "%${params.query}%")
                 if (params.listtype == "2")

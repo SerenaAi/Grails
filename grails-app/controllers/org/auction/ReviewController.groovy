@@ -1,6 +1,6 @@
 package org.auction
 
-
+import grails.plugin.springsecurity.SpringSecurityService
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -9,20 +9,37 @@ import grails.transaction.Transactional
 class ReviewController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    def springSecurityService= new SpringSecurityService()
 
     def show(Review reviewInstance) {
         respond reviewInstance
     }
 
+
     def createseller() {
+        User user=springSecurityService.currentUser
+        Account rwrAccount= Account.findByUsername(user.username)
+        def revieweeId= params.name
+        def listingId= params.id
+
+
         Review review=new Review(params)
-        review.revieweeAccount=Account.findById(params.id)
+        review.revieweeAccount=Account.findById(revieweeId)
+        review.listing=Listing.findById(listingId)
+        review.reviewerAccount=rwrAccount
         respond review
     }
 
     def createbidder() {
+        User user=springSecurityService.currentUser
+        Account rwrAccount= Account.findByUsername(user.username)
+        def revieweeId= params.name
+        def listingId= params.id
+
         Review review=new Review(params)
-        review.revieweeAccount=Account.findById(params.id)
+        review.revieweeAccount=Account.findById(revieweeId)
+        review.listing=Listing.findById(listingId)
+        review.reviewerAccount=rwrAccount
         respond review
     }
 
@@ -61,6 +78,7 @@ class ReviewController {
                     '*' { respond review, [status: OK] }
                 }
             }else{
+                flash.error="Cannot create a rate twice for this bidder!"
                 respond reviewInstance.errors, view:'createbidder'
                 return
             }
@@ -72,12 +90,10 @@ class ReviewController {
             notFound()
             return
         }
-
         if (reviewInstance.hasErrors()) {
             respond reviewInstance.errors, view:'createseller'
             return
         }
-
         def reviews = Review.where { revieweeAccount.id==reviewInstance.revieweeAccount.id && reviewerAccount.id==reviewInstance.reviewerAccount.id }.list()
         Review review;
         if(!reviews){
@@ -106,11 +122,11 @@ class ReviewController {
                 }
             }
             else{
+                flash.error="Cannot create a rate twice for this seller!"
                 respond reviewInstance.errors, view:'createseller'
                 return
             }
         }
-
     }
 
     protected void notFound() {

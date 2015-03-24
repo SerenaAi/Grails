@@ -11,6 +11,7 @@ class UrlMappings {
             }
         }
 
+
         "/" {
             controller = "login"
             action = "auth"

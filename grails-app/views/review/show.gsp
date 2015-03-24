@@ -38,14 +38,14 @@
 				<g:if test="${reviewInstance?.revieweeAccount}">
 				<li class="fieldcontain">
 					<span id="revieweeAccount-label" class="property-label"><g:message code="review.revieweeAccount.label" default="Reviewee Account" /></span>
-						<span class="property-value" aria-labelledby="revieweeAccount-label"><g:link controller="account" action="show" id="${reviewInstance?.revieweeAccount?.id}">${reviewInstance?.revieweeAccount?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="revieweeAccount-label"><g:link controller="account" action="show" id="${reviewInstance?.revieweeAccount?.id}">${reviewInstance?.revieweeAccount?.username}</g:link></span>
 				</li>
 				</g:if>
 			
 				<g:if test="${reviewInstance?.reviewerAccount}">
 				<li class="fieldcontain">
 					<span id="reviewerAccount-label" class="property-label"><g:message code="review.reviewerAccount.label" default="Reviewer Account" /></span>
-						<span class="property-value" aria-labelledby="reviewerAccount-label"><g:link controller="account" action="show" id="${reviewInstance?.reviewerAccount?.id}">${reviewInstance?.reviewerAccount?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="reviewerAccount-label"><g:link controller="account" action="show" id="${reviewInstance?.reviewerAccount?.id}">${reviewInstance?.reviewerAccount?.username}</g:link></span>
 				</li>
 				</g:if>
 			

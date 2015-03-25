@@ -1,4 +1,3 @@
-
 <%@ page import="org.auction.Review" %>
 <!DOCTYPE html>
 <html>
@@ -8,7 +7,6 @@
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#show-review" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
@@ -48,7 +46,6 @@
 						<span class="property-value" aria-labelledby="reviewerAccount-label"><g:link controller="account" action="show" id="${reviewInstance?.reviewerAccount?.id}">${reviewInstance?.reviewerAccount?.username}</g:link></span>
 				</li>
 				</g:if>
-			
 			</ol>
 		</div>
 	</body>

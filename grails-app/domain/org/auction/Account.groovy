@@ -1,5 +1,7 @@
 package org.auction
 
+import grails.rest.Resource
+
 class Account {
     String address
     String email

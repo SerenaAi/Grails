@@ -20,7 +20,7 @@
 		</div>
         <div class="content scaffold-show" role="main">
             <ol class="property-list account">
-                <h1 class="text-center">Welcome </h1>
+                <h1 class="text-center">Welcome</h1>
             </ol>
         </div>
 	</body>

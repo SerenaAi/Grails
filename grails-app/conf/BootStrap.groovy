@@ -5,21 +5,19 @@ class BootStrap {
     def init = { servletContext ->
         def option1,option2,option3;
         def account1, account2;
-        def adminRole, userRole
+        def sellerRole, bidderRole
         def user_admin, user_user
         if(!Role.count()){
-             adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
-             userRole = new Role(authority: 'ROLE_USER').save(flush: true)
+             sellerRole = new Role(authority: 'SELLER').save(flush: true)
+             bidderRole = new Role(authority: 'BIDDER').save(flush: true)
+
+
         }
    /*     if(!User.count()){
             user_admin = new User(username: 'admin', enabled: true, password: 'admin').save(flush: true)
             user_user = new User(username: 'user', enabled: true, password: 'user').save(flush: true)
         }
         UserRole.create user_admin, adminRole, true  */
-        if(!Account.count()){
-            account1= new Account(username: "Sijia",address: "aaa st",email:"a@a.com",password:"1xxxxxxx", reviews: null ).save(failOnError: true)
-            account2= new Account(username: "Gerar",address: "gg st",email:"g@g.com",password: "1aaaaaaa", reviews:null ).save(failOnError: true)
-        }
         if (!DeliverOption.count()) {
             option1 = new DeliverOption(name: "US Only" ).save(failOnError: true)
             option2 = new DeliverOption(name: "Worldwide" ).save(failOnError: true)

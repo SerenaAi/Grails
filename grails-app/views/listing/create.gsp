@@ -9,8 +9,8 @@
 		<a href="#create-listing" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+				<!--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>-->
+				<li><g:link action="index" id="${params.id}"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
 		<div id="create-listing" class="content scaffold-create" role="main">
@@ -25,7 +25,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:listingInstance, action:'save']" >
+			<g:form url="[resource:listingInstance, action:'save' ]" >
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>

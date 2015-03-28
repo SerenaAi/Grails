@@ -1,6 +1,7 @@
 package org.auction
 
-
+import grails.plugin.springsecurity.SpringSecurityService
+import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -9,20 +10,62 @@ import grails.transaction.Transactional
 class ReviewController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    def springSecurityService= new SpringSecurityService()
 
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def show(Review reviewInstance) {
+        User user=springSecurityService.currentUser
+        Account account=Account.findByUsername(user.username)
+        def roles = user.getAuthorities()
+        def sellerRole = Role.findByAuthority("SELLER")
+
+        if(roles.contains(sellerRole)||Listing.findByHighBidAccount(account) ){
+        }else{ redirect action:"denied", controller:"login"}
+
         respond reviewInstance
     }
 
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def createseller() {
+        User user=springSecurityService.currentUser
+        Account account=Account.findByUsername(user.username)
+        def roles = user.getAuthorities()
+        def sellerRole = Role.findByAuthority("SELLER")
+
+        if(roles.contains(sellerRole)||Listing.findByHighBidAccount(account) ){
+        }else{ redirect action:"denied", controller:"login"}
+
+        Account rwrAccount= Account.findByUsername(user.username)
+        def revieweeId= params.name
+        def listingId= params.id
+
+
         Review review=new Review(params)
-        review.revieweeAccount=Account.findById(params.id)
+        review.revieweeAccount=Account.findById(revieweeId)
+        review.listing=Listing.findById(listingId)
+        review.reviewerAccount=rwrAccount
         respond review
     }
 
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def createbidder() {
+
+        User user=springSecurityService.currentUser
+        Account account=Account.findByUsername(user.username)
+        def roles = user.getAuthorities()
+        def sellerRole = Role.findByAuthority("SELLER")
+
+        if(roles.contains(sellerRole)||Listing.findByHighBidAccount(account) ){
+        }else{ redirect action:"denied", controller:"login"}
+
+        Account rwrAccount= Account.findByUsername(user.username)
+        def revieweeId= params.name
+        def listingId= params.id
+
         Review review=new Review(params)
-        review.revieweeAccount=Account.findById(params.id)
+        review.revieweeAccount=Account.findById(revieweeId)
+        review.listing=Listing.findById(listingId)
+        review.reviewerAccount=rwrAccount
         respond review
     }
 
@@ -61,6 +104,7 @@ class ReviewController {
                     '*' { respond review, [status: OK] }
                 }
             }else{
+                flash.error="Cannot create a rate twice for this bidder!"
                 respond reviewInstance.errors, view:'createbidder'
                 return
             }
@@ -72,12 +116,10 @@ class ReviewController {
             notFound()
             return
         }
-
         if (reviewInstance.hasErrors()) {
             respond reviewInstance.errors, view:'createseller'
             return
         }
-
         def reviews = Review.where { revieweeAccount.id==reviewInstance.revieweeAccount.id && reviewerAccount.id==reviewInstance.reviewerAccount.id }.list()
         Review review;
         if(!reviews){
@@ -106,11 +148,11 @@ class ReviewController {
                 }
             }
             else{
+                flash.error="Cannot create a rate twice for this seller!"
                 respond reviewInstance.errors, view:'createseller'
                 return
             }
         }
-
     }
 
     protected void notFound() {

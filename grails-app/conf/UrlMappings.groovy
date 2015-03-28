@@ -1,3 +1,6 @@
+import org.auction.AccountController
+import org.auction.AccountRestController
+
 class UrlMappings {
     static mappings = {
 /*        "/listing/search" {
@@ -11,11 +14,16 @@ class UrlMappings {
             }
         }
 
-     /*   "/" {
+        "/api/accounts"(resources: 'accountRest')
+        "/api/listings"(resources: 'listingRest'){
+            "/biddings" (resources: 'biddingRest')
+        }
+        "/api/biddings"(resources: 'biddingRest')
+        "/" {
             controller = "login"
             action = "auth"
-        }*/
-        "/" (view: "/index")
+        }
+     //   "/" (view: "/index")
         "500" (view: '/error')
     }
 }

@@ -9,8 +9,8 @@
 		<a href="#create-bidding" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link action="index" controller="listing"><g:message message="Listing List" /></g:link></li>
+				<!--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li> -->
+				<li><g:link controller="listing" action="show" id="${biddingInstance?.listing?.id}"><g:message message="Back to Listing" /></g:link></li>
 			</ul>
 		</div>
 		<div id="create-bidding" class="content scaffold-create" role="main">
@@ -30,7 +30,7 @@
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:submitButton name="create" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 				</fieldset>
 			</g:form>
 		</div>

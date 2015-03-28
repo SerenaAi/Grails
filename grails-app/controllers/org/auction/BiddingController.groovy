@@ -1,6 +1,7 @@
 package org.auction
 
-
+import grails.plugin.springsecurity.SpringSecurityService
+import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -9,15 +10,26 @@ import grails.transaction.Transactional
 class BiddingController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    def springSecurityService= new SpringSecurityService()
 
     def show(Bidding biddingInstance) {
         respond biddingInstance
     }
 
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def create() {
-        def ret=new Bidding(params)
-        ret.listing=Listing.findById(params.id);
-        respond ret;
+        Bidding bidding=new Bidding(params)
+        bidding.listing=Listing.findById(params.id)
+
+        User user = springSecurityService.currentUser
+        Collection<UserRole> userRoles = UserRole.findAllByUser(user);
+        userRoles*.delete()
+
+        Role bidderRole=Role.findByAuthority("BIDDER")
+        UserRole.create user, bidderRole, true
+        Account account= Account.findByUsername(user.username)
+        bidding.biddingAccount=account
+        respond bidding
     }
 
     @Transactional
@@ -30,38 +42,13 @@ class BiddingController {
             respond biddingInstance.errors, view:'create', controller:"bidding"
             return
         }
-            biddingInstance.save flush:true
-
-            request.withFormat {
-                form multipartForm {
-                    flash.message = message(code: 'default.created.message', args: [message(code: 'bidding.label', default: 'Bidding'), biddingInstance.id])
-                    redirect biddingInstance
-                }
-                '*' { respond biddingInstance, [status: CREATED]}
-            }
-
-    }
-
-    def edit(Bidding biddingInstance) {
-        respond biddingInstance
-    }
-
-    @Transactional
-    def delete(Bidding biddingInstance) {
-
-        if (biddingInstance == null) {
-            notFound()
-            return
-        }
-
-        biddingInstance.delete flush:true
-
+        biddingInstance.save flush:true
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Bidding.label', default: 'Bidding'), biddingInstance.id])
-                redirect controller:"listing", action:"index", method:"GET"
+                flash.message = message(code: 'default.created.message', args: [message(code: 'bidding.label', default: 'Bidding'), biddingInstance.id])
+                redirect biddingInstance
             }
-            '*'{ render status: NO_CONTENT }
+            '*' { respond biddingInstance, [status: CREATED]}
         }
     }
 

@@ -1,14 +1,11 @@
 <%@ page import="org.auction.Listing" %>
 
-
-
 <div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'username', 'error')} required">
 	<label for="name">
 		<g:message code="listing.name.label" default="Name" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="name" required="" value="${listingInstance?.name}"/>
-
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'description', 'error')} required">
@@ -17,7 +14,6 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="description" required="" value="${listingInstance?.description}"/>
-
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'startPrice', 'error')} required">
@@ -26,7 +22,6 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="startPrice" value="${fieldValue(bean: listingInstance, field: 'startPrice')}" required=""/>
-
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'startDate', 'error')} required">
@@ -35,7 +30,6 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:datePicker name="startDate" precision="day"  value="${listingInstance?.startDate}"  />
-
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'listingDays', 'error')} required">
@@ -44,16 +38,9 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="listingDays" type="number" value="${listingInstance.listingDays}" required=""/>
-
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'sellerAccount', 'error')} ">
-	<label for="sellerAccount">
-		<g:message code="listing.account.label" default="Account" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="sellerAccount" name="sellerAccount.id" from="${org.auction.Account.list()}" optionKey="id" required="" optionValue="username" value="${listingInstance?.sellerAccount?.id}" class="many-to-one"/>
-</div>
+	<g:textField hidden="true" id="sellerAccount" name="sellerAccount.id" value="${listingInstance?.sellerAccount?.id}" />
 
 <div class="fieldcontain ${hasErrors(bean: listingInstance, field: 'deliverOption', 'error')} ">
 	<label for="deliverOption">
@@ -61,6 +48,5 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:select id="deliverOption" name="deliverOption.id" from="${org.auction.DeliverOption.list()}" optionKey="id" required=""  optionValue="name"  value="${listingInstance?.deliverOption?.id}" class="many-to-one"/>
-
 </div>
 

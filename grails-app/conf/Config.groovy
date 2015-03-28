@@ -114,24 +114,12 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
-
-
-// Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.auction.User'
-grails.plugin.springsecurity.authority.className = 'org.auction.Role'
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
-	'/assets/**':                     ['permitAll'],
-	'/**/js/**':                      ['permitAll'],
-	'/**/css/**':                     ['permitAll'],
-	'/**/images/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
-]
-
-
-
+grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.securityConfigType = "Annotation"
+grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/account/index'
+grails.plugin.springsecurity.logout.afterLogoutUrl ="/login/auth"
+grails.plugin.springsecurity.failureHandler.defaultFailureUrl = '/login/auth'
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.auction.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.auction.UserRole'
@@ -139,9 +127,15 @@ grails.plugin.springsecurity.authority.className = 'org.auction.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
 	'/index':                         ['permitAll'],
-     '/account/create':             ['permitAll'],
-     '/account/save':             ['permitAll'],
-        '/account/show':             ['permitAll'],
+    '/account/create':             ['permitAll'],
+    '/account/show':             ['permitAll'],
+    '/**/save':                     ['permitAll'],
+    '/**/update':                     ['permitAll'],
+    '/listing/index':                ['permitAll'],
+    '/listing/show/**':                ['permitAll'],
+    '/bidding/show/**':                ['permitAll'],
+    '/account/show':                ['permitAll'],
+        '/**/**':                ['permitAll'],
 	'/index.gsp':                     ['permitAll'],
 	'/assets/**':                     ['permitAll'],
 	'/**/js/**':                      ['permitAll'],

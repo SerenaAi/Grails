@@ -10,9 +10,8 @@
 		<a href="#edit-listing" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link action="create"><g:message message="Create Listing" /></g:link></li>
+				<!--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>-->
+                <li><g:link action="index" id="${params.id}"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
 		<div id="edit-listing" class="content scaffold-edit" role="main">

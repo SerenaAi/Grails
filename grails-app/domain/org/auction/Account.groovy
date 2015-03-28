@@ -1,5 +1,7 @@
 package org.auction
 
+import grails.rest.Resource
+
 class Account {
     String address
     String email
@@ -24,8 +26,8 @@ class Account {
 
 	static mapping = {
         address(blank: false)
-        email(blank: false)
-        username(blank: false)
+        email(blank: false, unique: true)
+        username(blank: false, unique: true)
         password(blank: false, size: 8..16)
 	}
 }

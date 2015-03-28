@@ -1,7 +1,5 @@
 package org.auction
 
-
-
 import grails.test.mixin.*
 import spock.lang.*
 
@@ -11,8 +9,6 @@ class BiddingControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["username"] = 'someValidName'
     }
 
     void "Test that the show action returns the correct model"() {

@@ -3,10 +3,8 @@ package org.auction
 import spock.lang.Specification
 
 class AccountIntegrationSpec extends Specification {
-
     def ac 
-	def setup() {
-	}
+	def setup() {}
 
 	def cleanup() {
         ac.delete()
@@ -33,5 +31,4 @@ class AccountIntegrationSpec extends Specification {
         then: 'Checking account was deleted'
         !ac.exists(ac.id)
     }
-
 }

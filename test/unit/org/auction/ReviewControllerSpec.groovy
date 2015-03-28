@@ -1,7 +1,5 @@
 package org.auction
 
-
-
 import grails.test.mixin.*
 import spock.lang.*
 
@@ -11,12 +9,9 @@ class ReviewControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["username"] = 'someValidName'
     }
 
     void "Test the index action returns the correct model"() {
-
         when:"The index action is executed"
             controller.index()
 
@@ -44,22 +39,6 @@ class ReviewControllerSpec extends Specification {
             populateValidParams(params)
             def review = new Review(params)
             controller.show(review)
-
-        then:"A model is populated containing the domain instance"
-            model.reviewInstance == review
-    }
-
-    void "Test that the edit action returns the correct model"() {
-        when:"The edit action is executed with a null domain"
-            controller.edit(null)
-
-        then:"A 404 error is returned"
-            response.status == 404
-
-        when:"A domain instance is passed to the edit action"
-            populateValidParams(params)
-            def review = new Review(params)
-            controller.edit(review)
 
         then:"A model is populated containing the domain instance"
             model.reviewInstance == review

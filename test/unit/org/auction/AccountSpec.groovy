@@ -3,9 +3,6 @@ package org.auction
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
-/**
- * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
- */
 @TestFor(Account)
 class AccountSpec extends Specification {
     def setup() {}
@@ -16,7 +13,7 @@ class AccountSpec extends Specification {
             def count = Account.count()
         when:
             Account account = new Account(
-                name     : null,
+                username : null,
                 email    : null,
                 address  : null,
                 password : null
@@ -31,7 +28,7 @@ class AccountSpec extends Specification {
             def count = Account.count()
         when:
             Account account = new Account(
-                name     : "a",
+                username : "a",
                 email    : "a@a.com",
                 address  : "a",
                 password : "1aaaaaaa"
@@ -46,7 +43,7 @@ class AccountSpec extends Specification {
             def count = Account.count()
         when:
             Account account = new Account(
-                name     : "a",
+                username : "a",
                 email    : "a@a.com",
                 address  : "a",
                 password : "aaaaaaaa"
@@ -62,7 +59,7 @@ class AccountSpec extends Specification {
             def count = Account.count()
         when:
             Account account = new Account(
-                name     : "a",
+                username : "a",
                 email    : "a@a.com",
                 address  : "a",
                 password : "11111111"
@@ -78,7 +75,7 @@ class AccountSpec extends Specification {
             def count = Account.count()
         when:
             Account account = new Account(
-                name     : "a",
+                username : "a",
                 email    : "a@a.com",
                 address  : "a",
                 password : "1aaaaaa"
@@ -94,7 +91,7 @@ class AccountSpec extends Specification {
             def count = Account.count()
         when:
             Account account = new Account(
-                name     : "a",
+                username : "a",
                 email    : "a.com",
                 address  : "a",
                 password : "1aaaaaa"

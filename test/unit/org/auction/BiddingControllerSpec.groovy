@@ -27,17 +27,17 @@ class BiddingControllerSpec extends Specification {
             model.biddingInstance == bidding
     }
 
-    void "Test that the edit action returns the correct model"() {
-        when:"The edit action is executed with a null domain"
-            controller.edit(null)
+    void "Test that the save action returns the correct model"() {
+        when:"The save action is executed with a null domain"
+            controller.save(null)
 
         then:"A 404 error is returned"
             response.status == 404
 
-        when:"A domain instance is passed to the edit action"
+        when:"A domain instance is passed to the save action"
             populateValidParams(params)
             def bidding = new Bidding(params)
-            controller.edit(bidding)
+            controller.save(bidding)
 
         then:"A model is populated containing the domain instance"
             model.biddingInstance == bidding

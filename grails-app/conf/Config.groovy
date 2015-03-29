@@ -125,22 +125,22 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.auction.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.auction.UserRole'
 grails.plugin.springsecurity.authority.className = 'org.auction.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
-    '/account/create':             ['permitAll'],
-    '/account/show':             ['permitAll'],
-    '/**/save':                     ['permitAll'],
-    '/**/update':                     ['permitAll'],
-    '/listing/index':                ['permitAll'],
-    '/listing/show/**':                ['permitAll'],
-    '/bidding/show/**':                ['permitAll'],
-    '/account/show':                ['permitAll'],
-        '/**/**':                ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
-	'/assets/**':                     ['permitAll'],
-	'/**/js/**':                      ['permitAll'],
-	'/**/css/**':                     ['permitAll'],
-	'/**/images/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
+	'/'                : ['permitAll'],
+	'/index'           : ['permitAll'],
+	'/account/create'  : ['permitAll'],
+	'/account/show'    : ['permitAll'],
+	'/**/save'         : ['permitAll'],
+	'/**/update'       : ['permitAll'],
+	'/listing/index'   : ['permitAll'],
+	'/listing/show/**' : ['permitAll'],
+	'/bidding/show/**' : ['permitAll'],
+	'/account/show'    : ['permitAll'],
+	'/**/**'           : ['permitAll'],
+	'/index.gsp'       : ['permitAll'],
+	'/assets/**'       : ['permitAll'],
+	'/**/js/**'        : ['permitAll'],
+	'/**/css/**'       : ['permitAll'],
+	'/**/images/**'    : ['permitAll'],
+	'/**/favicon.ico'  : ['permitAll']
 ]
 

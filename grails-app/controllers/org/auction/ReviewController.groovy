@@ -16,10 +16,9 @@ class ReviewController {
     def show(Review reviewInstance) {
         User user=springSecurityService.currentUser
         Account account=Account.findByUsername(user.username)
-        def roles = user.getAuthorities()
-        def sellerRole = Role.findByAuthority("SELLER")
 
-        if(roles.contains(sellerRole)||Listing.findByHighBidAccount(account) ){
+        if( Listing.findByHighBidAccount(account) ||
+                Listing.findBySellerAccount(account) ){
         }else{ redirect action:"denied", controller:"login"}
 
         respond reviewInstance
@@ -29,16 +28,14 @@ class ReviewController {
     def createseller() {
         User user=springSecurityService.currentUser
         Account account=Account.findByUsername(user.username)
-        def roles = user.getAuthorities()
-        def sellerRole = Role.findByAuthority("SELLER")
 
-        if(roles.contains(sellerRole)||Listing.findByHighBidAccount(account) ){
+        if( Listing.findByHighBidAccount(account) ||
+                Listing.findBySellerAccount(account) ){
         }else{ redirect action:"denied", controller:"login"}
 
         Account rwrAccount= Account.findByUsername(user.username)
         def revieweeId= params.name
         def listingId= params.id
-
 
         Review review=new Review(params)
         review.revieweeAccount=Account.findById(revieweeId)
@@ -52,15 +49,15 @@ class ReviewController {
 
         User user=springSecurityService.currentUser
         Account account=Account.findByUsername(user.username)
-        def roles = user.getAuthorities()
-        def sellerRole = Role.findByAuthority("SELLER")
 
-        if(roles.contains(sellerRole)||Listing.findByHighBidAccount(account) ){
+        if( Listing.findByHighBidAccount(account) ||
+                Listing.findBySellerAccount(account) ){
         }else{ redirect action:"denied", controller:"login"}
 
         Account rwrAccount= Account.findByUsername(user.username)
         def revieweeId= params.name
         def listingId= params.id
+
 
         Review review=new Review(params)
         review.revieweeAccount=Account.findById(revieweeId)

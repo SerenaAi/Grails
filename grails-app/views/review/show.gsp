@@ -9,8 +9,7 @@
 	<body>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link action="index" controller="listing"><g:message message="Listing List" /></g:link></li>
+                <li><g:link action="show" controller="listing" id="${reviewInstance?.listing.id}"><g:message message="Listing List" /></g:link></li>
 			</ul>
 		</div>
 		<div id="show-review" class="content scaffold-show" role="main">

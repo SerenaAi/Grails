@@ -71,8 +71,8 @@
                 <tbody>
                 <g:each in="${accountInstance?.receivedReviews}" status="i" var="reviewInstance">
                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                        <td><g:link action="show" id="${reviewInstance.id}">${fieldValue(bean: reviewInstance, field: "sellerComment")}</g:link></td>
-                        <td><g:link action="show" id="${reviewInstance.id}">${fieldValue(bean: reviewInstance, field: "bidderComment")}</g:link></td>
+                        <td>${fieldValue(bean: reviewInstance, field: "sellerComment")}</td>
+                        <td>${fieldValue(bean: reviewInstance, field: "bidderComment")}</td>
                         <td>${fieldValue(bean: reviewInstance, field: "reviewerAccount.username")}</td>
                     </tr>
                 </g:each>

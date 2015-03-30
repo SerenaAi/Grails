@@ -22,11 +22,6 @@ class BiddingController {
         bidding.listing=Listing.findById(params.id)
 
         User user = springSecurityService.currentUser
-        Collection<UserRole> userRoles = UserRole.findAllByUser(user);
-        userRoles*.delete()
-
-        Role bidderRole=Role.findByAuthority("BIDDER")
-        UserRole.create user, bidderRole, true
         Account account= Account.findByUsername(user.username)
         bidding.biddingAccount=account
         respond bidding

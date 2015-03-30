@@ -1,5 +1,4 @@
 import org.auction.AccountController
-import org.auction.AccountRestController
 
 class UrlMappings {
     static mappings = {
@@ -15,8 +14,8 @@ class UrlMappings {
         }
 
         "/api/accounts"(resources: 'accountRest')
-        "/api/listings"(resources: 'listingRest'){
-            "/biddings" (resources: 'biddingRest')
+        "/api/listings/$id?"(resources: 'listingRest'){
+            "/biddings/$id?" (resources: 'biddingRest')
         }
         "/api/biddings"(resources: 'biddingRest')
         "/" {

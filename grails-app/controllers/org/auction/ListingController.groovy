@@ -16,10 +16,7 @@ class ListingController {
     def create() {
         Listing listing = new Listing(params)
         User user = springSecurityService.currentUser
-        Collection<UserRole> userRoles = UserRole.findAllByUser(user);
-        userRoles*.delete()
-        Role sellerRole=Role.findByAuthority("SELLER")
-        UserRole.create user, sellerRole, true
+
         Account account= Account.findByUsername(user.username)
         listing.sellerAccount=account
         respond listing

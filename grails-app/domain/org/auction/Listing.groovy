@@ -17,23 +17,24 @@ class Listing {
         name(blank: false)
         description(blank: false)
         startPrice(blank: false)
-        startDate(blank: false )
-        listingDays(blank: false)
+        startDate(blank: false)
+        listingDays min: 1
         highBidAccount(nullable: true)
         completed validator: { val, obj->
             Date currentDate = new Date();
-            Date expireDate=obj.startDate+obj.listingDays
-            if(currentDate.compareTo(expireDate)>=0) obj.completed=true
+            Date expireDate = obj.startDate+obj.listingDays
+            if (currentDate.compareTo(expireDate) >= 0)
+                obj.completed=true
             else obj.completed=false;
             return true;
         }
         highBidAccount validator: {val, obj->
-            if(obj.biddings){
+            if (obj.biddings) {
                 obj.highBid = obj.biddings.amount.max();
-                obj.highBidAccount= Bidding.findByAmount(obj.highBid).biddingAccount;
-            }else{
-                obj.highBid=0;
-                obj.highBidAccount=null;
+                obj.highBidAccount = Bidding.findByAmount(obj.highBid).biddingAccount;
+            } else {
+                obj.highBid = 0;
+                obj.highBidAccount = null;
             }
             return true;
         }

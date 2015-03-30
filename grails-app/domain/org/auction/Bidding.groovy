@@ -8,13 +8,13 @@ class Bidding {
     static constraints = {
         amount validator: {val, obj->
             def min;
-            if(Bidding.count()==0){
+            if (Bidding.count() == 0) {
                 min=obj.listing.startPrice
             }
-            else{
-                if(!Bidding.findByListing(obj.listing)){
+            else {
+                if (!Bidding.findByListing(obj.listing)) {
                     min=obj.listing.startPrice
-                }else{
+                } else {
                     def min2=Bidding.createCriteria().get{
                         projections{
                             eq('listing',obj.listing)
@@ -24,11 +24,10 @@ class Bidding {
                     min=min2+0.5;
                 }
             }
-            if(obj.amount>=min)
-            {
+            if (obj.amount>=min) {
                 return true;
             }
-            else{
+            else {
                 return false;
             }
         }

@@ -3,11 +3,11 @@ import geb.Page
 
 class LoginPage extends Page {
 
-    static url = "/auction/account/index"
+    static url = "/auction/login/auth"
     static at = { title == "Login" }
 
     static content = {
         loginForm { $("form") }
-        loginButton { $("input.save", value: "Submit") }
+        loginButton { $("input#create", value: "Login") }
     }
 }

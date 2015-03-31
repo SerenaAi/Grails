@@ -13,8 +13,5 @@ class ListingRestController  extends RestfulController<Listing> {
 
     def index(Integer max) {
         super.index(max)
-        def listings = Listing.getAll();
-        respond listings
     }
-
 }

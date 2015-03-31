@@ -12,12 +12,12 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-
-        "/api/accounts"(resources: 'accountRest')
-        "/api/listings/$id?"(resources: 'listingRest'){
-            "/biddings/$id?" (resources: 'biddingRest')
+        "/api/listings"(resources: 'listingRest'){
+            "/biddings" (resources: 'biddingRest')
         }
         "/api/biddings"(resources: 'biddingRest')
+        "/api/accounts"(resources: 'accountRest')
+
         "/" {
             controller = "login"
             action = "auth"

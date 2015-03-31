@@ -16,14 +16,26 @@ class BiddingRestController extends RestfulController<Bidding> {
     def index(Integer max) {
         def lid = params.listingRestId
         if(params.listingRestId){
-            println params
-            println id
             List<Bidding> biddings = Bidding.where { listing.id == lid }.list(params)
-            println biddings
             respond biddings
         }else{
             super.index(max)
         }
     }
 
+    @Override
+    def show() {
+        def bidding = queryForResource(params.id)
+        if(bidding){
+            String curlid = bidding.listing.id
+            String lid=params.listingRestId
+            if(curlid.equals(lid) ){
+                respond bidding
+            }else{
+                respond null
+            }
+        }else{
+            respond null
+        }
+    }
 }

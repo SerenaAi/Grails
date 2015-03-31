@@ -51,6 +51,8 @@ class BiddingControllerSpec extends Specification {
             ).save(failOnError: true)
         params["id"] = listing.id
 
+
+
         when: "Create action run"
             controller.create()
 

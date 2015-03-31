@@ -65,7 +65,7 @@ class ReviewController {
         review.reviewerAccount=rwrAccount
         respond review
     }
-
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def savebidder(Review reviewInstance) {
         if (reviewInstance == null) {
             notFound()
@@ -107,7 +107,7 @@ class ReviewController {
             }
         }
     }
-
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def saveseller(Review reviewInstance) {
         if (reviewInstance == null) {
             notFound()

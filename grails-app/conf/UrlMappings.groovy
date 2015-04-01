@@ -17,6 +17,7 @@ class UrlMappings {
         }
         "/api/biddings"(resources: 'biddingRest')
         "/api/accounts"(resources: 'accountRest')
+        "/api/reviews"(resources: 'reviewRest')
 
         "/" {
             controller = "login"

@@ -1,6 +1,7 @@
 package org.auction
 
 import com.sun.swing.internal.plaf.basic.resources.basic_de
+import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 import grails.rest.RestfulController
 
@@ -8,6 +9,7 @@ class BiddingRestController extends RestfulController<Bidding> {
 
     @SuppressWarnings("GroovyUnusedDeclaration")
     static responseFormats = ['json', 'xml']
+    def springSecurityService= new SpringSecurityService()
 
     BiddingRestController() {
         super(Bidding)
@@ -43,5 +45,31 @@ class BiddingRestController extends RestfulController<Bidding> {
             }
         }
         respond null
+    }
+
+    @Secured(["IS_AUTHENTICATED_FULLY"])
+    @Override
+    def save() {
+        def user=springSecurityService.currentUser
+        def account=Account.findByUsername(user.username)
+        int aid=account.id as int
+
+        if(handleReadOnly()) {
+            return
+        }
+        def instance = new Bidding()
+        bindData instance, request
+
+        instance.validate()
+        if (instance.hasErrors()) {
+            respond instance.errors
+            return
+        }
+        def bid = instance.biddingAccount.id as int
+        if(aid!=bid){
+            return
+        }
+        instance.save flush:true
+        redirect instance
     }
 }

@@ -25,7 +25,15 @@ class AccountController {
 	}
 
     def show(Account accountInstance) {
-        respond accountInstance
+        User user= springSecurityService.currentUser
+        Account account= Account.findByUsername(user.username)
+        def id=account.id
+        if(!id.equals(accountInstance.id)){
+            redirect controller: "login", action:"denied"
+        }
+        else{
+            respond accountInstance
+        }
     }
 
 	@Transactional

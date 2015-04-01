@@ -3,6 +3,8 @@ package org.auction
 import geb.spock.GebReportingSpec
 
 class ListingPageSpec extends GebReportingSpec {
+    @Shared listing
+
     def "Test that only logged in users can add a new listing"() {
        when: "I am entering the listing page without being logged in"
            to ListingPage
@@ -28,5 +30,9 @@ class ListingPageSpec extends GebReportingSpec {
 
         then:
             $().text().contains("miao")
+    }
+
+    def "Test only authenticated accounts can see profiles" () {
+
     }
 }

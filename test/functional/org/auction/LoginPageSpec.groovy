@@ -27,4 +27,9 @@ class LoginPageSpec extends GebReportingSpec {
        then: "I am being redirected to the user homepage"
            $().text().contains("Show Account")
     }
+    
+    def "Test unauthenticated account cannot see profile" () {
+        setup:
+            def account = Account.findByUsername('chao')
+    }
 }

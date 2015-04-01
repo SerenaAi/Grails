@@ -1,0 +1,27 @@
+<plugin name='remote-control' version='1.5' grailsVersion='2.0.0 &gt; *'>
+  <author>Luke Daley</author>
+  <authorEmail>ld@ldaley.com</authorEmail>
+  <title>Remote Control</title>
+  <description>Remotely control a Grails application (for functional testing)</description>
+  <documentation>http://grails.org/plugin/remote-control</documentation>
+  <type>RemoteControlGrailsPlugin</type>
+  <resources>
+    <resource>Person</resource>
+    <resource>TheService</resource>
+  </resources>
+  <repositories>
+    <repository name='grailsCentral' url='http://plugins.grails.org' />
+    <repository name='http://repo.grails.org/grails/plugins' url='http://repo.grails.org/grails/plugins/' />
+    <repository name='http://repo.grails.org/grails/core' url='http://repo.grails.org/grails/core/' />
+    <repository name='grailsCore' url='http://svn.codehaus.org/grails/trunk/grails-plugins' />
+    <repository name='mavenCentral' url='http://repo1.maven.org/maven2/' />
+  </repositories>
+  <dependencies>
+    <compile>
+      <dependency group='org.codehaus.groovy.modules.remote' name='remote-transport-http' version='0.5' />
+    </compile>
+  </dependencies>
+  <plugins />
+  <runtimePluginRequirements />
+  <behavior />
+</plugin>

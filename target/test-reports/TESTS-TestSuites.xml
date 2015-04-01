@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" hostname="x-vjp1" id="0" name="ListingPageSpec" package="org.auction" tests="2" time="9.625" timestamp="2015-03-31T03:09:54">
+      <properties />
+
+      <testcase classname="org.auction.ListingPageSpec" name="Test that only logged in users can add a new listing" time="3.264" />
+
+      <testcase classname="org.auction.ListingPageSpec" name="Test that when a listing is created, the logged in user is set as the seller" time="6.355" />
+
+      <system-out><![CDATA[--Output from Test that only logged in users can add a new listing--
+Starting ChromeDriver 2.13 on port 17559
+Only local connections are allowed.
+--Output from Test that when a listing is created, the logged in user is set as the seller--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from Test that only logged in users can add a new listing--
+--Output from Test that when a listing is created, the logged in user is set as the seller--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="x-vjp1" id="1" name="LoginPageSpec" package="org.auction" tests="2" time="1.502" timestamp="2015-03-31T03:10:03">
+      <properties />
+
+      <testcase classname="org.auction.LoginPageSpec" name="Invalid Login" time="0.753" />
+
+      <testcase classname="org.auction.LoginPageSpec" name="admin login" time="0.748" />
+
+      <system-out><![CDATA[--Output from Invalid Login--
+--Output from admin login--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from Invalid Login--
+--Output from admin login--
+]]></system-err>
+
+  </testsuite>
+</testsuites>

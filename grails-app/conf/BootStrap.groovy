@@ -4,7 +4,7 @@ import org.auction.*
 class BootStrap {
     def init = { servletContext ->
         def option1,option2,option3;
-        def account1, account2, account3;
+        def account, user;
         def listing1;
 
         if (!DeliverOption.count()) {
@@ -20,16 +20,32 @@ class BootStrap {
         }
 
         if (!Account.count()) {
-            def user = new User(
+            user = new User(
                 username : 'miao',
                 password : 'miaomiao1'
             ).save(failOnError: true, flush: true);
 
-            account1 = new Account(
+            account = new Account(
                 username        : 'miao',
                 password        : 'miaomiao1',
                 address         : 'miao',
                 email           : 'miao@a.com',
+                receivedReviews : null,
+                sentReviews     : null,
+                listings        : null,
+                biddings        : null
+            ).save(flush: true)
+
+            user = new User(
+                username : 'chao',
+                password : 'chaochao1'
+            ).save(failOnError: true, flush: true);
+
+            account = new Account(
+                username        : 'chao',
+                password        : 'chaochao1',
+                address         : 'chao',
+                email           : 'chao@a.com',
                 receivedReviews : null,
                 sentReviews     : null,
                 listings        : null,

@@ -31,8 +31,4 @@ class ListingPageSpec extends GebReportingSpec {
         then:
             $().text().contains("miao")
     }
-
-    def "Test only authenticated accounts can see profiles" () {
-
-    }
 }

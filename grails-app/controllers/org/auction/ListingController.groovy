@@ -16,17 +16,21 @@ class ListingController {
     def create() {
         Listing listing = new Listing(params)
         User user = springSecurityService.currentUser
-
-        Account account= Account.findByUsername(user.username)
-        listing.sellerAccount=account
-        respond listing
+        if(user){
+            Account account= Account.findByUsername(user.username)
+            listing.sellerAccount=account
+            respond listing
+        }else{
+            redirect controller:"login", action:"denied"
+        }
     }
 
+    @Secured(["permitAll"])
     def show(Listing listingInstance) {
         respond listingInstance
     }
 
-
+    @Secured(["permitAll"])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         params.offset = params.offset as Integer ?: 0
@@ -49,17 +53,18 @@ class ListingController {
         respond retResult, model: [listingInstanceCount: total], view: 'index', params:params
     }
 
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def save(Listing listingInstance) {
         if (listingInstance == null) {
             notFound()
             return
         }
-
         if (listingInstance.hasErrors()) {
             respond listingInstance.errors, view: 'create'
             return
         }
         listingInstance.save flush: true
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'listing.label',
@@ -75,13 +80,18 @@ class ListingController {
     @Secured(["IS_AUTHENTICATED_FULLY"])
     def edit(Listing listingInstance) {
         User user= springSecurityService.currentUser;
-        if(listingInstance.sellerAccount.username.equals(user.username) ){
-            respond listingInstance
+        if(user){
+            if(listingInstance.sellerAccount.username.equals(user.username) ){
+                respond listingInstance
+            }else{
+                redirect controller: "login", action:"denied"
+            }
         }else{
             redirect controller: "login", action:"denied"
         }
     }
-    @Transactional
+
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def update(Listing listingInstance) {
         if (listingInstance == null) {
             notFound()
@@ -112,17 +122,21 @@ class ListingController {
         }
 
         User user= springSecurityService.currentUser;
-        if(listingInstance.sellerAccount.username.equals(user.username) ){
-            listingInstance.delete flush: true
-            request.withFormat {
-                form multipartForm {
-                    flash.message = message(code: 'default.deleted.message', args: [message(code: 'Listing.label',
-                            default: 'Listing'), listingInstance.id])
-                    redirect action: "index", method: "GET"
+        if(user){
+            if(listingInstance.sellerAccount.username.equals(user.username) ){
+                listingInstance.delete flush: true
+                request.withFormat {
+                    form multipartForm {
+                        flash.message = message(code: 'default.deleted.message', args: [message(code: 'Listing.label',
+                                default: 'Listing'), listingInstance.id])
+                        redirect action: "index", method: "GET"
+                    }
+                    '*' {
+                        render status: NO_CONTENT
+                    }
                 }
-                '*' {
-                    render status: NO_CONTENT
-                }
+            }else{
+                redirect controller: "login", action:"denied"
             }
         }else{
             redirect controller: "login", action:"denied"

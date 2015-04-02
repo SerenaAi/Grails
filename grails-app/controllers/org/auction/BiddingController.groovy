@@ -12,6 +12,7 @@ class BiddingController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def springSecurityService= new SpringSecurityService()
 
+    @Secured(["permitAll"])
     def show(Bidding biddingInstance) {
         respond biddingInstance
     }
@@ -20,14 +21,17 @@ class BiddingController {
     def create() {
         Bidding bidding=new Bidding(params)
         bidding.listing=Listing.findById(params.id)
-
         User user = springSecurityService.currentUser
-        Account account= Account.findByUsername(user.username)
-        bidding.biddingAccount=account
-        respond bidding
+        if(user){
+            Account account= Account.findByUsername(user.username)
+            bidding.biddingAccount=account
+            respond bidding
+        }else{
+            redirect controller:"login", action:"denied"
+        }
     }
 
-    @Transactional
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def save(Bidding biddingInstance) {
         if (biddingInstance == null) {
             notFound()

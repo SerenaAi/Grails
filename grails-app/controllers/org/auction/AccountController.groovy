@@ -19,18 +19,18 @@ class AccountController {
         params.id = account.id
     }
 
-    @Transactional
+    @Secured(["permitAll"])
 	def create() {
 		respond new Account(params)
 	}
 
+    @Secured(["IS_AUTHENTICATED_FULLY"])
     def show(Account accountInstance) {
         User user = springSecurityService.currentUser
         if (!user) {
             redirect controller: "login", action:"denied"
             return
         }
-
         Account account= Account.findByUsername(user.username)
         def id = account.id
         if (!id.equals(accountInstance.id)) {
@@ -40,7 +40,7 @@ class AccountController {
         }
     }
 
-	@Transactional
+    @Secured(["IS_AUTHENTICATED_FULLY"])
 	def save(Account accountInstance) {
 		if (accountInstance == null) {
 			notFound()
@@ -81,7 +81,7 @@ class AccountController {
         }
 	}
 
-	@Transactional
+    @Secured(["IS_AUTHENTICATED_FULLY"])
 	def update(Account accountInstance) {
 		if (accountInstance == null) {
 			notFound()

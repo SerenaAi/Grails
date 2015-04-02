@@ -46,7 +46,6 @@ class ReviewController {
 
     @Secured(["IS_AUTHENTICATED_FULLY"])
     def createbidder() {
-
         User user=springSecurityService.currentUser
         Account account=Account.findByUsername(user.username)
 

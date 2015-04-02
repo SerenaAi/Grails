@@ -25,13 +25,17 @@ class AccountController {
 	}
 
     def show(Account accountInstance) {
-        User user= springSecurityService.currentUser
-        Account account= Account.findByUsername(user.username)
-        def id=account.id
-        if(!id.equals(accountInstance.id)){
+        User user = springSecurityService.currentUser
+        if (!user) {
             redirect controller: "login", action:"denied"
+            return
         }
-        else{
+
+        Account account= Account.findByUsername(user.username)
+        def id = account.id
+        if (!id.equals(accountInstance.id)) {
+            redirect controller: "login", action:"denied"
+        } else {
             respond accountInstance
         }
     }

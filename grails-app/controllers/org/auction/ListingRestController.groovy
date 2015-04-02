@@ -93,8 +93,7 @@ class ListingRestController extends RestfulController<Listing> {
         if(!instance){
             return
         }
-
-        bindData instance, request
+        instance.properties=request
 
         if (instance.hasErrors()) {
             respond instance.errors

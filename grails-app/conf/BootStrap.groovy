@@ -55,43 +55,43 @@ class BootStrap {
         }
         if (!Listing.count()) {
             listing1 = new Listing(
-                    description: 'listing 1 description',
-                    name: 'listing 1',
-                    listingDays: 1,
-                    startPrice: 0,
-                    startDate: new Date(),
-                    sellerAccount: account1,
-                    deliverOption: option1
+                description: 'listing 1 description',
+                name: 'listing 1',
+                listingDays: 1,
+                startPrice: 0,
+                startDate: new Date(),
+                sellerAccount: account1,
+                deliverOption: option1
             ).save(failOnError: true, flush: true);
 
             listing2 = new Listing(
-                    description: 'listing 2 description',
-                    name: 'listing 2',
-                    listingDays: 1,
-                    startPrice: 0,
-                    startDate: new Date()-3,
-                    sellerAccount: account1,
-                    deliverOption: option1
+                description: 'listing 2 description',
+                name: 'listing 2',
+                listingDays: 1,
+                startPrice: 0,
+                startDate: new Date()-3,
+                sellerAccount: account1,
+                deliverOption: option1
             ).save(failOnError: true, flush: true);
         }
 
         if (!Bidding.count()) {
             bidding1 = new Bidding(
-                    amount: 1,
-                    biddingAccount: account2,
-                    listing: listing1
+                amount: 1,
+                biddingAccount: account2,
+                listing: listing1
             ).save(failOnError: true, flush: true);
 
             bidding2 = new Bidding(
-                    amount: 2,
-                    biddingAccount: account1,
-                    listing: listing2
+                amount: 2,
+                biddingAccount: account1,
+                listing: listing2
             ).save(failOnError: true, flush: true);
 
             bidding3 = new Bidding(
-                    amount: 3,
-                    biddingAccount: account2,
-                    listing: listing2
+                amount: 3,
+                biddingAccount: account2,
+                listing: listing2
             ).save(failOnError: true, flush: true);
         }
     }

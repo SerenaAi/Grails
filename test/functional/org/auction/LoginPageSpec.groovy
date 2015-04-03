@@ -33,8 +33,8 @@ class LoginPageSpec extends GebReportingSpec {
             to InvalidShowUserPage
             
         then: "I am being redirected to the denied page"
-            at DeniedPage
-            errorMsg.size() == 1
+            at LoginPage
+            loginForm.size() == 1
     }
 
     def "Test an authenticated user can see his own profile"() {

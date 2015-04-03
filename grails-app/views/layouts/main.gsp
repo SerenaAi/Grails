@@ -19,7 +19,8 @@
 <body>
         <div class="logo">
            <a href="/auction/" title="Goto Home" style="color:inherit; text-decoration: none;">
-                <i class="fa fa-area-chart" style="font-size: 90%; color: #c8c8ca;"></i> MyAuction
+                <i class="fa fa-area-chart" style="font-size: 90%; color: #c8c8ca;"></i> 
+                MyAuction<small style="color: rgba(153, 201, 113, 0.78); font-size: 22px;">.com</small>
            </a>
         </div>
 		<g:layoutBody/>

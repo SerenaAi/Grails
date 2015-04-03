@@ -60,8 +60,10 @@ class AccountController {
 	        user.save flush: true
 	        request.withFormat {
 	            form multipartForm {
-	                flash.message = message(code: 'default.created.message', args: [message(code: 'account.label',
-	                    default: 'Account'), accountInstance.id])
+	                flash.message = message(code: 'default.created.message', args: [message(
+                        code: 'account.label',
+	                    default: 'Account'
+                    ), accountInstance.id])
 	                redirect controller: "login", action: "auth"
 	            }
 	            '*' {
@@ -105,8 +107,10 @@ class AccountController {
 	        user.save flush: true
 	        request.withFormat {
 	            form multipartForm {
-	                flash.message = message(code: 'default.created.message', args: [message(code: 'account.label',
-	                    default: 'Account'), accountInstance.id])
+	                flash.message = message(code: 'default.created.message', args: [message(
+                        code: 'account.label',
+	                    default: 'Account'
+                    ), accountInstance.id])
 	                redirect controller: "login", action: "auth"
 	            }
 	            '*' {

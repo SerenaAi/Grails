@@ -136,4 +136,16 @@ class RestPageSpec extends GebReportingSpec {
         then: "An existing listing is deleted"
             assert resp.status == 200
     }
+
+//    def "Test that we can update account data by the account owner"() {
+//        when: "I am sending a PUT to update an account"
+//            httpUtils.login('chao', 'chaochao1')
+//            def resp = httpUtils.doJsonPut("api/accounts/2", [
+//                email: 'chaomin@google.com',
+//                address:'123 Some St',
+//            ]);
+//
+//        then: "Account data is updated successfully"
+//            assert resp.status == 200
+//    }
 }

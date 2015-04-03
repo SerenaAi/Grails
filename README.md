@@ -20,5 +20,5 @@ need to specify the path to the `Chrome` driver, this can be done as follows:
 
 The chrome driver for a Mac can be found [here](http://chromedriver.storage.googleapis.com/index.html?path=2.14/)
 
-### Workings ###
-The ReviewController is in the process to be finished.
+### Notes ###
+A bug on grails exists that prevents a RESTful call to update a field.

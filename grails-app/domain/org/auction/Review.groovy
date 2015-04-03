@@ -3,8 +3,8 @@ package org.auction
 class Review {
     Account reviewerAccount
     Account revieweeAccount
-    boolean reviewedSeller=false
-    boolean reviewedBidder=false
+    boolean reviewedSeller = false
+    boolean reviewedBidder = false
     String sellerComment;
     String bidderComment;
     static belongsTo = [listing: Listing]

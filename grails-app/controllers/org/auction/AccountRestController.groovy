@@ -20,28 +20,28 @@ class AccountRestController extends RestfulController<Account> {
     @Secured(["IS_AUTHENTICATED_FULLY"])
     @Override
     def update() {
-        def user=springSecurityService.currentUser
-        def account=Account.findByUsername(user.username)
-        int aid=account.id as int
+        def user = springSecurityService.currentUser
+        def account = Account.findByUsername(user.username)
+        int aid = account.id as int
 
-        if(handleReadOnly()) {
+        if (handleReadOnly()) {
             return
         }
         Account instance = Account.findById(params.id)
-        if(!instance){
+        if (!instance) {
             return
         }
-        instance.properties=request
+        instance.properties = request
 
         if (instance.hasErrors()) {
             respond instance.errors
             return
         }
         def id = instance.id as int
-        if(aid!=id){
+        if (aid != id) {
             return
         }
-        instance.save flush:true
+        instance.save flush: true
         redirect instance
     }
 }

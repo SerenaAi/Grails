@@ -11,7 +11,7 @@ class ReviewRestController extends RestfulController<Review> {
 
     @SuppressWarnings("GroovyUnusedDeclaration")
     static responseFormats = ['json', 'xml']
-    def springSecurityService= new SpringSecurityService()
+    def springSecurityService = new SpringSecurityService()
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     ReviewRestController() {
@@ -21,11 +21,11 @@ class ReviewRestController extends RestfulController<Review> {
     @Secured(["IS_AUTHENTICATED_FULLY"])
     @Override
     def save() {
-        def user=springSecurityService.currentUser
-        def account=Account.findByUsername(user.username)
-        int aid=account.id as int
+        def user = springSecurityService.currentUser
+        def account = Account.findByUsername(user.username)
+        int aid = account.id as int
 
-        if(handleReadOnly()) {
+        if (handleReadOnly()) {
             return
         }
         def instance = new Review()
@@ -39,34 +39,37 @@ class ReviewRestController extends RestfulController<Review> {
         }
 
         def rid = instance.reviewerAccount.id as int
-        if(aid!=rid){
+        if (aid != rid) {
             return
         }
 
-        def reviews= Review.where{reviewerAccount.id == instance.reviewerAccount.id && revieweeAccount.id == instance.revieweeAccount.id }.list()
-        if(!reviews){
-            if(instance.sellerComment){
-                instance.reviewedSeller==true
+        def reviews = Review.where {
+            reviewerAccount.id == instance.reviewerAccount.id &&
+            revieweeAccount.id == instance.revieweeAccount.id
+        }.list()
+        if (!reviews) {
+            if (instance.sellerComment) {
+                instance.reviewedSeller == true
             }
-            if(instance.bidderComment){
-                instance.reviewedBidder==true
+            if (instance.bidderComment) {
+                instance.reviewedBidder == true
             }
-            instance.save flush:true
+            instance.save flush: true
             redirect instance
-        }else{
-            Review review=reviews.first();
-            if(review.reviewedBidder && review.reviewedSeller){
+        } else {
+            Review review = reviews.first();
+            if (review.reviewedBidder && review.reviewedSeller) {
                 return
             }
-            if(review.reviewedBidder==false){
+            if (review.reviewedBidder == false) {
                 review.bidderComment = instance.bidderComment
                 review.reviewedBidder = true
             }
-            if(review.reviewedSeller==false){
+            if (review.reviewedSeller == false) {
                 review.sellerComment = instance.sellerComment
                 review.reviewedSeller = true
             }
-            review.save flush:true
+            review.save flush: true
             redirect review
         }
     }

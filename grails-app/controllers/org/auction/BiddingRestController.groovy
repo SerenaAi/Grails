@@ -9,7 +9,7 @@ class BiddingRestController extends RestfulController<Bidding> {
 
     @SuppressWarnings("GroovyUnusedDeclaration")
     static responseFormats = ['json', 'xml']
-    def springSecurityService= new SpringSecurityService()
+    def springSecurityService = new SpringSecurityService()
 
     BiddingRestController() {
         super(Bidding)
@@ -19,10 +19,12 @@ class BiddingRestController extends RestfulController<Bidding> {
     @Secured(['permitAll'])
     def index(Integer max) {
         def lid = params.listingRestId
-        if(params.listingRestId){
-            List<Bidding> biddings = Bidding.where { listing.id == lid }.list(params)
+        if (params.listingRestId) {
+            List <Bidding> biddings = Bidding.where {
+                listing.id == lid
+            }.list(params)
             respond biddings
-        }else{
+        } else {
             super.index(max)
         }
     }
@@ -31,16 +33,16 @@ class BiddingRestController extends RestfulController<Bidding> {
     @Secured(['permitAll'])
     def show() {
         def bidding = queryForResource(params.id)
-        if(bidding){
-            if(params.listingRestId){
+        if (bidding) {
+            if (params.listingRestId) {
                 String curlid = bidding.listing.id
-                String lid=params.listingRestId
-                if(curlid.equals(lid) ){
+                String lid = params.listingRestId
+                if (curlid.equals(lid)) {
                     respond bidding
-                }else{
+                } else {
                     respond null
                 }
-            }else{
+            } else {
                 respond bidding
             }
         }
@@ -50,11 +52,11 @@ class BiddingRestController extends RestfulController<Bidding> {
     @Secured(["IS_AUTHENTICATED_FULLY"])
     @Override
     def save() {
-        def user=springSecurityService.currentUser
-        def account=Account.findByUsername(user.username)
-        int aid=account.id as int
+        def user = springSecurityService.currentUser
+        def account = Account.findByUsername(user.username)
+        int aid = account.id as int
 
-        if(handleReadOnly()) {
+        if (handleReadOnly()) {
             return
         }
         def instance = new Bidding()
@@ -66,10 +68,10 @@ class BiddingRestController extends RestfulController<Bidding> {
             return
         }
         def bid = instance.biddingAccount.id as int
-        if(aid!=bid){
+        if (aid != bid) {
             return
         }
-        instance.save flush:true
+        instance.save flush: true
         redirect instance
     }
 }

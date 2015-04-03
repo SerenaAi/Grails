@@ -10,7 +10,7 @@ import grails.transaction.Transactional
 class BiddingController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    def springSecurityService= new SpringSecurityService()
+    def springSecurityService = new SpringSecurityService()
 
     @Secured(["permitAll"])
     def show(Bidding biddingInstance) {
@@ -19,15 +19,15 @@ class BiddingController {
 
     @Secured(["IS_AUTHENTICATED_FULLY"])
     def create() {
-        Bidding bidding=new Bidding(params)
-        bidding.listing=Listing.findById(params.id)
+        Bidding bidding = new Bidding(params)
+        bidding.listing = Listing.findById(params.id)
         User user = springSecurityService.currentUser
-        if(user){
-            Account account= Account.findByUsername(user.username)
-            bidding.biddingAccount=account
+        if (user) {
+            Account account = Account.findByUsername(user.username)
+            bidding.biddingAccount = account
             respond bidding
-        }else{
-            redirect controller:"login", action:"denied"
+        } else {
+            redirect controller: "login", action: "denied"
         }
     }
 
@@ -38,26 +38,36 @@ class BiddingController {
             return
         }
         if (biddingInstance.hasErrors()) {
-            respond biddingInstance.errors, view:'create', controller:"bidding"
+            respond biddingInstance.errors, view: 'create', controller: "bidding"
             return
         }
-        biddingInstance.save flush:true
+        biddingInstance.save flush: true
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'bidding.label', default: 'Bidding'), biddingInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(
+                    code: 'bidding.label',
+                    default: 'Bidding'
+                ), biddingInstance.id])
                 redirect biddingInstance
             }
-            '*' { respond biddingInstance, [status: CREATED]}
+            '*' {
+                respond biddingInstance, [status: CREATED]
+            }
         }
     }
 
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'bidding.label', default: 'Bidding'), params.id])
-                     return
+                flash.message = message(code: 'default.not.found.message', args: [message(
+                    code: 'bidding.label',
+                    default: 'Bidding'
+                ), params.id])
+                return
             }
-            '*'{ render status: NOT_FOUND }
+            '*' {
+                render status: NOT_FOUND
+            }
         }
     }
 }

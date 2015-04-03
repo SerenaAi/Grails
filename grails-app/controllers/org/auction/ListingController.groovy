@@ -10,18 +10,18 @@ import grails.plugin.springsecurity.*
 
 class ListingController {
 
-    def springSecurityService= new SpringSecurityService()
+    def springSecurityService = new SpringSecurityService()
 
     @Secured(["IS_AUTHENTICATED_FULLY"])
     def create() {
         Listing listing = new Listing(params)
         User user = springSecurityService.currentUser
-        if(user){
-            Account account= Account.findByUsername(user.username)
-            listing.sellerAccount=account
+        if (user) {
+            Account account = Account.findByUsername(user.username)
+            listing.sellerAccount = account
             respond listing
-        }else{
-            redirect controller:"login", action:"denied"
+        } else {
+            redirect controller: "login", action: "denied"
         }
     }
 
@@ -44,13 +44,13 @@ class ListingController {
                 if (params.query && params.searchtype == "2")
                     ilike("description", "%${params.query}%")
                 if (params.listtype == "2")
-                     eq('completed', true)
+                    eq('completed', true)
                 if (params.listtype == "3")
-                     eq('completed', false)
+                    eq('completed', false)
             }
         }
         total += retResult.getTotalCount()
-        respond retResult, model: [listingInstanceCount: total], view: 'index', params:params
+        respond retResult, model: [listingInstanceCount: total], view: 'index', params: params
     }
 
     @Secured(["IS_AUTHENTICATED_FULLY"])
@@ -67,8 +67,10 @@ class ListingController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'listing.label',
-                    default: 'Listing'), listingInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(
+                    code: 'listing.label',
+                    default: 'Listing'
+                ), listingInstance.id])
                 redirect listingInstance
             }
             '*' {
@@ -79,15 +81,15 @@ class ListingController {
 
     @Secured(["IS_AUTHENTICATED_FULLY"])
     def edit(Listing listingInstance) {
-        User user= springSecurityService.currentUser;
-        if(user){
-            if(listingInstance.sellerAccount.username.equals(user.username) ){
+        User user = springSecurityService.currentUser;
+        if (user) {
+            if (listingInstance.sellerAccount.username.equals(user.username)) {
                 respond listingInstance
-            }else{
-                redirect controller: "login", action:"denied"
+            } else {
+                redirect controller: "login", action: "denied"
             }
-        }else{
-            redirect controller: "login", action:"denied"
+        } else {
+            redirect controller: "login", action: "denied"
         }
     }
 
@@ -104,8 +106,10 @@ class ListingController {
         listingInstance.save flush: true
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Listing.label',
-                    default: 'Listing'), listingInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(
+                    code: 'Listing.label',
+                    default: 'Listing'
+                ), listingInstance.id])
                 redirect listingInstance
             }
             '*' {
@@ -127,8 +131,10 @@ class ListingController {
                 listingInstance.delete flush: true
                 request.withFormat {
                     form multipartForm {
-                        flash.message = message(code: 'default.deleted.message', args: [message(code: 'Listing.label',
-                                default: 'Listing'), listingInstance.id])
+                        flash.message = message(code: 'default.deleted.message', args: [message(
+                            code: 'Listing.label',
+                            default: 'Listing'
+                        ), listingInstance.id])
                         redirect action: "index", method: "GET"
                     }
                     '*' {
@@ -146,8 +152,10 @@ class ListingController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'listing.label',
-                    default: 'Listing'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(
+                    code: 'listing.label',
+                    default: 'Listing'
+                ), params.id])
                 redirect action: "index", method: "GET"
             }
             '*' {

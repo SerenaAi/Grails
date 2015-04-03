@@ -13,7 +13,7 @@ class ListingRestController extends RestfulController<Listing> {
 
     @SuppressWarnings("GroovyUnusedDeclaration")
     static responseFormats = ['json', 'xml']
-    def springSecurityService= new SpringSecurityService()
+    def springSecurityService = new SpringSecurityService()
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     ListingRestController() {
@@ -24,9 +24,11 @@ class ListingRestController extends RestfulController<Listing> {
     def index(Integer max, String completed) {
         params.max = Math.min(max ?: 10, 100)
         def listings
-        if( completed.equals('true') || completed.equals('false') ){
-            listings = Listing.where { completed == completed}.list(params)
-        }else{
+        if (completed.equals('true') || completed.equals('false')) {
+            listings = Listing.where {
+                completed == completed
+            }.list(params)
+        } else {
             listings = Listing.list(params)
         }
         respond listings
@@ -41,25 +43,25 @@ class ListingRestController extends RestfulController<Listing> {
     @Secured(['permitAll'])
     @Override
     def delete() {
-        if(handleReadOnly()) {
+        if (handleReadOnly()) {
             return
         }
         def instance = queryForResource(params.id)
         if (instance == null) {
             return
         }
-        instance.delete flush:true
+        instance.delete flush: true
         respond instance
     }
 
     @Secured(["IS_AUTHENTICATED_FULLY"])
     @Override
     def save() {
-        def user=springSecurityService.currentUser
-        def account=Account.findByUsername(user.username)
-        int aid=account.id as int
+        def user = springSecurityService.currentUser
+        def account = Account.findByUsername(user.username)
+        int aid = account.id as int
 
-        if(handleReadOnly()) {
+        if (handleReadOnly()) {
             return
         }
         def instance = new Listing()
@@ -71,10 +73,10 @@ class ListingRestController extends RestfulController<Listing> {
             return
         }
         def sid = instance.sellerAccount.id as int
-        if(aid!=sid){
+        if (aid != sid) {
             return
         }
-        instance.save flush:true
+        instance.save flush: true
         redirect instance
     }
 
@@ -82,30 +84,29 @@ class ListingRestController extends RestfulController<Listing> {
     @Secured(["IS_AUTHENTICATED_FULLY"])
     @Override
     def update() {
-        def user=springSecurityService.currentUser
-        def account=Account.findByUsername(user.username)
-        int aid=account.id as int
+        def user = springSecurityService.currentUser
+        def account = Account.findByUsername(user.username)
+        int aid = account.id as int
 
-        if(handleReadOnly()) {
+        if (handleReadOnly()) {
             return
         }
         Listing instance = Listing.findById(params.id)
-        if(!instance){
+        if (!instance) {
             return
         }
-        instance.properties=request
+        instance.properties = request
 
         if (instance.hasErrors()) {
             respond instance.errors
             return
         }
         def sid = instance.sellerAccount.id as int
-        if(aid!=sid){
+        if (aid != sid) {
             return
         }
-        instance.save flush:true
+        instance.save flush: true
         redirect instance
     }
-
 }
 

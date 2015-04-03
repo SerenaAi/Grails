@@ -1,7 +1,6 @@
 package org.auction
 
 class Role {
-
 	String authority
 
 	static mapping = {

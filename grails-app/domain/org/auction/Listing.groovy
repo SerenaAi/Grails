@@ -9,8 +9,8 @@ class Listing {
     Account highBidAccount
     float highBid
     boolean completed
-    static hasMany=[biddings: Bidding, reviews:Review]
 
+    static hasMany = [biddings: Bidding, reviews: Review]
     static belongsTo = [sellerAccount: Account, deliverOption: DeliverOption]
 
     static constraints = {
@@ -20,14 +20,16 @@ class Listing {
         startDate(blank: false)
         listingDays min: 1
         highBidAccount(nullable: true)
+
         completed validator: { val, obj->
             Date currentDate = new Date();
-            Date expireDate = obj.startDate+obj.listingDays
+            Date expireDate = obj.startDate + obj.listingDays
             if (currentDate.compareTo(expireDate) >= 0)
-                obj.completed=true
-            else obj.completed=false;
+                obj.completed = true
+            else obj.completed = false;
             return true;
         }
+
         highBidAccount validator: {val, obj->
             if (obj.biddings) {
                 obj.highBid = obj.biddings.amount.max();

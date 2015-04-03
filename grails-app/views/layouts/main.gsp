@@ -13,10 +13,15 @@
   <asset:stylesheet src="application.css"/>
   <asset:javascript src="application.js"/>
   <g:layoutHead/>
-  <link async href="http://fonts.googleapis.com/css?family=Alfa%20Slab%20One" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css"/>
+  <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
+        <div class="logo">
+           <a href="/auction/" title="Goto Home" style="color:inherit; text-decoration: none;">
+                <i class="fa fa-area-chart" style="font-size: 90%; color: #c8c8ca;"></i> MyAuction
+           </a>
+        </div>
 		<g:layoutBody/>
 </body>
 </html>

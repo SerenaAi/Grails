@@ -22,7 +22,7 @@
 
     <meta name="layout" content="main" />
 
-    <link async href="http://fonts.googleapis.com/css?family=Alfa%20Slab%20One" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 

@@ -1,9 +1,12 @@
 package org.auction
 
 import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.*
 import grails.rest.RestfulController
 
 class AccountRestController extends RestfulController<Account> {
+
+    def springSecurityService = new SpringSecurityService()
 
     @SuppressWarnings("GroovyUnusedDeclaration")
     static responseFormats = ['json', 'xml']

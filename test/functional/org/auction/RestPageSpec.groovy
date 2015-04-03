@@ -137,15 +137,40 @@ class RestPageSpec extends GebReportingSpec {
             assert resp.status == 200
     }
 
-//    def "Test that we can update account data by the account owner"() {
-//        when: "I am sending a PUT to update an account"
-//            httpUtils.login('chao', 'chaochao1')
-//            def resp = httpUtils.doJsonPut("api/accounts/2", [
-//                email: 'chaomin@google.com',
-//                address:'123 Some St',
-//            ]);
-//
-//        then: "Account data is updated successfully"
-//            assert resp.status == 200
-//    }
+    def "Test that we can update account data by the account owner"() {
+        when: "I am sending a PUT to update an account"
+            httpUtils.login('chao', 'chaochao1')
+            def resp = httpUtils.doJsonPut("api/accounts/2", [
+                email: 'chaomin@google.com',
+                address:'123 Some St',
+            ]);
+
+        then: "Account data is updated successfully"
+           assert resp.status == 302 // redirects afterwards to 200 (show page)
+    }
+
+    def "Test that we can't update account data if not account owner"() {
+        when: "I am sending a PUT to attempt to update an account"
+            httpUtils.login('miao', 'miaomiao1')
+            def resp = httpUtils.doJsonPut("api/accounts/2", [
+                email: 'miaomiao@google.com',
+                address:'123 Some St',
+            ]);
+
+        then: "Account data fails to update"
+           assert resp.status == 404 // account is not found since user
+                                     // is not the owner
+    }
+
+    def "Test that we can't update account data if not logged in"() {
+        when: "I am sending a PUT to attempt to update an account"
+            def resp = httpUtils.doJsonPut("api/accounts/2", [
+                email: 'hacked@google.com',
+                address:'123 Some St',
+            ]);
+
+        then: "Account data fails to update"
+           assert resp.status == 404 // account is not found since user
+                                     // is not logged in
+    }
 }

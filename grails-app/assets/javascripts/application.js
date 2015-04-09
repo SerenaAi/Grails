@@ -5,9 +5,14 @@
 // You're free to add application-wide JavaScript to this file, but it's generally better 
 // to create separate JavaScript files as needed.
 //
-//= require jquery
-//= require_tree .
+//= require jquery/dist/jquery
+//= require bootstrap/dist/js/bootstrap
+//= require angular/angular
+//= require angular-resource/angular-resource
+//= require angular-route/angular-route
+//= require angular-bootstrap/ui-bootstrap-tpls
 //= require_self
+//= require_tree .
 
 if (typeof jQuery !== 'undefined') {
 	(function($) {
@@ -18,3 +23,5 @@ if (typeof jQuery !== 'undefined') {
 		});
 	})(jQuery);
 }
+
+var app = angular.module('app', [ ]);

@@ -1,0 +1,25 @@
+{
+  "name": "auction",
+  "version": "1.0.0",
+  "description": "MyAuction =======",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.umn.edu/orellg/auction.git"
+  },
+  "keywords": [],
+  "author": "Eva",
+  "license": "ISC",
+  "dependencies": {
+    "bower": "^1.4.1",
+    "lodash": "^3.6.0",
+    "tap": "*"
+  },
+  "devDependencies": {}
+}

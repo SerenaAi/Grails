@@ -7,20 +7,20 @@
 * You're free to add application-wide styles to this file and they'll appear at the top of the
 * compiled file, but it's generally better to create a new file per style scope.
 *
-*= require main
+*= require bootstrap/dist/css/bootstrap
+*= require bootstrap/dist/css/bootstrap-theme
 *= require mobile
 *= require_self
 */
 
-/* Space out content a bit */
+/* Space out content a bit
 body {
   padding-top: 0px;
   padding-bottom: 20px;
-  box-shadow: 0 0 8.3em #7B7B7B;    
+  box-shadow: 0 0 8.3em #7B7B7B;
   margin-top: 20px;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
 .footer {
@@ -28,11 +28,9 @@ body {
   padding-left: 15px;
 }
 
-/* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
 }
-/* Make the masthead heading the same height as the navigation */
 .header h3 {
   padding-bottom: 19px;
   margin-top: 0;
@@ -40,14 +38,12 @@ body {
   line-height: 40px;
 }
 
-/* Custom page footer */
 .footer {
   padding-top: 19px;
   color: #777;
   border-top: 1px solid #e5e5e5;
 }
 
-/* Customize container */
 @media (min-width: 768px) {
   .container {
     max-width: 730px;
@@ -57,7 +53,6 @@ body {
   margin: 30px 0;
 }
 
-/* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
@@ -67,7 +62,6 @@ body {
   font-size: 21px;
 }
 
-/* Supporting marketing content */
 .marketing {
   margin: 40px 0;
 }
@@ -75,25 +69,21 @@ body {
   margin-top: 28px;
 }
 
-/* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* Remove the padding we set earlier */
   .header,
   .marketing,
   .footer {
     padding-right: 0;
     padding-left: 0;
   }
-  /* Space out the masthead */
   .header {
     margin-bottom: 30px;
   }
-  /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
   }
 }
-
+*/
 .logo {
     display: block:
     margin: 10px 0;
@@ -109,4 +99,82 @@ body {
     font-size: 32px;
     text-shadow: 0px 2px 3px #666;
     font-family: 'Oswald', sans-serif;
+}
+
+.nav {
+    padding-left: 60px;
+    margin-bottom: 20px;
+    list-style: none;
+    background: #2a2c2e;
+}
+@media screen and (max-width: 480px){
+    .nav {
+         padding: 0;
+    }
+    .nav li {
+        border: 0;
+         padding: 0;
+    }
+    .nav-tabs {
+         border-bottom:0;
+    }
+}
+
+
+.searchbar{
+    padding: 0 40px;
+    align-content:center;
+}
+
+table.account-table{
+    width: 40%;
+    text-align: left;
+}
+table.account-table>tbody {
+
+}
+table.account-table>tbody>tr>th {
+    padding: 5px;
+}
+.jumbotron {
+    padding: 30px 15px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: #E7E6BF;
+}
+.box {
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #E7E6BF;
+}
+.box-light {
+    border-radius: 4px;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.left-nav {
+    margin-bottom: 20px;
+    list-style: none;
+    padding: 0;
+    width: 200px;
+}
+.left-nav > li > a {
+    text-decoration:none;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    background: #242424;
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+    color: #fff;
+    background-color: #E7E6BF;
+}
+
+.input-group-addon {
+    color: #FFF;
+    background-color: #3074AE;
+    border: 1px solid #18232C;
 }

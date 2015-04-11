@@ -1,4 +1,4 @@
-mainApp.factory('RestService', ['$resource', function ($resource) {
+angular.module('app').factory('RestService', ['$resource', function ($resource) {
     var restService = {};
     var path = '/api/';
     restService.request = function (url) {

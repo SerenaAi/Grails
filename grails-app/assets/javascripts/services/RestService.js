@@ -1,8 +1,8 @@
-angular.module('app').factory('RestService', ['$resource', function ($resource) {
+app.factory('RestService', ['$resource', function ($resource) {
     var restService = {};
-    var path = '/api/';
-    restService.request = function (url) {
-        return $resource(path + 'app', {}, {
+    var path = '/auction/api/';
+    restService.listings = function () {
+        return $resource(path + 'listings', {}, {
             _get: { method: 'GET', cache: true, isArray: true },
             _put: { method: 'PUT' },
             _post: { method: 'POST' },

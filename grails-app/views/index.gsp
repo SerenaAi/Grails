@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main"/>
 		<title>Welcome to MyAuction</title>
+        <asset:stylesheet src="application.css"/>
+        <asset:javascript src="application.js"/>
 	</head>
-	<body>
+	<body  ng-app="app">
+    <div class="logo">
+        <a href="/auction/" title="Goto Home" style="color:inherit; text-decoration: none;">
+            <i class="fa fa-area-chart" style="font-size: 90%; color: #c8c8ca;"></i>
+            MyAuction<small style="color: rgba(153, 201, 113, 0.78); font-size: 22px;">.com</small>
+        </a>
+    </div>
         <div ng-controller="NavController">
             <div role="tabpanel">
                 <ul class="nav nav-tabs" role="tablist">
@@ -17,7 +24,6 @@
                     <div role="tabpanel" class="tab-pane active" id="home" ng-show="isTabID(1)">
                         <!--/.home page1-->
                         <div class="container" ng-show="isPageID(1)">
-                            <p></p>
                             <div class="row row-offcanvas row-offcanvas-right">
                                 <div class="col-xs-12 col-sm-9">
                                     <p class="pull-right visible-xs">
@@ -115,7 +121,7 @@
                                                                                 <li><a href="#">Description</a></li>
                                                                             </ul>
                                                                         </div><!-- /btn-group -->
-                                                                        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                                                                        <input type="text" class="form-control">
                                                                         <span class="input-group-addon">
                                                                             Completed
                                                                             <input type="checkbox" aria-label="Checkbox for following text input">
@@ -124,7 +130,7 @@
                                                                 </div><!-- /.col-lg-6 -->
                                                                 </form>
                                                                 <p></p>
-                                                        <table class="table">
+                                                        <table class="table" ng-controller="ListingController">
                                                         <thead>
                                                          <tr>
                                                             <th>Completed</th>
@@ -137,9 +143,9 @@
                                                             <th>Description</th>
                                                         </tr>
                                                         </thead>
-                                                            <tbody>
+                                                            <tbody ng-repeat="item in getData() track by item.id">
                                                                 <tr style="cursor: pointer" ng-click="setNavID(4,1)">
-                                                                    <td>Mark</td>
+                                                                    <td>{{item.completed}}</td>
                                                                     <td>Otto</td>
                                                                     <td>@mdo</td>
                                                                     <td>@mdo</td>

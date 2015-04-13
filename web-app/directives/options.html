@@ -1,0 +1,15 @@
+<div class="row" ng-controller="OptionController">
+    <div class="col-md-3">Deliver Option:</div>
+    <div class="col-md-9">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li role="presentation" ng-repeat="item in getOptions()">
+                    <a role="menuitem" tabindex="-1" href="#">{{item.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

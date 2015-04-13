@@ -1,8 +1,10 @@
-app.controller("ListingController", ['$scope','RestService',function($scope, RestService){
-    $scope.getData=function(){
-        RestService.listings()._get({}, function (data) {
-            console.log(data);
-        });
+app.controller("ListingController", function($scope, Listings, $routeParams, Config){
+    var listing={}
+    var refresh=function(){
+        listing = Listings.get({id:$routeParams.id})
     }
-    $scope.getData();
-}]);
+    $scope.getListing=function(){
+        return listing
+    }
+    refresh()
+});

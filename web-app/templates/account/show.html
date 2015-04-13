@@ -1,0 +1,60 @@
+<div class="container">
+    <h3>Account</h3>
+    <hr />
+    <div class="row">
+        <div class="col-sm-3 col-md-2">
+            <ul class="left-nav nav-pills nav-stacked">
+                <li class="active"><a href="#account">show Account</a></li>
+                <li><a href="#account/edit">Edit Account</a></li>
+                <li><a href="#">Delete Account</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-md-10">
+            <div class="box">
+                <div class="box-light">
+                    <h4>Show Account</h4>
+                    <hr />
+                    <div class="row" ng-controller="">
+                        <div class="col-lg-8 col-md-offset-1">
+                            <div class="row">
+                                <div class="col-md-3">Username:</div>
+                                <div class="col-md-9">{{getAccount().username}}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Email:</div>
+                                <div class="col-md-9">{{getAccount().email}}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Address:</div>
+                                <div class="col-md-9">{{getAccount().address}}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Last Updated:</div>
+                                <div class="col-md-9">{{getAccount().lastUpdated}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p></p>
+                    <h4>Reviews</h4>
+                    <hr />
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Seller Comments</th>
+                            <th>Bidder Comments</th>
+                            <th>Reviewer</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{}}</td>
+                            <td>{{}}</td>
+                            <td>{{}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

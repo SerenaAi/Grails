@@ -30,13 +30,13 @@
                         </tr>
                         </thead>
                         <tbody ng-repeat="item in getListings()">
-                        <tr style="cursor: pointer" ng-click="href('listings',item.id)" >
+                        <tr style="cursor: pointer" ng-click="href('listings',item.id)">
                             <td>{{item.completed}}</a></td>
                             <td>{{item.name}}</td>
                             <td>{{item.startPrice}}</td>
                             <td>{{item.startDate}}</td>
                             <td>{{item.listingDays}}</td>
-                            <td>{{item.sellerAccount.id}}</td>
+                            <td  ng-controller="AccountController">{{(item.sellerAccount.id)}}</td>
                             <td>{{item.deliverOption.id}}</td>
                             <td>{{item.description}}</td>
                         </tr>

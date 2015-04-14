@@ -4,8 +4,11 @@ app.controller("AccountController", function($scope, Accounts, $routeParams){
         account = Accounts.get({id: $routeParams.id})
     }
 
-    $scope.getAccount=function(){
-        return account
+    $scope.getAccountName=function(id){
+        return Accounts.get({id: id})
+    }
+    $scope.getAccountID=function(){
+        return $routeParams.id
     }
     refresh()
 });

@@ -61,7 +61,6 @@
 
                     <h4>Bidding History</h4>
                     <hr />
-
                         <table class="table">
                             <thead>
                                 <tr>
@@ -70,13 +69,12 @@
                                 </tr>
                             </thead>
                             <tbody ng-controller="BiddingsController">
-                            <tr ng-repeat="item in getBiddings()">
-                                <td class="col-md-5">{{item.biddingAccount.id}}</td>
-                                <td class="col-md-7">{{item.amount}}</td>
-                            </tr>
+                                <tr ng-repeat="item in getBiddings()">
+                                    <td class="col-md-5">{{item.biddingAccount.id}}</td>
+                                    <td class="col-md-7">{{item.amount}}</td>
+                                </tr>
                             </tbody>
                         </table>
-
                 </div>
             </div>
         </div>

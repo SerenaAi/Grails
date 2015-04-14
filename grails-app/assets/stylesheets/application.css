@@ -178,3 +178,30 @@ table.account-table>tbody>tr>th {
     background-color: #3074AE;
     border: 1px solid #18232C;
 }
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    background-color: #E7E6BF;
+    border:0;
+}
+
+.table > thead {
+    border:0;
+    background-color:#242424;
+    color:white;
+}
+.table > tbody {
+    border:0;
+}
+.table > tbody > tr > td {
+    padding: 8px;
+    vertical-align: middle;
+    border-top: 1px solid white;
+}
+.table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 0;
+    padding: 12px;
+}

@@ -14,6 +14,8 @@ angular.module('app').config(function ($routeProvider) {
   $routeProvider.when("/accounts/:id", {templateUrl: "templates/account/show.html"});
   $routeProvider.when("/accounts/edit/:id", {templateUrl: "templates/account/edit.html"});
 
+    $routeProvider.when("/reviews", {templateUrl: "templates/reviews/show.html"});
+    $routeProvider.when("/reviews/:id", {templateUrl: "templates/review/show.html"});
   // Default route: plays screen
 //  $routeProvider.otherwise({templateUrl: "templates/plays.html"});
 });

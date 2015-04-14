@@ -14,23 +14,22 @@
                     <h4>Show Listing</h4>
                     <hr />
                     <button class="btn btn-primary" ng-click="completedSwitch()">{{button}}</button>
-
                     <p></p>
-                    <table class="table">
+                    <table class="table" >
                         <thead>
                         <tr>
                             <th>Completed</th>
-                            <th>Listing Name</th>
+                            <th>Name</th>
                             <th>Start Price</th>
                             <th>Start Date</th>
                             <th>Listing Days</th>
-                            <th>Seller Account Name</th>
+                            <th>Seller Account</th>
                             <th>Deliver Option</th>
                             <th>Description</th>
                         </tr>
                         </thead>
-                        <tbody ng-repeat="item in getListings()">
-                        <tr style="cursor: pointer" ng-click="href('listings',item.id)">
+                        <tbody>
+                        <tr ng-repeat="item in getListings()" style="cursor: pointer" ng-click="href('listings',item.id)">
                             <td>{{item.completed}}</a></td>
                             <td>{{item.name}}</td>
                             <td>{{item.startPrice}}</td>

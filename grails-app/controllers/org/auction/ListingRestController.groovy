@@ -1,5 +1,6 @@
 package org.auction
 
+import grails.converters.JSON
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 import grails.rest.RestfulController
@@ -13,14 +14,13 @@ class ListingRestController extends RestfulController<Listing> {
 
     @SuppressWarnings("GroovyUnusedDeclaration")
     static responseFormats = ['json', 'xml']
-    def springSecurityService = new SpringSecurityService()
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     ListingRestController() {
         super(Listing)
     }
 
-    @Secured(['permitAll'])
+    //changed
     def index(Integer max, String completed) {
         params.max = Math.min(max ?: 10, 100)
         def listings
@@ -34,14 +34,11 @@ class ListingRestController extends RestfulController<Listing> {
         respond listings
     }
 
-    @Secured(['permitAll'])
     @Override
     def show() {
         super.show()
     }
 
-    @Secured(['permitAll'])
-    @Override
     def delete() {
         if (handleReadOnly()) {
             return
@@ -54,56 +51,31 @@ class ListingRestController extends RestfulController<Listing> {
         respond instance
     }
 
-    @Secured(["IS_AUTHENTICATED_FULLY"])
-    @Override
+    //changed
     def save() {
-        def user = springSecurityService.currentUser
-        def account = Account.findByUsername(user.username)
-        int aid = account.id as int
-
-        if (handleReadOnly()) {
-            return
-        }
+        println "listing save"
         def instance = new Listing()
         bindData instance, request
-
         instance.validate()
         if (instance.hasErrors()) {
-            respond instance.errors
-            return
-        }
-        def sid = instance.sellerAccount.id as int
-        if (aid != sid) {
-            return
+            response.status = 404;
+            respond status:404, message:"invalid instance"
         }
         instance.save flush: true
-        redirect instance
+        respond instance
     }
 
-
-    @Secured(["IS_AUTHENTICATED_FULLY"])
-    @Override
+    //changed
     def update() {
-        def user = springSecurityService.currentUser
-        def account = Account.findByUsername(user.username)
-        int aid = account.id as int
-
-        if (handleReadOnly()) {
-            return
-        }
         Listing instance = Listing.findById(params.id)
         if (!instance) {
-            return
+            response.status = 404;
+            respond status:404, message:"cannot find instance"
         }
         instance.properties = request
-
         if (instance.hasErrors()) {
-            respond instance.errors
-            return
-        }
-        def sid = instance.sellerAccount.id as int
-        if (aid != sid) {
-            return
+            response.status = 404;
+            respond status:404, message:"invalid instance"
         }
         instance.save flush: true
         redirect instance

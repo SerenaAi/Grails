@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container"  ng-controller="ListingsController">
     <h3>Listings</h3>
     <hr />
     <div class="row">
@@ -13,26 +13,10 @@
                 <div class="box-light">
                     <h4>Show Listing</h4>
                     <hr />
-                    <form class="bs-example bs-example-form" data-example-id="input-group-dropdowns">
-                        <div class="searchbar">
-                            <div class="input-group">
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        Name
-                                        <span class="caret"></span></button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Name</a></li>
-                                        <li><a href="#">Description</a></li>
-                                    </ul>
-                                </div>
-                                <!-- /btn-group -->
-                                <input type="text" class="form-control">
-                                <span class="input-group-addon">Completed<input type="checkbox" ></span>
-                            </div>
-                        </div>
-                    </form>
+                    <button class="btn btn-primary" ng-click="completedSwitch()">{{button}}</button>
+
                     <p></p>
-                    <table class="table" ng-controller="ListingsController">
+                    <table class="table">
                         <thead>
                         <tr>
                             <th>Completed</th>

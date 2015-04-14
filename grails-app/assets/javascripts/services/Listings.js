@@ -1,8 +1,7 @@
 app.factory('Listings', function($resource) {
     return $resource('/auction/api/listings/:id', {}, {
-            save: {
-                method: 'PUT'
-            }
+            get:{method:'GET'},
+            select:{method:'GET', isArray: true}
         }
     )
 })

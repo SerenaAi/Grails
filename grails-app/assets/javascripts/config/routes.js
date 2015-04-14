@@ -11,8 +11,8 @@ angular.module('app').config(function ($routeProvider) {
   $routeProvider.when("/listings/:id/edit", {templateUrl: "templates/listing/edit.html"});
   $routeProvider.when("/listings/:id/bidding", {templateUrl: "templates/listing/bidding.html"});
 
-  $routeProvider.when("/account", {templateUrl: "templates/account/show.html"});
-  $routeProvider.when("/account/edit", {templateUrl: "templates/account/edit.html"});
+  $routeProvider.when("/accounts/:id", {templateUrl: "templates/account/show.html"});
+  $routeProvider.when("/accounts/:id/edit", {templateUrl: "templates/account/edit.html"});
 
   // Default route: plays screen
 //  $routeProvider.otherwise({templateUrl: "templates/plays.html"});

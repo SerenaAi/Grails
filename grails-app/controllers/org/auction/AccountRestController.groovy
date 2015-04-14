@@ -15,12 +15,10 @@ class AccountRestController extends RestfulController<Account> {
         super(Account)
     }
 
-    @Secured(['permitAll'])
     def show() {
         super.show()
     }
 
-    @Secured(["IS_AUTHENTICATED_FULLY"])
     @Override
     def update() {
         def user = springSecurityService.currentUser

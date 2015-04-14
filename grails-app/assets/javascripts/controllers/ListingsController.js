@@ -1,4 +1,4 @@
-app.controller("ListingsController", function($scope, Listings, $routeParams){
+app.controller("ListingsController", function($scope, Listings, $routeParams, $location){
     var listings={}
     var completed=false;
     $scope.button="Show Completed"
@@ -44,9 +44,18 @@ app.controller("ListingsController", function($scope, Listings, $routeParams){
     //create listing
     $scope.saveListing = function () {
         Listings.save($scope.newlisting).$promise.then(function(){
-            alert("arrr");
             refresh()
+            $location.path( 'listings')
         })
     }
+    //delete listing
+    $scope.deleteListing = function () {
+                    Listings.delete({id:$routeParams.id }).$promise.then(function(){
+                    refresh()
+                    $location.path( 'listings')
+
+        })
+    }
+
     refresh()
 });

@@ -34,18 +34,16 @@ class ListingRestController extends RestfulController<Listing> {
         respond listings
     }
 
-    @Override
     def show() {
         super.show()
     }
 
+    //changed
     def delete() {
-        if (handleReadOnly()) {
-            return
-        }
         def instance = queryForResource(params.id)
-        if (instance == null) {
-            return
+        if (!instance) {
+            response.status = 404;
+            respond status:404, message:"cannot find instance"
         }
         instance.delete flush: true
         respond instance

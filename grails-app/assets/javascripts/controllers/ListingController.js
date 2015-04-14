@@ -6,5 +6,8 @@ app.controller("ListingController", function($scope, Listings, $routeParams){
     $scope.getListing=function(){
         return listing
     }
+    $scope.getListingID=function(){
+        return $routeParams.id
+    }
     refresh()
 })

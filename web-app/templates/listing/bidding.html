@@ -1,13 +1,13 @@
-<div class="container">
+<div class="container" ng-controller="ListingController">
     <h3>Listing Details</h3>
     <hr />
     <div class="row">
         <div class="col-sm-3 col-md-2">
             <ul class="left-nav nav-pills nav-stacked">
-                <li><a ng-href="#listings/{{getCurrentListing()}}">Listing Details</a></li>
-                <li><a ng-href="#listings/{{getCurrentListing()}}/edit">Edit Listing</a></li>
-                <li class="active"><a ng-href="#listings/{{getCurrentListing()}}/bidding">Create bidding</a></li>
-                <li><a href="#">Delete Listing</a></li>
+                <li><a ng-href="#listings/{{getListingID()}}">Listing Details</a></li>
+                <li><a ng-href="#listings/edit/{{getListingID()}}">Edit Listing</a></li>
+                <li class="active"><a ng-href="#listings/bidding/{{getListingID()}}">Create bidding</a></li>
+                <li><a href="">Delete Listing</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-md-10">

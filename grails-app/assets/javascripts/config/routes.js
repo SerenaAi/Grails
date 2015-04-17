@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('app').config(function ($routeProvider) {
+  $routeProvider.when("/", {templateUrl: "templates/home.html"});
   $routeProvider.when("/home", {templateUrl: "templates/home.html"});
   $routeProvider.when("/signup", {templateUrl: "templates/signup.html"});
 

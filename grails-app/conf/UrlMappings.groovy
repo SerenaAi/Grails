@@ -19,11 +19,12 @@ class UrlMappings {
         "/api/accounts"(resources: 'accountRest')
         "/api/reviews"(resources: 'reviewRest')
         "/api/deliveroptions"(resources:'deliveroptionsRest')
-     /*   "/" {
+        "/" {
             controller = "login"
             action = "auth"
-        }*/
-        "/" (view: "/index")
+        }
+        '/index'(view:'/index')
+        //"/" (view: "/index")
         "500" (view: '/error')
     }
 }

@@ -201,7 +201,7 @@ table.account-table>tbody>tr>th {
     border-top: 1px solid white;
 }
 .table > thead > tr > th {
-    vertical-align: bottom;
+    vertical-align: middle;
     border-bottom: 0;
     padding: 12px;
 }

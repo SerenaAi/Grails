@@ -1,5 +1,11 @@
 <div class="container">
     <div class="row">
+        <div class="alert alert-warning alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <strong>!</strong> Best check yo self, you're not looking too good.
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-9">
             <div class="jumbotron">
                 <h2>Welcome to MyAuction<small>.com</small></h2>
@@ -7,17 +13,17 @@
                 <p><a class="btn btn-primary btn-lg" href="#signup" role="button">Sign up now</a></p>
             </div>
         </div>
-        <div class="col-md-3">
-            <form class="form-signin" action='/auction/j_spring_security_check' method='POST' id='loginForm' class='cssform' autocomplete='off'>
+        <div class="col-md-3" ng-controller="SigninController">
+            <form class="form-signin" method="post" ng-submit="send()">
                 <fieldset>
                     <div class="fieldcontain">
-                        <label for='username'>Username:</label>
-                        <input type='text' class="form-control" placeholder="Username"  class='text_' name='j_username' id='username' />
+                        <h4>Username:</h4>
+                        <input type='text' class="form-control" placeholder="Username"  ng-model='username' />
                     </div>
 
                     <div class="fieldcontain">
-                        <label for='password'>Password:</label>
-                        <input type='password' class="form-control" placeholder="Password"  class='text_' name='j_password' id='password' />
+                        <h4>Password:</h4>
+                        <input type='password' class="form-control" placeholder="Password" ng-model='password'/>
                     </div>
                 </fieldset>
                 <p></p>
@@ -28,7 +34,7 @@
 </div>
 
 <script type="text/javascript">
-    var frm = $('.form-signin');
+  /*  var frm = $('.form-signin');
     frm.submit(function(ev) {
         $.ajax({
             type: frm.attr('method'),
@@ -42,5 +48,5 @@
             }
         });
         ev.preventDefault();
-    });
+    });*/
 </script>

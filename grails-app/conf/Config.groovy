@@ -121,7 +121,6 @@ log4j.main = {
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.securityConfigType = "Annotation"
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
-grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/index'
 grails.plugin.springsecurity.logout.afterLogoutUrl ="/login/auth"
 grails.plugin.springsecurity.failureHandler.defaultFailureUrl = '/login/auth'
 // Added by the Spring Security Core plugin:

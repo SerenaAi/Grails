@@ -1,12 +1,46 @@
 <div class="container">
     <div class="row">
-        <div>
+        <div class="col-md-9">
             <div class="jumbotron">
                 <h2>Welcome to MyAuction<small>.com</small></h2>
                 <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
                 <p><a class="btn btn-primary btn-lg" href="#signup" role="button">Sign up now</a></p>
             </div>
+        </div>
+        <div class="col-md-3">
+            <form class="form-signin" action='/auction/j_spring_security_check' method='POST' id='loginForm' class='cssform' autocomplete='off'>
+                <fieldset>
+                    <div class="fieldcontain">
+                        <label for='username'>Username:</label>
+                        <input type='text' class="form-control" placeholder="Username"  class='text_' name='j_username' id='username' />
+                    </div>
 
+                    <div class="fieldcontain">
+                        <label for='password'>Password:</label>
+                        <input type='password' class="form-control" placeholder="Password"  class='text_' name='j_password' id='password' />
+                    </div>
+                </fieldset>
+                <p></p>
+                <button  class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    var frm = $('.form-signin');
+    frm.submit(function(ev) {
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function(data) {
+                if (data.error)
+                    alert('Nope, you cannot log in!\n\n' + data.error);
+                else
+                    console.log(data)
+            }
+        });
+        ev.preventDefault();
+    });
+</script>

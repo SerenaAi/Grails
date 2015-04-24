@@ -12,8 +12,8 @@ angular.module('app').config(function ($routeProvider) {
   $routeProvider.when("/listings/edit/:id", {templateUrl: "templates/listing/edit.html"});
   $routeProvider.when("/listings/bidding/:id", {templateUrl: "templates/listing/bidding.html"});
 
-  $routeProvider.when("/accounts/:id", {templateUrl: "templates/account/show.html"});
-  $routeProvider.when("/accounts/edit/:id", {templateUrl: "templates/account/edit.html"});
+  $routeProvider.when("/accounts", {templateUrl: "templates/account/show.html"});
+  $routeProvider.when("/accounts/edit", {templateUrl: "templates/account/edit.html"});
 
     $routeProvider.when("/reviews", {templateUrl: "templates/reviews/show.html"});
     $routeProvider.when("/reviews/:id", {templateUrl: "templates/review/show.html"});

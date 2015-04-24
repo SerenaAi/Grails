@@ -1,8 +1,11 @@
 package org.auction
 
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.*
 import grails.rest.RestfulController
+
+import javax.annotation.Resource
 
 class AccountRestController extends RestfulController<Account> {
 
@@ -13,6 +16,19 @@ class AccountRestController extends RestfulController<Account> {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     AccountRestController() {
         super(Account)
+    }
+
+    def index(String name){
+        if(name==null){
+            respond null
+        }else{
+            Account account=Account.findByUsername(name)
+            if(!account){
+                respond null
+            }else{
+                respond account
+            }
+        }
     }
 
     def show() {

@@ -1,7 +1,10 @@
-app.controller("AccountController", function($scope, Accounts, $routeParams){
+app.controller("AccountController", function($scope, Accounts, Auth){
     var account={}
     var refresh=function(){
-        account = Accounts.get({id: $routeParams.id})
+        if(Auth.account!=null && Auth.account!=undefined){
+            account = Accounts.get({id: Auth.account.id})
+        }else{
+        }
     }
 
     $scope.getAccount=function(){
@@ -11,8 +14,6 @@ app.controller("AccountController", function($scope, Accounts, $routeParams){
     $scope.getAccountName=function(id){
         return Accounts.get({id: id})
     }
-    $scope.getAccountID=function(){
-        return $routeParams.id
-    }
+
     refresh()
 });

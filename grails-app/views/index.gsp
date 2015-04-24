@@ -1,4 +1,4 @@
-<%@ page import="org.auction.User; grails.plugin.springsecurity.web.SecurityRequestHolder" %>
+<%@ page import="grails.plugin.springsecurity.web.SecurityRequestHolder; org.auction.User;" %>
 <!DOCTYPE html>
 <html>
 
@@ -19,7 +19,7 @@
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#home"  role="tab" data-toggle="tab">Home</a></li>
     <li role="presentation"><a href="#listings" role="tab" data-toggle="tab">show Listings</a></li>
-    <li role="presentation"><a href="#accounts"  role="tab" data-toggle="tab">My Account</a></li>
+    <li ng-show="showAccount()" role="presentation"><a href="#accounts"  role="tab" data-toggle="tab">My Account</a></li>
     <li role="presentation"><a href="#reviews"  role="tab" data-toggle="tab">Reviews</a></li>
 </ul>
     <ng-view></ng-view>
@@ -29,11 +29,7 @@
     <p>&copy; Go & Sa 2015</p>
 </footer>
 </div>
-<script>
-    <%  User user = SecurityContextHolder?.getContext()?.getAuthentication()?.getPrincipal() %>
-    var loggedInUser = <% user?.username %>
 
-</script>
 </body>
 
 </html>

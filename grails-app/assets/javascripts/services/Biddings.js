@@ -3,3 +3,9 @@ app.factory('Biddings', function($resource) {
         }
     )
 })
+
+app.factory('Bidding', function($resource) {
+    return $resource('/auction/api/biddings/:id', {}, {
+        }
+    )
+})

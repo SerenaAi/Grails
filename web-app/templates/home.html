@@ -1,8 +1,14 @@
-<div class="container">
-    <div class="row">
-        <div class="alert alert-warning alert-dismissible fade in" role="alert">
+<div class="container" ng-controller="SigninController">
+    <div class="row" ng-show="isAlert==true">
+        <div class="alert alert-danger alert-dismissible fade in" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-            <strong>!</strong> Best check yo self, you're not looking too good.
+            Cannot find username & password pair!
+        </div>
+    </div>
+    <div class="row" ng-show="isAlert==false">
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            login success
         </div>
     </div>
     <div class="row">
@@ -13,7 +19,7 @@
                 <p><a class="btn btn-primary btn-lg" href="#signup" role="button">Sign up now</a></p>
             </div>
         </div>
-        <div class="col-md-3" ng-controller="SigninController">
+        <div class="col-md-3">
             <form class="form-signin" method="post" ng-submit="send()">
                 <fieldset>
                     <div class="fieldcontain">
@@ -32,21 +38,3 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-  /*  var frm = $('.form-signin');
-    frm.submit(function(ev) {
-        $.ajax({
-            type: frm.attr('method'),
-            url: frm.attr('action'),
-            data: frm.serialize(),
-            success: function(data) {
-                if (data.error)
-                    alert('Nope, you cannot log in!\n\n' + data.error);
-                else
-                    console.log(data)
-            }
-        });
-        ev.preventDefault();
-    });*/
-</script>

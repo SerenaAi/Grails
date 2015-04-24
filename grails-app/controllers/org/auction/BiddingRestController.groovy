@@ -52,13 +52,11 @@ class BiddingRestController extends RestfulController<Bidding> {
         def instance = new Bidding()
         bindData instance, request
         instance.validate()
-
         if (instance.hasErrors()) {
-            respond instance.errors
-            return
+            response.status = 404;
+            respond status:404, message:"invalid instance"
         }
-
         instance.save flush: true
-        redirect instance
+        respond instance
     }
 }

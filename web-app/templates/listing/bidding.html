@@ -16,16 +16,16 @@
                 <div class="box-light">
                     <h4>Create Bidding</h4>
                     <hr />
-                    <div class="row">
+                    <div class="row" ng-controller="BiddingsController">
                         <div class="col-lg-8 col-md-offset-1">
                             <div class="row">
                                 <div class="col-md-3">Bidding Amount:</div>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" style="width:100px">
+                                    <input type="number" class="form-control" style="width:100px" ng-model="amount">
                                 </div>
                             </div>
                             <p></p>
-                            <button type="button" class="btn btn-primary btn-lg btn-block">Create</button>
+                            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="createBiddings()">Create</button>
                         </div>
                     </div>
                 </div>

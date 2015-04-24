@@ -20,11 +20,13 @@ class AccountRestController extends RestfulController<Account> {
 
     def index(String name){
         if(name==null){
-            respond null
+            response.status = 404;
+            respond status:404, message:"invalid username"
         }else{
             Account account=Account.findByUsername(name)
             if(!account){
-                respond null
+                response.status = 404;
+                respond status:404, message:"cannot find instance"
             }else{
                 respond account
             }
@@ -35,30 +37,23 @@ class AccountRestController extends RestfulController<Account> {
         super.show()
     }
 
-    @Override
+    //changed
     def update() {
-        def user = springSecurityService.currentUser
-        def account = Account.findByUsername(user.username)
-        int aid = account.id as int
-
-        if (handleReadOnly()) {
-            return
-        }
         Account instance = Account.findById(params.id)
         if (!instance) {
-            return
+            response.status = 404;
+            respond status:404, message:"cannot find instance"
         }
+        User user=User.findByUsername(instance.username)
         instance.properties = request
-
         if (instance.hasErrors()) {
-            respond instance.errors
-            return
+            response.status = 404;
+            respond status:404, message:"invalid instance"
         }
-        def id = instance.id as int
-        if (aid != id) {
-            return
-        }
+        user.username=instance.username
+        user.password=instance.password
+        user.save flush:true
         instance.save flush: true
-        redirect instance
+        respond instance
     }
 }

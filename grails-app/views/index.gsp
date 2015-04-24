@@ -19,7 +19,7 @@
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#home"  role="tab" data-toggle="tab">Home</a></li>
     <li role="presentation"><a href="#listings" role="tab" data-toggle="tab">show Listings</a></li>
-    <li ng-show="showAccount()" role="presentation"><a href="#accounts"  role="tab" data-toggle="tab">My Account</a></li>
+    <li role="presentation"><a href="#accounts"  role="tab" data-toggle="tab">My Account</a></li>
     <li role="presentation"><a href="#reviews"  role="tab" data-toggle="tab">Reviews</a></li>
 </ul>
     <ng-view></ng-view>

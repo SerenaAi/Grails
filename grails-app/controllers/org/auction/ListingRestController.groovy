@@ -76,7 +76,7 @@ class ListingRestController extends RestfulController<Listing> {
             respond status:404, message:"invalid instance"
         }
         instance.save flush: true
-        redirect instance
+        respond instance
     }
 }
 

@@ -19,29 +19,29 @@
                             <div class="row">
                                 <div class="col-md-3">Username:</div>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" value="{{getAccount().username}}">
+                                    <input type="text" class="form-control" ng-model="username">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">Email:</div>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" value="{{getAccount().email}}">
+                                    <input type="text" class="form-control" ng-model="email">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">Password:</div>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" value="{{getAccount().password}}">
+                                    <input type="text" class="form-control" ng-model="password">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">Address:</div>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" value="{{getAccount().address}}">
+                                    <input type="text" class="form-control" ng-model="address">
                                 </div>
                             </div>
                             <p></p>
-                            <button type="button" class="btn btn-primary btn-lg btn-block">Edit</button>
+                            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="editAccount()">Edit</button>
                         </div>
                     </div>
                 </div>

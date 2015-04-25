@@ -2,20 +2,18 @@ app.controller("AccountController", function($scope, Accounts, Auth){
     var account={}
     var refresh=function(){
         if(Auth.account!=null && Auth.account!=undefined){
-            account = Accounts.get({id: Auth.account.id})
-            $scope.username=account.username
-            $scope.email=account.email
-            $scope.password=account.password
-            $scope.address=account.address
-        }else{
+            account = Accounts.get({id: Auth.account.id}, function(){
+                $scope.username= account.username
+                $scope.email=account.email
+                $scope.password=account.password
+                $scope.address=account.address
+            })
         }
     }
-
     $scope.getAccount=function(){
         return account
     }
     $scope.editAccount=function(){
-        alert("rads")
         if(Auth.account!=null&&Auth.account!=undefined){
             var newAccount={}
             newAccount.username=$scope.username
@@ -28,7 +26,6 @@ app.controller("AccountController", function($scope, Accounts, Auth){
             })
         }
     }
-
 
     $scope.getAccountName=function(id){
         return Accounts.get({id: id})

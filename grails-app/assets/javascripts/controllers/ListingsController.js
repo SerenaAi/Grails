@@ -50,10 +50,9 @@ app.controller("ListingsController", function($scope, Listings, $routeParams, $l
     }
     //delete listing
     $scope.deleteListing = function () {
-                    Listings.delete({id:$routeParams.id }).$promise.then(function(){
-                    refresh()
-                    $location.path( 'listings')
-
+            Listings.delete({id:$routeParams.id }).$promise.then(function(){
+            refresh()
+            $location.path( 'listings')
         })
     }
 

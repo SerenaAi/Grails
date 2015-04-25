@@ -38,6 +38,24 @@ class AccountRestController extends RestfulController<Account> {
     }
 
     //changed
+    def save() {
+        Account instance = new Account()
+        bindData instance, request
+        instance.validate()
+        if (instance.hasErrors()) {
+            response.status = 404;
+            respond status:404, message:"invalid instance"
+        }
+        User user=new User()
+        user.username=instance.username
+        user.password=instance.password
+        user.save flush:true
+        instance.save flush: true
+        respond instance
+    }
+
+
+    //changed
     def update() {
         Account instance = Account.findById(params.id)
         if (!instance) {

@@ -6,6 +6,8 @@
     <title>Welcome to MyAuction</title>
     <asset:stylesheet src="application.css" />
     <asset:javascript src="application.js" />
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 
 <body ng-app="app">

@@ -3,7 +3,6 @@
 angular.module('app').config(function ($routeProvider) {
   $routeProvider.when("/", {templateUrl: "templates/home.html"});
   $routeProvider.when("/home", {templateUrl: "templates/home.html"});
-  $routeProvider.when("/signup", {templateUrl: "templates/signup.html"});
 
   $routeProvider.when("/listings", {templateUrl: "templates/listings/show.html"});
   $routeProvider.when("/listings/create", {templateUrl: "templates/listings/create.html"});
@@ -14,6 +13,7 @@ angular.module('app').config(function ($routeProvider) {
 
   $routeProvider.when("/accounts", {templateUrl: "templates/account/show.html"});
   $routeProvider.when("/accounts/edit", {templateUrl: "templates/account/edit.html"});
+    $routeProvider.when("/accounts/create", {templateUrl: "templates/account/create.html"});
 
     $routeProvider.when("/reviews", {templateUrl: "templates/reviews/show.html"});
     $routeProvider.when("/reviews/:id", {templateUrl: "templates/review/show.html"});

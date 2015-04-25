@@ -21,31 +21,31 @@
                             <div class="row">
                                 <div class="col-md-3">Name:</div>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" value="{{getListing().name}}">
+                                    <input type="text" class="form-control" ng-model="listingName">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">Description:</div>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" value="{{getListing().description}}">
+                                    <input type="text" class="form-control" ng-model="description">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">Start Price:</div>
                                 <div class="col-md-9">
-                                    <input type="number" min="0" class="form-control" style="width: 100px" value="{{getListing().startPrice}}">
+                                    <input type="number" min="0" class="form-control" style="width: 100px" ng-model="startPrice">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">Start Date:</div>
                                 <div class="col-md-9">
-                                    <input type="date" class="form-control" value="{{getListing().startDate}}">
+                                    <input type="date" class="form-control" ng-model="startDate">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">Listings Days:</div>
                                 <div class="col-md-9">
-                                    <input type="number" min="1" class="form-control" style="width: 100px" value="{{getListing().listingDays}}">
+                                    <input type="number" min="1" class="form-control" style="width: 100px" ng-model="listingDays">
                                 </div>
                             </div>
                             <div class="row" ng-controller="OptionController">
@@ -53,18 +53,18 @@
                                 <div class="col-md-9">
                                     <div class="dropdown">
                                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-                                            <span class="caret"></span>
+                                            {{name}}<span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
                                             <li role="presentation" ng-repeat="item in getOptions()">
-                                                <a role="menuitem" tabindex="-1" href="" ng-click="setOptionID(item.id)">{{item.name}}</a>
+                                                <a role="menuitem" tabindex="-1" href="" ng-click="setOption(item.id);setCurrentName(item.name)">{{item.name}}</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <p></p>
-                            <button type="button" class="btn btn-primary btn-lg btn-block">Edit</button>
+                            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="editListing()">Edit</button>
                         </div>
                     </div>
                 </div>

@@ -1,27 +1,13 @@
-app.controller("ListingsController", function($scope, Listings, $routeParams, $location){
+app.controller("ListingsController", function($scope, Listings, $routeParams, $location, Auth){
     var listings={}
     var completed=false;
     $scope.button="Show Completed"
-    $scope.newlisting={
-        name:'aa',
-        description:'1111',
-        startPrice:1,
-        listingDays:1,
-        startDate_day:1,
-        startDate_month:5,
-        startDate_year:2015,
-        startDate:'date.struct',
-        sellerAccount:1,
-        deliverOption:1
-    }
 
     var refresh=function(){
         if(completed==false){
             listings = Listings.query()
-        }else if(completed==true){
-            listings = Listings.select({completed:true})
         }else{
-            return null
+            listings = Listings.select({completed:true})
         }
     }
 
@@ -41,19 +27,38 @@ app.controller("ListingsController", function($scope, Listings, $routeParams, $l
         return listings
     }
 
+    $scope.setOption=function(id){
+        $scope.option=id;
+    }
+
     //create listing
     $scope.saveListing = function () {
-        Listings.save($scope.newlisting).$promise.then(function(){
-            refresh()
-            $location.path( 'listings')
-        })
+        if(Auth.account!=null && Auth.account!=undefined){
+            var newListing={
+                'name':$scope.listingName,
+                'description': $scope.description,
+                'startPrice':parseInt($scope.startPrice),
+                'listingDays':parseInt($scope.listingDays),
+                'startDate_day':1,
+                'startDate_month':5,
+                'startDate_year':2015,
+                'startDate':'date.struct',
+                'sellerAccount':parseInt(Auth.account.id),
+                'deliverOption':parseInt($scope.option)
+            }
+            Listings.save(newListing, function(){
+                refresh()
+                $location.path( 'listings')
+            })
+        }
     }
+
     //delete listing
     $scope.deleteListing = function () {
-            Listings.delete({id:$routeParams.id }).$promise.then(function(){
-            refresh()
-            $location.path( 'listings')
-        })
+            Listings.delete({id: $routeParams.id },function(){
+                refresh()
+                $location.path( 'listings')
+            })
     }
 
     refresh()

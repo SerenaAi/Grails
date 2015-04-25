@@ -39,10 +39,7 @@ app.controller("ListingsController", function($scope, Listings, $routeParams, $l
                 'description': $scope.description,
                 'startPrice':parseInt($scope.startPrice),
                 'listingDays':parseInt($scope.listingDays),
-                'startDate_day':1,
-                'startDate_month':5,
-                'startDate_year':2015,
-                'startDate':'date.struct',
+                'startDate':'2015-05-12T07:30:00Z',   //change!
                 'sellerAccount':parseInt(Auth.account.id),
                 'deliverOption':parseInt($scope.option)
             }
@@ -51,7 +48,7 @@ app.controller("ListingsController", function($scope, Listings, $routeParams, $l
                 $location.path( 'listings')
             })
         }else{
-            alert("please login first")
+            alert("savelisting: please login first")
         }
     }
 

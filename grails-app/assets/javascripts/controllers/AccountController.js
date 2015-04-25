@@ -11,6 +11,8 @@ app.controller("AccountController", function($scope, Accounts, Auth, $location){
                 $scope.password=account.password
                 $scope.address=account.address
             })
+        }else{
+            alert("account: please login first")
         }
     }
     $scope.getAccount=function(){
@@ -31,7 +33,7 @@ app.controller("AccountController", function($scope, Accounts, Auth, $location){
                 $location.path( 'accounts')
             })
         }else{
-            alert("please login first")
+            alert("editaccount: please login first")
         }
     }
 

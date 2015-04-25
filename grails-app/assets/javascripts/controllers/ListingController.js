@@ -31,10 +31,7 @@ app.controller("ListingController", function($scope, Listings, Auth, $routeParam
                     'description': $scope.description,
                     'startPrice':parseInt($scope.startPrice),
                     'listingDays':parseInt($scope.listingDays),
-                    'startDate_day':1,
-                    'startDate_month':5,
-                    'startDate_year':2015,
-                    'startDate':'date.struct',
+                    'startDate':'2015-05-12T07:30:00Z',   //change!
                     'sellerAccount':parseInt(Auth.account.id),
                     'deliverOption':parseInt($scope.option)
                 }
@@ -47,7 +44,7 @@ app.controller("ListingController", function($scope, Listings, Auth, $routeParam
                 alert("Must be the creater of the listing to perform this action")
             }
         }else{
-            alert("please login first")
+            alert("editlisting: please login first")
         }
     }
     refresh()

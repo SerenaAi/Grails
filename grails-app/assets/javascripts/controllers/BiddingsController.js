@@ -21,6 +21,9 @@ app.controller("BiddingsController", function($scope, Biddings, Bidding, $routeP
                 $location.path('listings/'+ $routeParams.id)
             })
         }
+        else{
+            alert("please login first")
+        }
     }
     refresh()
 })

@@ -50,6 +50,8 @@ app.controller("ListingsController", function($scope, Listings, $routeParams, $l
                 refresh()
                 $location.path( 'listings')
             })
+        }else{
+            alert("please login first")
         }
     }
 

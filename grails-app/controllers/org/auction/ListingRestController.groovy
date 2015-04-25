@@ -51,7 +51,6 @@ class ListingRestController extends RestfulController<Listing> {
 
     //changed
     def save() {
-        println "listing save"
         def instance = new Listing()
         bindData instance, request
         instance.validate()

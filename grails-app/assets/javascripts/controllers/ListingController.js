@@ -24,24 +24,30 @@ app.controller("ListingController", function($scope, Listings, Auth, $routeParam
         return $routeParams.id
     }
     $scope.editListing=function(){
-        if(Auth.account!=null && Auth.account!=undefined && Auth.account.id==sellerAccount){
-            var newListing={
-                'name':$scope.listingName,
-                'description': $scope.description,
-                'startPrice':parseInt($scope.startPrice),
-                'listingDays':parseInt($scope.listingDays),
-                'startDate_day':1,
-                'startDate_month':5,
-                'startDate_year':2015,
-                'startDate':'date.struct',
-                'sellerAccount':parseInt(Auth.account.id),
-                'deliverOption':parseInt($scope.option)
+        if(Auth.account!=null && Auth.account!=undefined){
+            if(Auth.account.id==sellerAccount){
+                var newListing={
+                    'name':$scope.listingName,
+                    'description': $scope.description,
+                    'startPrice':parseInt($scope.startPrice),
+                    'listingDays':parseInt($scope.listingDays),
+                    'startDate_day':1,
+                    'startDate_month':5,
+                    'startDate_year':2015,
+                    'startDate':'date.struct',
+                    'sellerAccount':parseInt(Auth.account.id),
+                    'deliverOption':parseInt($scope.option)
+                }
+                $id= $routeParams.id
+                Listings.update({id: $id}, newListing, function(){
+                    refresh()
+                    $location.path( 'listings/'+$routeParams.id)
+                })
+            }else{
+                alert("Must be the creater of the listing to perform this action")
             }
-            $id= $routeParams.id
-            Listings.update({id: $id}, newListing, function(){
-                refresh()
-                $location.path( 'listings/'+$routeParams.id)
-            })
+        }else{
+            alert("please login first")
         }
     }
     refresh()

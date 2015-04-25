@@ -30,6 +30,8 @@ app.controller("AccountController", function($scope, Accounts, Auth, $location){
                 refresh()
                 $location.path( 'accounts')
             })
+        }else{
+            alert("please login first")
         }
     }
 

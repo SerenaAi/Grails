@@ -1,10 +1,12 @@
 package org.auction
 import geb.spock.GebReportingSpec
+import spock.lang.Stepwise
 
+@Stepwise
 class SinglePageSpec extends GebReportingSpec {
 
     def "Test that we can display only completed listings" () {
-        when: "I am entering the listing page without being logged in"
+        when: "I am entering the listing page"
             to ListingsSinglePage
             completeToggle.click()
 
@@ -14,13 +16,42 @@ class SinglePageSpec extends GebReportingSpec {
     }
 
     def "Test that we can list details for a particular listing" () {
-        when: "I am entering a specific listing details page"
-            to ListingSinglePage
+        when: "I am entering the listing page"
+            to ListingsSinglePage
+            firstListing.click()
 
         then: "Complete listings are diplayed"
-            at ListingSinglePage
-            listingName.text().contains("listing 1")
-            listingDesc.text().contains("listing 1 description")
-            listingDays.text().contains("1")
+            at ListingResultSinglePage
+            waitFor {
+                listingName.text().contains("listing 1")
+            }
+    }
+
+    def "Test that a user successfully login" () {
+        when: "I am entering the home page"
+            to LoginSinglePage
+            loginUsername = "miao"
+            loginPassword = "miaomiao1"
+            loginSubmit.click();
+
+        then: "Ensure user successfully access"
+            at LoginSinglePage
+            waitFor {
+                loginSuccess.size() == 1
+            }
+    }
+
+    def "Test that a user fails to login" () {
+        when: "I am entering the home page"
+            to LoginSinglePage
+            loginUsername = "asd"
+            loginPassword = "asdfdf34"
+            loginSubmit.click();
+
+        then: "Ensure user fails to access"
+            at LoginSinglePage
+            waitFor {
+                loginFail.size() == 1
+            }
     }
 }

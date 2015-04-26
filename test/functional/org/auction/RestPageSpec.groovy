@@ -51,33 +51,6 @@ class RestPageSpec extends GebReportingSpec {
             user.email == 'miao@a.com'
     }
 
-    def "Test that we can't create a bid without authentication"() {
-        when: "I am sending a POST to create a bid"
-            def resp = doJsonPost('api/biddings', [
-                'listing.id': 1,
-                'amount': 50,
-                'biddingAccount.id': 1
-            ])
-            def bid = resp.data
-
-        then: "I am presented with an authentication page"
-            assert resp.status == 302
-    }
-
-    def "Test that we can create a bid"() {
-        when: "I am sending a POST to create a bid"
-            httpUtils.login('miao', 'miaomiao1')
-            def resp = doFormPost('api/biddings', [
-                'listing.id': 1,
-                'amount': 50,
-                'biddingAccount.id': 1
-            ])
-            def bid = resp.data
-
-        then: "A new bidding is created for the specified listing"
-            assert resp.status == 302 // redirect to a 200
-    }
-
     def "Test that we can create a seller feedback"() {
         when: "I am sending a POST to create a comment"
             httpUtils.login('miao', 'miaomiao1')
@@ -125,7 +98,7 @@ class RestPageSpec extends GebReportingSpec {
             ])
 
         then: "A new listing from the logged in user is posted"
-            assert resp.status == 302 // redirect to a 200
+            assert resp.status == 200
     }
 
     def "Test that we can delete a listing owned by the user"() {
@@ -146,31 +119,6 @@ class RestPageSpec extends GebReportingSpec {
             ]);
 
         then: "Account data is updated successfully"
-           assert resp.status == 302 // redirects afterwards to 200 (show page)
-    }
-
-    def "Test that we can't update account data if not account owner"() {
-        when: "I am sending a PUT to attempt to update an account"
-            httpUtils.login('miao', 'miaomiao1')
-            def resp = httpUtils.doJsonPut("api/accounts/2", [
-                email: 'miaomiao@google.com',
-                address:'123 Some St',
-            ]);
-
-        then: "Account data fails to update"
-           assert resp.status == 404 // account is not found since user
-                                     // is not the owner
-    }
-
-    def "Test that we can't update account data if not logged in"() {
-        when: "I am sending a PUT to attempt to update an account"
-            def resp = httpUtils.doJsonPut("api/accounts/2", [
-                email: 'hacked@google.com',
-                address:'123 Some St',
-            ]);
-
-        then: "Account data fails to update"
-           assert resp.status == 404 // account is not found since user
-                                     // is not logged in
+           assert resp.status == 200
     }
 }

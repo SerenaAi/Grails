@@ -11,11 +11,11 @@
         <div class="col-sm-9 col-md-10">
             <div class="box">
                 <div class="box-light">
-                    <h4>Show Listing</h4>
+                    <h4 class="listings-header">Show Listings</h4>
                     <hr />
-                    <button class="btn btn-primary" ng-click="completedSwitch()">{{button}}</button>
+                    <button class="btn btn-primary listings-complete-toggle" ng-click="completedSwitch()">{{button}}</button>
                     <p></p>
-                    <table class="table">
+                    <table class="table listings-table" >
                         <thead>
                             <tr>
                                 <th>Completed</th>
@@ -30,7 +30,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="item in getListings()" style="cursor: pointer" ng-click="href('listings',item.id)">
-                                <td>{{item.completed}}</a></td>
+                                <td class="listing-status">{{item.completed}}</a></td>
                                 <td>{{item.name}}</td>
                                 <td>{{item.startPrice}}</td>
                                 <td>{{item.startDate}}</td>

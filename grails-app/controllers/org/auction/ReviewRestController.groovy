@@ -12,54 +12,45 @@ class ReviewRestController extends RestfulController<Review> {
     @SuppressWarnings("GroovyUnusedDeclaration")
     static responseFormats = ['json', 'xml']
     def springSecurityService = new SpringSecurityService()
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST"]
 
     ReviewRestController() {
         super(Review)
     }
 
-    @Secured(["IS_AUTHENTICATED_FULLY"])
-    @Override
-    def save() {
-        def user = springSecurityService.currentUser
-        def account = Account.findByUsername(user.username)
-        int aid = account.id as int
+    def index(Integer max){
+        super.index(max);
+    }
 
-        if (handleReadOnly()) {
-            return
-        }
+    def save() {
         def instance = new Review()
         bindData instance, request
-        println instance
 
         instance.validate()
         if (instance.hasErrors()) {
-            respond instance.errors
-            return
-        }
-
-        def rid = instance.reviewerAccount.id as int
-        if (aid != rid) {
-            return
+            response.status = 404;
+            respond status:404, message:"invalid instance"
         }
 
         def reviews = Review.where {
             reviewerAccount.id == instance.reviewerAccount.id &&
             revieweeAccount.id == instance.revieweeAccount.id
         }.list()
+
         if (!reviews) {
             if (instance.sellerComment) {
-                instance.reviewedSeller == true
+                instance.reviewedSeller = true
             }
             if (instance.bidderComment) {
-                instance.reviewedBidder == true
+                instance.reviewedBidder = true
             }
             instance.save flush: true
-            redirect instance
+            respond instance
         } else {
             Review review = reviews.first();
             if (review.reviewedBidder && review.reviewedSeller) {
-                return
+                response.status = 404;
+                respond status:404, message:"cannot review twice"
             }
             if (review.reviewedBidder == false) {
                 review.bidderComment = instance.bidderComment
@@ -70,7 +61,7 @@ class ReviewRestController extends RestfulController<Review> {
                 review.reviewedSeller = true
             }
             review.save flush: true
-            redirect review
+            respond review
         }
     }
 }

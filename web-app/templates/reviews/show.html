@@ -12,10 +12,8 @@
         </thead>
         <tbody>
         <tr ng-repeat="item in getReviews()" style="cursor: pointer"  ng-click="href('reviews',item.id)">
-            <td ng-show="item.reviewedSeller">{{item.sellerComment}}</td>
-            <td ng-hide="item.reviewedSeller">(Null)</td>
-            <td ng-show="item.reviewedBidder">{{item.bidderComment}}</td>
-            <td ng-hide="item.reviewedBidder">(Null)</td>
+            <td>{{item.sellerComment}}</td>
+            <td>{{item.bidderComment}}</td>
             <td>{{item.reviewerAccount.id}}</td>
             <td>{{item.revieweeAccount.id}}</td>
         </tr>

@@ -54,4 +54,17 @@ class SinglePageSpec extends GebReportingSpec {
                 loginFail.size() == 1
             }
     }
+
+    def "Test that a new user can create an account" () {
+        when: "I am entering new user data"
+            to SignupSinglePage
+            signupEmail = "hao@yahoo.com"
+            signupPassword = "haohao241"
+            signupUsername = "hao"
+            signupAddress = "Hao St 123"
+            signupSubmit.click();
+
+        then: "Ensure user creates an account"
+            at SignupResultSinglePage
+    }
 }

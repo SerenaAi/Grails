@@ -3,13 +3,13 @@ app.controller("SigninController", function($scope, Signin, Accounts, Auth) {
         var data = 'j_username=' + $scope.username + '&j_password=' + $scope.password;
         Signin.check(data).$promise.then(function(data) {
             if (data.error) {
-                $(".my-alerts").append($("<div />")
+                $(".my-alerts").html($("<div />")
                     .html(data.error)
                     .addClass("alert alert-danger login-fail")
                 );
             }
             if (data.success) {
-                $(".my-alerts").append($("<div />")
+                $(".my-alerts").html($("<div />")
                     .html(data.error)
                     .addClass("alert alert-success login-success")
                 );

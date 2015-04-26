@@ -25,5 +25,11 @@ class LoginSinglePage extends Page {
         loginFail {
             $(".login-fail")
         }
+        signupSuccess {
+            $(".signup-success")
+        }
+        signupFail {
+            $(".signup-fail")
+        }
     }
 }

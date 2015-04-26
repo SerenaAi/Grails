@@ -6,7 +6,7 @@ class Bidding {
 
     static belongsTo = [listing:Listing, biddingAccount:Account]
     static constraints = {
-        amount validator: {val, obj->
+       /* amount validator: {val, obj->
             def min;
             if (Bidding.count() == 0) {
                 min = obj.listing.startPrice
@@ -28,7 +28,7 @@ class Bidding {
             } else {
                 return false;
             }
-        }
+        } */
     }
     static mapping={
         autoTimestamp true

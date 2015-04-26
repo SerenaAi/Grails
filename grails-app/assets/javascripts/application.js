@@ -13,14 +13,5 @@
 //= require angular-bootstrap/ui-bootstrap-tpls
 //= require_self
 //= require_tree .
-if (typeof jQuery !== 'undefined') {
-    (function($) {
-        $('#spinner').ajaxStart(function() {
-            $(this).fadeIn();
-        }).ajaxStop(function() {
-            $(this).fadeOut();
-        });
-    })(jQuery);
-}
 
 var app = angular.module('app', ['ngRoute', 'ngResource']);

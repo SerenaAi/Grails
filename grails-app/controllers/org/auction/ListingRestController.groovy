@@ -64,13 +64,13 @@ class ListingRestController extends RestfulController<Listing> {
 
     //changed
     def update() {
+        println "update"
         Listing instance = Listing.findById(params.id)
         if (!instance) {
             response.status = 404;
             respond status:404, message:"cannot find instance"
         }
         instance.properties = request
-        instance.validate()
         if (instance.hasErrors()) {
             response.status = 404;
             respond status:404, message:"invalid instance"

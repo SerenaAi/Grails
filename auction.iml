@@ -17,6 +17,8 @@
         <datasource-map>
           <unit-entry name="Gorm" />
           <unit-entry name="hibernate.cfg.xml" />
+          <unit-entry name="target:work:plugins:hibernate4-4.3.6.1:src:java:hibernate.cfg.xml" />
+          <unit-entry name="target:work:resources:hibernate.cfg.xml" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/target/work/plugins/hibernate4-4.3.6.1/src/java/hibernate.cfg.xml" />

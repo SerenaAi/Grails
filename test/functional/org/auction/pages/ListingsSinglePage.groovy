@@ -11,5 +11,8 @@ class ListingsSinglePage extends Page {
         completeToggle {
             $(".listings-complete-toggle")
         }
+        firstListing {
+            $(".listings-table tbody tr:first-child")
+        }
     }
 }

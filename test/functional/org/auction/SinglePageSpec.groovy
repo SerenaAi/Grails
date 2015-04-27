@@ -67,4 +67,25 @@ class SinglePageSpec extends GebReportingSpec {
         then: "Ensure user creates an account"
             at SignupResultSinglePage
     }
+
+    def "Test that a new listing can be created" () {
+        when: "I am entering new listing data"
+            to LoginSinglePage
+            loginUsername = "miao"
+            loginPassword = "miaomiao1"
+            loginSubmit.click();
+
+            to CreateListingSP
+            listingName = "listing 3"
+            listingDesc = "awesome listing 3"
+            listingPrice = "35.90"
+            listingDate = "2015-05-20"
+            listingDays = "2"
+            listingDeliveryToggle.click();
+            listingDelivery.click()
+            listingSubmit.click()
+            
+        then: "Ensure user creates an account"
+            at CreateListingResultSP
+    }
 }

@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-sm-3 col-md-2">
             <ul class="left-nav nav-pills nav-stacked">
-                <li class="active"><a ng-href="#listings/{{getListingID()}}">Listing Details</a></li>
-                <li><a ng-href="#listings/edit/{{getListingID()}}">Edit Listing</a></li>
-                <li><a ng-href="#listings/bidding/{{getListingID()}}">Create bidding</a></li>
-                <li ng-controller="ListingsController"><a href="" ng-click="deleteListing()">Delete Listing</a></li>
+                <li class="active"><a class="listing-details" ng-href="#listings/{{getListingID()}}">Listing Details</a></li>
+                <li><a class="listing-edit" ng-href="#listings/edit/{{getListingID()}}">Edit Listing</a></li>
+                <li><a class="listing-bid" ng-href="#listings/bidding/{{getListingID()}}">Create bidding</a></li>
+                <li class="listing-delete" ng-controller="ListingsController"><a href="" ng-click="deleteListing()">Delete Listing</a></li>
             </ul>
         </div>
 

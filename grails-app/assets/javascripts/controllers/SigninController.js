@@ -10,7 +10,7 @@ app.controller("SigninController", function($scope, Signin, Accounts, Auth) {
             }
             if (data.success) {
                 $(".my-alerts").html($("<div />")
-                    .html(data.error)
+                    .html("Successfully loggedin!")
                     .addClass("alert alert-success login-success")
                 );
                 username = data.username

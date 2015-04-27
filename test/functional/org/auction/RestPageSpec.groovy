@@ -63,7 +63,7 @@ class RestPageSpec extends GebReportingSpec {
             def bid = resp.data
 
         then: "A new comment from the seller is posted"
-            assert resp.status == 302 // redirect to a 200
+            assert resp.status == 200
     }
 
     def "Test that we can create a buyer feedback"() {
@@ -78,7 +78,7 @@ class RestPageSpec extends GebReportingSpec {
             def bid = resp.data
 
         then: "A new comment from the buyer is posted"
-            assert resp.status == 302 // redirect to a 200
+            assert resp.status == 200
     }
 
     def "Test that we can create a listing with an authenticated user"() {

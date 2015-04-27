@@ -1,27 +1,28 @@
-app.controller("BiddingsController", function($scope, Biddings, Bidding, $routeParams, Auth, $location){
-    var biddings={}
+app.controller("BiddingsController", function($scope, Biddings, Bidding, $routeParams, Auth, $location) {
+    var biddings = {}
 
-    var refresh=function(){
-        biddings = Biddings.query({id:$routeParams.id})
+    var refresh = function() {
+        biddings = Biddings.query({
+            id: $routeParams.id
+        })
     }
 
-    $scope.getBiddings=function(){
+    $scope.getBiddings = function() {
         return biddings
     }
 
-    $scope.createBidding=function(){
-        if(Auth.account!=null && Auth.account!=undefined){
-            var newBidding={
-                'listing':parseInt($routeParams.id),
-                'biddingAccount':parseInt(Auth.account.id),
-                'amount':$scope.amount
+    $scope.createBidding = function() {
+        if (Auth.account != null && Auth.account != undefined) {
+            var newBidding = {
+                'listing': parseInt($routeParams.id),
+                'biddingAccount': parseInt(Auth.account.id),
+                'amount': $scope.amount
             }
-            Bidding.save(newBidding, function(){
+            Bidding.save(newBidding, function() {
                 refresh()
-                $location.path('listings/'+ $routeParams.id)
+                $location.path('listings/' + $routeParams.id)
             })
-        }
-        else{
+        } else {
             alert("please login first")
         }
     }

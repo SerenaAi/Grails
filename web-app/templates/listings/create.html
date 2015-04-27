@@ -1,72 +1,72 @@
 <div class="container" ng-controller="ListingsController">
-<h3>Listings</h3>
-<hr />
-<div class="row">
-    <div class="col-sm-3 col-md-2">
-        <ul class="left-nav nav-pills nav-stacked">
-            <li><a href="#listings">show Listings</a></li>
-            <li class="active"><a href="#/listings/create">Create Listings</a></li>
-        </ul>
-    </div>
-    <div class="col-sm-9 col-md-10">
-        <div class="box">
-            <div class="box-light">
-                <h4>Create Listing</h4>
-                <hr />
-                <div class="row">
-                    <div class="col-lg-8 col-md-offset-1">
-                        <div class="row">
-                            <div class="col-md-3">Name:</div>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" ng-model="listingName">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">Description:</div>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" ng-model="description">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">Start Price:</div>
-                            <div class="col-md-9">
-                                <input type="number" min="0" class="form-control" style="width: 100px" ng-model="startPrice">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">Start Date:</div>
-                            <div class="col-md-9">
-                                <input type="date" class="form-control" ng-model="startDate">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">Listings Days:</div>
-                            <div class="col-md-9">
-                                <input type="number" min="1" class="form-control" style="width: 100px" ng-model="listingDays">
-                            </div>
-                        </div>
-                        <div class="row" ng-controller="OptionController">
-                            <div class="col-md-3">Deliver Option:</div>
-                            <div class="col-md-9">
-                                <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-                                        {{name}}<span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li role="presentation" ng-repeat="item in getOptions()">
-                                            <a role="menuitem" tabindex="-1" href="" ng-click="setOption(item.id);setCurrentName(item.name)">{{item.name}}</a>
-                                        </li>
-                                    </ul>
+    <h3>Listings</h3>
+    <hr />
+    <div class="row">
+        <div class="col-sm-3 col-md-2">
+            <ul class="left-nav nav-pills nav-stacked">
+                <li><a href="#listings">show Listings</a></li>
+                <li class="active"><a href="#/listings/create">Create Listings</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-md-10">
+            <div class="box">
+                <div class="box-light">
+                    <h4 class="listing-create-header">Create Listing</h4>
+                    <hr />
+                    <div class="row">
+                        <div class="col-lg-8 col-md-offset-1">
+                            <div class="row">
+                                <div class="col-md-3">Name:</div>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control listing-name" ng-model="listingName">
                                 </div>
                             </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-3">Description:</div>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control listing-desc" ng-model="description">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Start Price:</div>
+                                <div class="col-md-9">
+                                    <input type="number" min="0" class="form-control listing-price" style="width: 100px" ng-model="startPrice">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Start Date:</div>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control listing-date" ng-model="startDate">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Listings Days:</div>
+                                <div class="col-md-9">
+                                    <input type="number" min="1" class="form-control listing-days" style="width: 100px" ng-model="listingDays">
+                                </div>
+                            </div>
+                            <div class="row" ng-controller="OptionController">
+                                <div class="col-md-3">Deliver Option:</div>
+                                <div class="col-md-9">
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle listing-delivery-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                                            {{name}}<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li role="presentation" ng-repeat="item in getOptions()">
+                                                <a class="listing-delivery" role="menuitem" tabindex="-1" href="" ng-click="setOption(item.id);setCurrentName(item.name)">{{item.name}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <p></p>
-                        <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="saveListing()">Create</button>
+                            <p></p>
+                            <button type="button" class="btn btn-primary btn-lg btn-block listing-submit" ng-click="saveListing()">Create</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>

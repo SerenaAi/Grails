@@ -84,7 +84,7 @@ class SinglePageSpec extends GebReportingSpec {
             listingDeliveryToggle.click();
             listingDelivery.click()
             listingSubmit.click()
-            
+
         then: "Ensure user creates an account"
             at CreateListingResultSP
     }
@@ -98,7 +98,7 @@ class SinglePageSpec extends GebReportingSpec {
 
             to CreateBidSP
             bidAmount = "29"
-            bidSubmit.click()            
+            bidSubmit.click()
 
         then: "Ensure user creates a bidding for a listing"
             at CreateBidResultSP
@@ -114,9 +114,27 @@ class SinglePageSpec extends GebReportingSpec {
             to SellerFeedbackSP
             listingSellerFeedback.click()
             listingSellerComment = "Posting comments to seller!"
-            listingSellerSubmit.click()           
+            listingSellerSubmit.click()
 
         then: "Ensure user leaves a comment  on a seller listing"
-            to SellerFeedbackResultSP
+            to ReviewsSP
+            at SellerFeedbackResultSP
+    }
+
+    def "Test that a user can leave feedback to a bidder" () {
+        when: "I am logging in and adding a commenr for a bidder"
+            to LoginSinglePage
+            loginUsername = "miao"
+            loginPassword = "miaomiao1"
+            loginSubmit.click();
+
+            to BidderFeedbackSP
+            listingBidderFeedback.click()
+            listingBidderComment = "Posting comments to bidder!"
+            listingBidderSubmit.click()
+
+        then: "Ensure user leaves a comment  on a seller bidder"
+            to ReviewsSP
+            at BidderFeedbackResultSP
     }
 }

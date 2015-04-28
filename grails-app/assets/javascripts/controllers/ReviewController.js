@@ -22,10 +22,16 @@ app.controller("ReviewController", function($scope, Reviews, $routeParams, Auth)
                 'listing': $routeParams.id
             }
             Reviews.save(newReview, function() {
-                alert("reviews: seller saved")
+                $(".my-alerts").html($("<div />")
+                    .html("Seller feedback was successfully saved!")
+                    .addClass("alert alert-success listing-seller-feedback-success")
+                );
             })
         } else {
-            alert("reviews: please login first")
+            $(".my-alerts").html($("<div />")
+                .html("reviews: please login first")
+                .addClass("alert alert-danger listing-seller-feedback-failed")
+            );
         }
     }
 
@@ -39,10 +45,16 @@ app.controller("ReviewController", function($scope, Reviews, $routeParams, Auth)
                 'listing': $routeParams.id
             }
             Reviews.save(newReview, function() {
-                alert("reviews: bidder saved")
+                $(".my-alerts").html($("<div />")
+                    .html("Seller feedback was successfully saved!")
+                    .addClass("alert alert-success listing-bidder-feedback-success")
+                );
             })
         } else {
-            alert("reviews: please login first")
+            $(".my-alerts").html($("<div />")
+                .html("reviews: please login first")
+                .addClass("alert alert-danger listing-bidder-feedback-failed")
+            );
         }
     }
     refresh()

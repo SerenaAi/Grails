@@ -88,4 +88,35 @@ class SinglePageSpec extends GebReportingSpec {
         then: "Ensure user creates an account"
             at CreateListingResultSP
     }
+
+    def "Test that a user can create a bid on a listing" () {
+        when: "I am logging in and creating a bid for a listing"
+            to LoginSinglePage
+            loginUsername = "miao"
+            loginPassword = "miaomiao1"
+            loginSubmit.click();
+
+            to CreateBidSP
+            bidAmount = "29"
+            bidSubmit.click()            
+
+        then: "Ensure user creates a bidding for a listing"
+            at CreateBidResultSP
+    }
+
+    def "Test that a user can leave feedback to a seller" () {
+        when: "I am logging in and adding a commenr for a seller"
+            to LoginSinglePage
+            loginUsername = "miao"
+            loginPassword = "miaomiao1"
+            loginSubmit.click();
+
+            to SellerFeedbackSP
+            listingSellerFeedback.click()
+            listingSellerComment = "Posting comments to seller!"
+            listingSellerSubmit.click()           
+
+        then: "Ensure user leaves a comment  on a seller listing"
+            to SellerFeedbackResultSP
+    }
 }

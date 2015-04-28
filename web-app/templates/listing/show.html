@@ -45,9 +45,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">Seller Account:</div>
-                                <div class="col-md-9 listing-seller">{{getListing().sellerAccount.id}}
+                                <div class="col-md-9">{{getListing().sellerAccount.id}}
                                     &nbsp;&nbsp;&nbsp;
-                                    <a href="" data-toggle="modal" data-target="#seller-dialog" ng-click="setReviewee(getListing().sellerAccount.id)" class="fa fa-edit"></a>
+                                    <a href="" data-toggle="modal" data-target="#seller-dialog" ng-click="setReviewee(getListing().sellerAccount.id)" class="fa fa-edit listing-seller-feedback"></a>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="seller-dialog" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal" id="seller-dialog" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -96,17 +96,17 @@
                 </div>
                 <div class="modal-body">
                     Comment For Seller:
-                    <div><textarea style="width: 100%" ng-model="sellerComment" /></div>
+                    <textarea style="width: 100%" ng-model="sellerComment" class="listing-seller-comment"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" ng-click="createSellerReview()">Save changes</button>
+                    <button type="button" class="btn btn-primary listing-seller-submit" ng-click="createSellerReview()" data-dismiss="modal">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="bidder-dialog" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal" id="bidder-dialog" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -116,11 +116,11 @@
                 </div>
                 <div class="modal-body">
                     Comment For Bidder:
-                    <div><textarea style="width: 100%" ng-model="bidderComment" /></div>
+                    <div><textarea style="width: 100%" ng-model="bidderComment" class="listing-bidder-comment" /></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" ng-click="createBidderReview()">Save changes</button>
+                    <button type="button" class="btn btn-primary listing-bidder-submit" ng-click="createBidderReview()" data-dismiss="modal">Save changes</button>
                 </div>
             </div>
         </div>

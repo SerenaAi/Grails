@@ -101,15 +101,6 @@ class RestPageSpec extends GebReportingSpec {
             assert resp.status == 200
     }
 
-    def "Test that we can delete a listing owned by the user"() {
-        when: "I am sending a DELETE to delete a listing"
-            httpUtils.login('chao', 'chaochao1')
-            def resp = doDelete('api/listings/1')
-
-        then: "An existing listing is deleted"
-            assert resp.status == 200
-    }
-
     def "Test that we can update account data by the account owner"() {
         when: "I am sending a PUT to update an account"
             httpUtils.login('chao', 'chaochao1')

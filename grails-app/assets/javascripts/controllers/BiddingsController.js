@@ -20,10 +20,17 @@ app.controller("BiddingsController", function($scope, Biddings, Bidding, $routeP
             }
             Bidding.save(newBidding, function() {
                 refresh()
+                $(".my-alerts").html($("<div />")
+                    .html("Bidding was successfully posted!")
+                    .addClass("alert alert-success bid-create-success")
+                );
                 $location.path('listings/' + $routeParams.id)
             })
         } else {
-            alert("please login first")
+            $(".my-alerts").html($("<div />")
+                .html("createbid: please login first")
+                .addClass("alert alert-danger bid-create-failed")
+            );
         }
     }
     refresh()

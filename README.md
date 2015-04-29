@@ -3,6 +3,20 @@ MyAuction
 
 A really cool auction for the SENG class
 
+## Configuring Assets ##
+My Auction makes use of the Asset Pipeline.
+
+Make sure AngularJS, bower and node are installed on your system. A typical debian install, would be:
+
+    # apt-get install nodejs
+    # apt-get install npm
+    # npm i -g bower
+    
+Navigate to grails-app/assets and install AngularJs
+
+    # cd grails-app/assets
+    # bower install angular --save
+
 ## How to Run it ##
 In order to run the app, do the following:
 

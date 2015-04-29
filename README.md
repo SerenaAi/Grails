@@ -30,7 +30,7 @@ In order to run the app, do the following:
 driver. 
 
 On a **Linux** box, the above command should run fine. On a **Mac** you may
-need to specify the path to the `Chrome` driver, this can be done as follows:
+need to specify the path to the `Chrome` driver, this can be done as follow:
 
     grails -Dgeb.env=chrome -Dwebdriver.chrome.driver=/Downloads/chromedriver test-app
 

@@ -27,7 +27,9 @@ In order to run the app, do the following:
     grails -Dgeb.env=chrome test-app
 
 **Note** that the functional test makes use of the `Chrome` or `Firefox`
-driver. On a **Linux** box, the above command should run fine. On a **Mac** you may
+driver. 
+
+On a **Linux** box, the above command should run fine. On a **Mac** you may
 need to specify the path to the `Chrome` driver, this can be done as follows:
 
     grails -Dgeb.env=chrome -Dwebdriver.chrome.driver=/Downloads/chromedriver test-app

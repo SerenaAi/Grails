@@ -12,7 +12,7 @@ Make sure AngularJS, bower and node are installed on your system. A typical debi
     # apt-get install npm
     # npm i -g bower
     
-Navigate to grails-app/assets and install AngularJs
+Navigate to grails-app/assets and install AngularJS
 
     # cd grails-app/assets
     # bower install angular --save

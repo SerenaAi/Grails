@@ -23,6 +23,9 @@
             <li ng-show="isLoggedIn()" role="presentation"><a href="#accounts" role="tab" data-toggle="tab">My Account</a></li>
             <li role="presentation"><a href="#reviews" role="tab" data-toggle="tab">Reviews</a></li>
         </ul>
+        <div class="container">
+            <div class="my-alerts"></div>
+        </div>
         <ng-view></ng-view>
     </div>
     <hr>

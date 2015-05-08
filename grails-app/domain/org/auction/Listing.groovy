@@ -7,7 +7,7 @@ class Listing {
     float startPrice
     int listingDays
     Account highBidAccount
-    float highBid
+    float highBid=0
     boolean completed
 
     static hasMany = [biddings: Bidding, reviews: Review]

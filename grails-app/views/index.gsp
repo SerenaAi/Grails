@@ -20,13 +20,9 @@
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
             <li role="presentation"><a href="#listings" role="tab" data-toggle="tab">show Listings</a></li>
-            <li role="presentation"><a href="#accounts" role="tab" data-toggle="tab">My Account</a></li>
+            <li ng-show="isLoggedIn()" role="presentation"><a href="#accounts" role="tab" data-toggle="tab">My Account</a></li>
             <li role="presentation"><a href="#reviews" role="tab" data-toggle="tab">Reviews</a></li>
         </ul>
-
-        <div class="col-md-12 my-alerts">
-        </div>
-
         <ng-view></ng-view>
     </div>
     <hr>

@@ -52,13 +52,20 @@ class ReviewRestController extends RestfulController<Review> {
                 response.status = 404;
                 respond status:404, message:"cannot review twice"
             }
-            if (review.reviewedBidder == false) {
-                review.bidderComment = instance.bidderComment
-                review.reviewedBidder = true
+
+            //when bidder is not reviewed
+            if (!review.reviewedBidder) {
+                if (instance.bidderComment) {
+                    review.bidderComment = instance.bidderComment
+                    review.reviewedBidder = true
+                }
             }
-            if (review.reviewedSeller == false) {
-                review.sellerComment = instance.sellerComment
-                review.reviewedSeller = true
+            //when seller is not reviewed
+            if (!review.reviewedSeller) {
+                if ( instance.sellerComment) {
+                    review.sellerComment = instance.sellerComment
+                    review.reviewedSeller = true
+                }
             }
             review.save flush: true
             respond review

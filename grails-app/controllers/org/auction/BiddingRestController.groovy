@@ -50,18 +50,21 @@ class BiddingRestController extends RestfulController<Bidding> {
     def save() {
         def instance = new Bidding()
         bindData instance, request
-
         //-------------------------check bidding amount
 
         Listing listing = instance.listing
         //get start price
         def min_start = listing.startPrice
-        float min_amount=Bidding.createCriteria().get {
-            projections {
-                eq('listing', listing)
-                max "amount"
-            }
-        } as float
+        def min_amount=0
+        if(Bidding.where {listing==listing}.list()){
+                min_amount=Bidding.createCriteria().get {
+                projections {
+                    eq('listing', listing)
+                    max "amount"
+                }
+            } as float
+        }
+
         min_amount+=0.5
         def min = Math.max(min_start, min_amount)
         if(instance.amount < min ){

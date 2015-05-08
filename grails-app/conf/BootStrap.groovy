@@ -74,25 +74,5 @@ class BootStrap {
                 deliverOption : option1
             ).save(failOnError: true, flush: true);
         }
-
-        if (!Bidding.count()) {
-            bidding1 = new Bidding(
-                amount         : 1,
-                biddingAccount : account2,
-                listing        : listing1
-            ).save(failOnError: true, flush: true);
-
-            bidding2 = new Bidding(
-                amount         : 2,
-                biddingAccount : account1,
-                listing        : listing2
-            ).save(failOnError: true, flush: true);
-
-            bidding3 = new Bidding(
-                amount: 3,
-                biddingAccount : account2,
-                listing        : listing2
-            ).save(failOnError: true, flush: true);
-        }
     }
 }

@@ -63,7 +63,7 @@ class RestPageSpec extends GebReportingSpec {
             def bid = resp.data
 
         then: "A new comment from the seller is posted"
-            assert resp.status == 302 // redirect to a 200
+            assert resp.status == 200
     }
 
     def "Test that we can create a buyer feedback"() {
@@ -78,7 +78,7 @@ class RestPageSpec extends GebReportingSpec {
             def bid = resp.data
 
         then: "A new comment from the buyer is posted"
-            assert resp.status == 302 // redirect to a 200
+            assert resp.status == 200
     }
 
     def "Test that we can create a listing with an authenticated user"() {
@@ -98,15 +98,6 @@ class RestPageSpec extends GebReportingSpec {
             ])
 
         then: "A new listing from the logged in user is posted"
-            assert resp.status == 200
-    }
-
-    def "Test that we can delete a listing owned by the user"() {
-        when: "I am sending a DELETE to delete a listing"
-            httpUtils.login('chao', 'chaochao1')
-            def resp = doDelete('api/listings/1')
-
-        then: "An existing listing is deleted"
             assert resp.status == 200
     }
 

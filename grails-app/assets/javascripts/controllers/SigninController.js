@@ -1,6 +1,7 @@
 app.controller("SigninController", function($scope, Signin, Accounts, Auth) {
-
     $scope.signin = function() {
+        // client validation
+        var errors = [];
         var data = 'j_username=' + $scope.username + '&j_password=' + $scope.password;
         Signin.check(data).$promise.then(function(data) {
             var alert=angular.element("#login-alert")

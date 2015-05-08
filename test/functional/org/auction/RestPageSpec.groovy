@@ -29,17 +29,6 @@ class RestPageSpec extends GebReportingSpec {
             listing.find { it.name == 'listing 1' }
     }
 
-    def "Test that we can get all biddings for a particular listing"() {
-        when: "I am sending a GET to retrieve all biddings"
-            def resp = doGet('api/listings/1/biddings')
-            assert resp.status == 200
-            assert resp.contentType == 'application/json'
-            def biddings = resp.data
-
-        then: "I am presented with the whole listing"
-            biddings.find { it.amount == 1.0 }
-    }
-
     def "Test that we can get a particular account"() {
         when: "I am sending a GET to retrieve all biddings"
             def resp = doGet('api/accounts/1')

@@ -12,7 +12,9 @@ class ListingsSinglePage extends Page {
             $(".listings-complete-toggle")
         }
         firstListing {
-            $(".listings-table tbody tr:first-child")
+            waitFor {
+                $(".listings-table tbody tr:first-child")
+            }
         }
     }
 }

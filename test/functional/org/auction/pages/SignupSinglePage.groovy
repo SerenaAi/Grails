@@ -6,19 +6,29 @@ class SignupSinglePage extends Page {
 
     static content = {
         signupEmail {
-            $(".signup-email")
+            waitFor {
+                $(".signup-email")
+            }
         }
         signupPassword {
-            $(".signup-password")
+            waitFor {
+                $(".signup-password")
+            }
         }
         signupUsername {
-            $(".signup-username")
+            waitFor {
+                $(".signup-username")
+            }
         }
         signupAddress {
-            $(".signup-address")
+            waitFor {
+                $(".signup-address")
+            }
         }
         signupSubmit {
-            $(".signup-submit")
+            waitFor {
+                $(".signup-submit")
+            }
         }
         signupSuccess {
             $(".signup-success")

@@ -11,13 +11,19 @@ class BidderFeedbackSP extends Page {
 
     static content = {
         listingBidderFeedback {
+            waitFor {
                 $(".listing-bidder-feedback")
+            }
         }
         listingBidderComment {
+            waitFor {
                 $(".listing-bidder-comment")
+            }
         }
         listingBidderSubmit {
+            waitFor {
                 $(".listing-bidder-submit")
+            }
         }
     }
 }
